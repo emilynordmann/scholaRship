@@ -22,17 +22,25 @@ There are a few settings you should fix immediately after updating RStudio. Go t
 
 You may also want to change the appearance of your code. Different fonts and themes can sometimes help with visual difficulties or [dyslexia](https://datacarpentry.org/blog/2017/09/coding-and-dyslexia){target="_blank"}. 
 
-<div class="figure" style="text-align: center">
-<img src="images/rstudio_settings_general_appearance.png" alt="RStudio General and Appearance settings" width="100%" />
-<p class="caption">(\#fig:settings-general)RStudio General and Appearance settings</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{images/rstudio_settings_general_appearance} 
+
+}
+
+\caption{RStudio General and Appearance settings}(\#fig:settings-general)
+\end{figure}
 
 You may also want to change the settings in the Code tab. Foe example, Lisa prefers two spaces instead of tabs for my code and likes to be able to see the <a class='glossary' target='_blank' title='Spaces, tabs and line breaks' href='https://psyteachr.github.io/glossary/w#whitespace'>whitespace</a> characters. But these are all a matter of personal preference.
 
-<div class="figure" style="text-align: center">
-<img src="images/rstudio_settings_code.png" alt="RStudio Code settings" width="100%" />
-<p class="caption">(\#fig:settings-code)RStudio Code settings</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{images/rstudio_settings_code} 
+
+}
+
+\caption{RStudio Code settings}(\#fig:settings-code)
+\end{figure}
 
 
 ## Installing LaTeX

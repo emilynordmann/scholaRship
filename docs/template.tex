@@ -36,8 +36,8 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-  pdftitle={Template},
-  pdfauthor={psyTeachR Team},
+  pdftitle={scholaRship},
+  pdfauthor={Craig Alexander, James Bartlett, Mitchum Bock, Eilidh Jack, Gaby Mahrholz, Emily Nordmann},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
@@ -156,9 +156,9 @@
 \usepackage[]{natbib}
 \bibliographystyle{plainnat}
 
-\title{Template}
-\author{psyTeachR Team}
-\date{2021-10-14}
+\title{scholaRship}
+\author{Craig Alexander, James Bartlett, Mitchum Bock, Eilidh Jack, Gaby Mahrholz, Emily Nordmann}
+\date{2022-01-09}
 
 \begin{document}
 \maketitle
@@ -171,178 +171,64 @@
 \chapter*{Overview}\label{overview}}
 \addcontentsline{toc}{chapter}{Overview}
 
-After copying this template to your project, you will need to change the information in the \texttt{CITATION} and \texttt{DESCRIPTION} files, as well as update the YAML header of \texttt{book/index.Rmd} and \texttt{book/\_output.yml}. Update site-specific logos in \texttt{book/images/logos/}.
+\texttt{scholaRship} is a collection of tutorials on how to engage in the scholarship of teaching and learning using quantitative methods and R. It is written by Learning, Teaching, and Scholarship focused academics in the School of Psychology and Neuroscience and the School of Mathematics and Statistics at the University of Glasgow.
 
-If you are not part of the psyTeachR group, please edit the Google Analytics ID in \texttt{include/google-analytics.html} or comment out the relevant line in \texttt{book/\_output.yml}.
+This book should be considered a living document. The tutorials will be added over time as they are developed and both the content and structure of new and existing tutorials may be updated.
 
-Render the book using the code in \texttt{\_render.R}.
+Contact: Emily Nordmann (\href{mailto:Emily.Nordmann@glasgow.ac.uk}{\nolinkurl{Emily.Nordmann@glasgow.ac.uk}})
 
-\hypertarget{changes}{%
-\section{Changes}\label{changes}}
+\hypertarget{intro}{%
+\chapter{Introduction}\label{intro}}
 
-\hypertarget{version-2.1-2021-10-14}{%
-\subsection{Version 2.1 2021-10-14}\label{version-2.1-2021-10-14}}
+Getting started with the scholarship of teaching and learning can be difficult. For the majority of academics whose subject expertise does not involve learning and teaching, the first hurdle of figuring out what questions you can ask and answer (and indeed are interested in) can be the toughest one to push past.
 
-\begin{itemize}
-\tightlist
-\item
-  Updated webexercises styles to include a green check and red X for correct and incorrect responses.
+Once you have settled on an area of enquiry, you may find that the most appropriate methodologies to investigate your questions are not ones you have been trained in. For quantitatively-minded researchers, the availability of data can feel like simultaneous feast and famine - you may have access to huge amounts of data through learning analytics and standard student records but will be able to use almost none of it for research purposes due to the need for opt-in consent. Where such consent has been obtained, you may have small, non-representative samples and/or non-random attrition.
 
-  \begin{itemize}
-  \tightlist
-  \item
-    \texttt{book/include/webex.css} (replace)
-  \item
-    \texttt{book/include/webex.js} (replace)
-  \end{itemize}
-\item
-  Changed the name of \texttt{book/include/header.html} to \texttt{book/include/google-analytics.html} to better reflect its purpose.
+Finally, the data you do have can be seriously messy: missing data, data from multiple sources with different structures and labels, data from different academic years where course structures and assessments have changed, anonymised data, or aggregated data.
 
-  \begin{itemize}
-  \tightlist
-  \item
-    \texttt{book/include/header.html} (delete)
-  \item
-    \texttt{book/include/google-analytics.html} (add)
-  \item
-    \texttt{book/\_output.yml} (change line 10)
-  \end{itemize}
-\item
-  Updated rendering functions to not render pdf epub or mobi by default
+If any of this sounds familiar, this book is for you.
 
-  \begin{itemize}
-  \tightlist
-  \item
-    \texttt{\_render.R} (replace)
-  \item
-    \texttt{Makefile} (add)
-  \end{itemize}
-\end{itemize}
-
-\hypertarget{inclusion}{%
-\chapter{Inclusion}\label{inclusion}}
-
-We want our resources to be accessible to everyone. This means thinking about accessibility with regards to disability, language, identity, and other characteristics. This is a work in progress; feel free to suggest additions.
-
-\hypertarget{tips-for-text-readers}{%
-\section{Tips for text-readers}\label{tips-for-text-readers}}
-
-Some students need to use text readers for accessibility; others just prefer this method. Here are some tips for improving their experience from the \href{https://www.bdadyslexia.org.uk/advice/employers/creating-a-dyslexia-friendly-workplace/dyslexia-friendly-style-guide}{Dyslexia Style Guide}.
+Each tutorial in this book will contain:
 
 \begin{itemize}
 \tightlist
 \item
-  Use straight quotation marks
+  A short summary of the \textbf{evidence-base} for the problem under investigation to promote engagement with the SoTL literature;
 \item
-  Avoid roman numerals
+  \textbf{Real}\footnote{\textbf{Due to the need for ethical approval, the data we use in this book won't be strictly real data, instead, it will be a simulated, synthetic copy of real data. All the mess, none of the consent issues.}} messy, imperfect data drawn from commonly available sources such as Moodle, Turnitin, Microsoft Forms, and Echo360;
 \item
-  Avoid text in figures
+  A walkthrough of how to \textbf{clean and wrangle} the data using a predominantly \texttt{tidyverse} approach;
+\item
+  A walkthrough of how to \textbf{analyse}, \textbf{interpret, and}, and \textbf{write-up} the analysis, alongside an honest discussion of the limitations of the approach used.
 \end{itemize}
 
-Bookdown books allow readers to change the font style, size, and background colour. This provides essential accessibility for some people, such as those with dyslexia or visual impairments. Therefore, avoid putting too much text in figures and provide descriptions of images in the figure caption.
+\hypertarget{expectations-of-prior-knowledge}{%
+\section{Expectations of prior knowledge}\label{expectations-of-prior-knowledge}}
 
-\hypertarget{resources-for-blind-coders}{%
-\section{Resources for blind coders}\label{resources-for-blind-coders}}
+\hypertarget{r-and-rstudio}{%
+\subsection{R and RStudio}\label{r-and-rstudio}}
+
+Minimal prior knowledge of R and RStudio is assumed throughout this book. All functions and code used will be explained, however, we assume that the reader understands how to:
 
 \begin{itemize}
-\tightlist
 \item
-  \href{https://github.com/ajrgodfrey/BrailleR}{BrailleR}: a collection of tools to make use of R a happier experience for blind people
+  Install R and RStudio
 \item
-  \href{https://journal.r-project.org/archive/2013/RJ-2013-007/RJ-2013-007.pdf}{Statistical Software from a Blind Person's Perspective}
+  Navigate RStudio
+\item
+  Set the working directory appropriately
+\item
+  Install and load packages
+\item
+  Write and execute code
 \end{itemize}
 
-\hypertarget{dyslexia-friendly-resources}{%
-\section{Dyslexia-friendly resources}\label{dyslexia-friendly-resources}}
+For any reader that wishes to recap these skills, the appendix contains resources on how to install R and RStudio, and an introduction to R and RStudio.
 
-\begin{itemize}
-\tightlist
-\item
-  \href{https://www.bdadyslexia.org.uk/educator}{British Dyslexia Association}
-\item
-  \href{https://www.bdadyslexia.org.uk/advice/employers/creating-a-dyslexia-friendly-workplace/dyslexia-friendly-style-guide}{Dyslexia Style Guide}
-\item
-  \href{https://datacarpentry.org/blog/2017/09/coding-and-dyslexia}{Dyslexia and Coding}: Data Carpentry blog post
-\item
-  \href{https://cran.r-project.org/web/packages/fcuk/vignettes/fcuk.html}{fcuk}: A package designed to help people with clumsy fingers
-\end{itemize}
+\hypertarget{research-methods-and-statistics}{%
+\subsection{Research methods and statistics}\label{research-methods-and-statistics}}
 
-Some recommendations are highlighted below.
-
-\begin{itemize}
-\tightlist
-\item
-  Avoid underlining, block capitals, and italics -- Use bold instead
-\item
-  Use \href{conventions.html\#alert-boxes}{boxes and borders} for effective emphasis
-\item
-  Use left-justified with ragged right edge (don't full-justify)
-\item
-  Use bullet points and numbering rather than continuous prose
-\item
-  Use the active voice with concise, direct sentences
-\item
-  Avoid abbreviations and provide a \href{glossary.html}{glossary} of jargon
-\end{itemize}
-
-\hypertarget{colour}{%
-\section{Colour}\label{colour}}
-
-You can check your images for how they look to people with different types of colourblindness with the \href{https://www.color-blindness.com/coblis-color-blindness-simulator/}{Coblis Color Blindness Simulator}.
-
-Desi Quintans made \href{https://github.com/DesiQuintans/Pebble-safe}{dark and light colour-blind safe RStudio themes}.
-
-The ``pink'' and ``green'' colours from the \href{}{psyteachr\_colours()} function are distinguishable by people with protanopia (red-blind), deuteronopia (green-blind), and tritanopia (blue-blind) colourblindness. You can also use viridis colours with \texttt{ggplot2::scale\_colour\_viridis\_d()} and \texttt{ggplot2::scale\_fill\_viridis\_d()} (for discrete colours) or \texttt{ggplot2::scale\_colour\_viridis\_c()} and \texttt{ggplot2::scale\_fill\_viridis\_c()} (for continuous colours).
-
-In plots, add secondary indicators in addition to colour, such as text labels or shapes.
-
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{01-intro_files/figure-latex/plot-text-labels-1} 
-
-}
-
-\caption{Text labels supplement colour information.}\label{fig:plot-text-labels}
-\end{figure}
-
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{01-intro_files/figure-latex/plot-text-labels-facet-1} 
-
-}
-
-\caption{Facet labels and redundant colour information.}\label{fig:plot-text-labels-facet}
-\end{figure}
-
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{01-intro_files/figure-latex/plot-shapes-1} 
-
-}
-
-\caption{Supplement point colours with shapes.}\label{fig:plot-shapes}
-\end{figure}
-
-\hypertarget{sex-gender-and-sexuality}{%
-\section{Sex, gender and sexuality}\label{sex-gender-and-sexuality}}
-
-When teaching about experimental design, sex always used to be my go-to example of a two-level between-subjects factor. But this can make some people feel like their very existence is being ignored. In your examples, avoid implicitly assuming heterosexuality or binary gender.
-
-If you want to suggest an in-class exercise that uses data from the students, make sure to choose something that doesn't exclude anyone.
-
-\begin{itemize}
-\tightlist
-\item
-  Pet owners/non-pet owners
-\item
-  Normally does/doesn't wear glasses
-\item
-  Can/can't juggle
-\item
-  Native/non-native English speakers
-\item
-  Born in Scotland/elsewhere
-\end{itemize}
+We assume a basic level of competency in research methods and statistics. However, we also recognise that many researchers are still less familiar with more modern approaches such as mixed effects models and will provide an appropriate level of explanation and further resources where necessary.
 
 \hypertarget{appendix-appendices}{%
 \appendix}
@@ -436,7 +322,7 @@ Symbol & psyTeachR Term & Also Known As \\
 ! & exclamation mark & bang / not \\
 ? & question mark & \\
 ' & single quote & quote / apostrophe \\
-" & double quote & quote \\
+'' & double quote & quote \\
 \%\textgreater\% & pipe & magrittr pipe \\
 \textbar{} & vertical bar & pipe \\
 , & comma & \\
@@ -484,7 +370,7 @@ This book will use the following conventions:
 \item
   Citations: \citet{R-tidyverse}
 \item
-  Internal links: Chapter~\ref{inclusion}
+  Internal links: Chapter~\ref{intro}
 \item
   External links: \href{https://r4ds.had.co.nz/}{R for Data Science}
 \item
@@ -505,7 +391,7 @@ See \href{https://psyteachr.github.io/webexercises/}{webexercises} for more deta
 \item
   What is a p-value?
 
-  \hypertarget{radio_LLQBBPYUJJ}{}
+  \hypertarget{radio_WCXBRTQDFT}{}
   {the probability that the null hypothesis is true} {the probability of the observed (or more extreme) data, under the assumption that the null-hypothesis is true} {the probability of making an error in your conclusion}
 \end{itemize}
 

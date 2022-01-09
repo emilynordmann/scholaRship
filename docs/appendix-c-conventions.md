@@ -22,7 +22,7 @@ See [webexercises](https://psyteachr.github.io/webexercises/) for more details a
 
 * Type an integer: <input class='webex-solveme nospaces regex' size='1' data-answer='["^[0-9]{1}$"]'/>
 * I am going to learn a lot: <select class='webex-select'><option value='blank'></option><option value='answer'>TRUE</option><option value='x'>FALSE</option></select>
-* What is a p-value? <div class='webex-radiogroup' id='radio_AMDMUKQSKQ'><label><input type="radio" autocomplete="off" name="radio_AMDMUKQSKQ" value="x"></input> <span>the probability that the null hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_AMDMUKQSKQ" value="answer"></input> <span>the probability of the observed (or more extreme) data, under the assumption that the null-hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_AMDMUKQSKQ" value="x"></input> <span>the probability of making an error in your conclusion</span></label></div>
+* What is a p-value? <div class='webex-radiogroup' id='radio_WCXBRTQDFT'><label><input type="radio" autocomplete="off" name="radio_WCXBRTQDFT" value="x"></input> <span>the probability that the null hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_WCXBRTQDFT" value="answer"></input> <span>the probability of the observed (or more extreme) data, under the assumption that the null-hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_WCXBRTQDFT" value="x"></input> <span>the probability of making an error in your conclusion</span></label></div>
 
 
 <div class='webex-solution'><button>Hidden Text</button>
@@ -86,9 +86,12 @@ library(tidyverse)
 ## Glossary
 
 
-
-|term                                                                                             |definition                                                             |
-|:------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------|
-|[ordinal](https://psyteachr.github.io/glossary/o.html#ordinal){class="glossary" target="_blank"} |Discrete variables that have an inherent order, such as number of legs |
+\begin{tabular}{l|l}
+\hline
+term & definition\\
+\hline
+ordinal & Discrete variables that have an inherent order, such as number of legs\\
+\hline
+\end{tabular}
 
 
