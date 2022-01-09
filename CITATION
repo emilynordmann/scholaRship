@@ -1,10 +1,10 @@
-cff-version: 1.2.0
-message: "If you use this template, please cite it as below:"
+cff-version: 1..0
+message: "If you use this book, please cite it as below:"
 authors:
-- family-names: "Lisa"
-  given-names: "DeBruine"
-  orcid: "https://orcid.org/0000-0002-7523-5539"
-title: "psyTeachR Book Template"
-version: 2.1
+- family-names: "Emily"
+  given-names: "Nordmann"
+  orcid: "https://orcid.org/0000-0002-0806-1081"
+title: "scholaRship"
+version: 1.0
 date-released: 2021-10-14
-url: "https://github.com/psyteachr/template/"
+url: "https://github.com/psyteachr/scholaRship/"

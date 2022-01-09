@@ -1,7 +1,7 @@
 --- 
-title: "Template" # edit
+title: "scholaRship" 
 #subtitle: "optional" 
-author: "psyTeachR Team" # edit
+author: "Craig Alexander, James Bartlett, Mitchum Bock, Eilidh Jack, Gaby Mahrholz, Emily Nordmann" # edit
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
@@ -10,10 +10,8 @@ geometry: margin=1in # for PDFs
 bibliography: [book.bib, packages.bib]
 csl: include/apa.csl
 link-citations: yes
-description: | # edit
-  The book template for the psyTeachR books.
 url: https://psyteachr.github.io/template # edit
-github-repo: psyteachr/template # edit
+github-repo: psyteachr/scholaRship # edit
 cover-image: images/logos/logo.png # replace with your logo
 apple-touch-icon: images/logos/apple-touch-icon.png # replace with your logo
 apple-touch-icon-size: 180
@@ -40,29 +38,14 @@ knitr::write_bib(c(
 if (knitr::is_html_output()) {
   cat("
 * [PDF version](template.pdf)
-* [ePub version](template.epub)
-* [Kindle version](template.mobi)
 ")
 }
 ```
 
-After copying this template to your project, you will need to change the information in the `CITATION` and `DESCRIPTION` files, as well as update the YAML header of `book/index.Rmd` and `book/_output.yml`. Update site-specific logos in `book/images/logos/`.
 
-If you are not part of the psyTeachR group, please edit the Google Analytics ID in `include/google-analytics.html` or comment out the relevant line in `book/_output.yml`. 
+`scholaRship` is a collection of tutorials on how to engage in the scholarship of teaching and learning using quantitative methods and R. It is written by Learning, Teaching, and Scholarship focused academics in the School of Psychology and Neuroscience and the School of Mathematics and Statistics at the University of Glasgow.
 
-Render the book using the code in `_render.R`.
+This book should be considered a living document. The tutorials will be added over time as they are developed and both the content and structure of new and existing tutorials may be updated.
 
-## Changes
+Contact: Emily Nordmann (Emily.Nordmann@glasgow.ac.uk)
 
-### Version 2.1 2021-10-14
-
-* Updated webexercises styles to include a green check and red X for correct and incorrect responses.
-    - `book/include/webex.css` (replace)
-    - `book/include/webex.js` (replace)
-* Changed the name of `book/include/header.html` to `book/include/google-analytics.html` to better reflect its purpose. 
-    - `book/include/header.html` (delete)
-    - `book/include/google-analytics.html` (add)
-    - `book/_output.yml` (change line 10)
-* Updated rendering functions to not render pdf epub or mobi by default
-    - `_render.R` (replace)
-    - `Makefile` (add)

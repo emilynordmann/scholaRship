@@ -27,7 +27,6 @@ favicon: images/logos/favicon.ico # replace with your logo
 
 
 
-* [PDF version](template.pdf)
 
 
 `scholaRship` is a collection of tutorials on how to engage in the scholarship of teaching and learning using quantitative methods and R. It is written by Learning, Teaching, and Scholarship focused academics in the School of Psychology and Neuroscience and the School of Mathematics and Statistics at the University of Glasgow.

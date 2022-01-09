@@ -1,79 +1,40 @@
-# Inclusion
+# Introduction {#intro}
 
-We want our resources to be accessible to everyone. This means thinking about accessibility with regards to disability, language, identity, and other characteristics. This is a work in progress; feel free to suggest additions.
+Getting started with the scholarship of teaching and learning can be difficult. For the majority of academics whose subject expertise does not involve learning and teaching, the first hurdle of figuring out what questions you can ask and answer (and indeed are interested in) can be the toughest one to push past.
 
+Once you have settled on an area of enquiry, you may find that the most appropriate methodologies to investigate your questions are not ones you have been trained in. For quantitatively-minded researchers, the availability of data can feel like simultaneous feast and famine - you may have access to huge amounts of data through learning analytics and standard student records but will be able to use almost none of it for research purposes due to the need for opt-in consent. Where such consent has been obtained, you may have small, non-representative samples and/or non-random attrition.
 
-## Tips for text-readers
+Finally, the data you do have can be seriously messy: missing data, data from multiple sources with different structures and labels, data from different academic years where course structures and assessments have changed, anonymised data, or aggregated data.
 
-Some students need to use text readers for accessibility; others just prefer this method. Here are some tips for improving their experience from the [Dyslexia Style Guide](https://www.bdadyslexia.org.uk/advice/employers/creating-a-dyslexia-friendly-workplace/dyslexia-friendly-style-guide).
+If any of this sounds familiar, this book is for you.
 
-* Use straight quotation marks
-* Avoid roman numerals
-* Avoid text in figures
+Each tutorial in this book will contain:
 
-Bookdown books allow readers to change the font style, size, and background colour. This provides essential accessibility for some people, such as those with dyslexia or visual impairments. Therefore, avoid putting too much text in figures and provide descriptions of images in the figure caption.
+-   A short summary of the **evidence-base** for the problem under investigation to promote engagement with the SoTL literature;
+-   **Real**[^1] messy, imperfect data drawn from commonly available sources such as Moodle, Turnitin, Microsoft Forms, and Echo360;
+-   A walkthrough of how to **clean and wrangle** the data using a predominantly `tidyverse` approach;
+-   A walkthrough of how to **analyse**, **interpret, and**, and **write-up** the analysis, alongside an honest discussion of the limitations of the approach used.
 
-## Resources for blind coders
+[^1]: **Due to the need for ethical approval, the data we use in this book won't be strictly real data, instead, it will be a simulated, synthetic copy of real data. All the mess, none of the consent issues.**
 
-* [BrailleR](https://github.com/ajrgodfrey/BrailleR): a collection of tools to make use of R a happier experience for blind people
-* [Statistical Software from a Blind Person’s Perspective](https://journal.r-project.org/archive/2013/RJ-2013-007/RJ-2013-007.pdf)
+## Expectations of prior knowledge
 
-## Dyslexia-friendly resources
+### R and RStudio
 
-* [British Dyslexia Association](https://www.bdadyslexia.org.uk/educator)
-* [Dyslexia Style Guide](https://www.bdadyslexia.org.uk/advice/employers/creating-a-dyslexia-friendly-workplace/dyslexia-friendly-style-guide)
-* [Dyslexia and Coding](https://datacarpentry.org/blog/2017/09/coding-and-dyslexia): Data Carpentry blog post
-* [fcuk](https://cran.r-project.org/web/packages/fcuk/vignettes/fcuk.html): A package designed to help people with clumsy fingers
+Minimal prior knowledge of R and RStudio is assumed throughout this book. All functions and code used will be explained, however, we assume that the reader understands how to:
 
+-   Install R and RStudio
 
-Some recommendations are highlighted below.
+-   Navigate RStudio
 
-* Avoid underlining, block capitals, and italics -- Use bold instead
-* Use [boxes and borders](conventions.html#alert-boxes) for effective emphasis
-* Use left-justified with ragged right edge (don't full-justify)
-* Use bullet points and numbering rather than continuous prose
-* Use the active voice with concise, direct sentences
-* Avoid abbreviations and provide a [glossary](glossary.html) of jargon
+-   Set the working directory appropriately
 
+-   Install and load packages
 
-## Colour
+-   Write and execute code
 
-You can check your images for how they look to people with different types of colourblindness with the [Coblis Color Blindness Simulator](https://www.color-blindness.com/coblis-color-blindness-simulator/).
+For any reader that wishes to recap these skills, the appendix contains resources on how to install R and RStudio, and an introduction to R and RStudio.
 
-Desi Quintans made [dark and light colour-blind safe RStudio themes](https://github.com/DesiQuintans/Pebble-safe).
+### Research methods and statistics
 
-The "pink" and "green" colours from the [psyteachr_colours()]() function are distinguishable by people with protanopia (red-blind), deuteronopia (green-blind), and tritanopia (blue-blind) colourblindness. You can also use viridis colours with `ggplot2::scale_colour_viridis_d()` and `ggplot2::scale_fill_viridis_d()` (for discrete colours) or `ggplot2::scale_colour_viridis_c()` and `ggplot2::scale_fill_viridis_c()` (for continuous colours).
-
-In plots, add secondary indicators in addition to colour, such as text labels or shapes.
-
-<div class="figure" style="text-align: center">
-<img src="01-intro_files/figure-epub3/plot-text-labels-1.png" alt="Text labels supplement colour information." width="100%" />
-<p class="caption">(\#fig:plot-text-labels)Text labels supplement colour information.</p>
-</div>
-
-
-<div class="figure" style="text-align: center">
-<img src="01-intro_files/figure-epub3/plot-text-labels-facet-1.png" alt="Facet labels and redundant colour information." width="100%" />
-<p class="caption">(\#fig:plot-text-labels-facet)Facet labels and redundant colour information.</p>
-</div>
-
-<div class="figure" style="text-align: center">
-<img src="01-intro_files/figure-epub3/plot-shapes-1.png" alt="Supplement point colours with shapes." width="100%" />
-<p class="caption">(\#fig:plot-shapes)Supplement point colours with shapes.</p>
-</div>
-
-## Sex, gender and sexuality
-
-When teaching about experimental design, sex always used to be my go-to example of a two-level between-subjects factor. But this can make some people feel like their very existence is being ignored. In your examples, avoid implicitly assuming heterosexuality or binary gender.
-
-If you want to suggest an in-class exercise that uses data from the students, make sure to choose something that doesn't exclude anyone. 
-
-* Pet owners/non-pet owners
-* Normally does/doesn't wear glasses
-* Can/can't juggle
-* Native/non-native English speakers
-* Born in Scotland/elsewhere
-
-
-
-
+We assume a basic level of competency in research methods and statistics. However, we also recognise that many researchers are still less familiar with more modern approaches such as mixed effects models and will provide an appropriate level of explanation and further resources where necessary.

@@ -1,17 +1,15 @@
-Package: template
-Title: PsyTeachR Book Template
+Title: scholaRship
 Version: 2.1
 Authors@R:
   c(
     person(
-        given = "Lisa", 
-        family = "DeBruine", 
+        given = "Emily", 
+        family = "Nordmann", 
         role = c("aut", "cre"), 
-        email = "debruine@gmail.com", 
-        comment = c(ORCID = "0000-0002-7523-5539")
+        email = "Emily.Nordmann@glasgow.ac.uk", 
+        comment = c(ORCID = "0000-0002-0806-1081")
     )
   )
-Description: This book provides a starting template for books in the psyTeachR series at the University of Glasgow School of Psychology and Neuroscience.
 License: CC BY 4.0 + LICENSE
 Encoding: UTF-8
 LazyData: true
