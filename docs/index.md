@@ -1,8 +1,8 @@
 --- 
 title: "scholaRship" 
 #subtitle: "optional" 
-author: "Craig Alexander, James Bartlett, Mitchum Bock, Eilidh Jack, Gaby Mahrholz, Emily Nordmann" # edit
-date: "2022-01-09"
+author: "Emily Nordmann, Craig Alexander, James Bartlett, Eilidh Jack, Gaby Mahrholz, Jill MacKay, Mitchum Bock" # edit
+date: "2022-01-26"
 site: bookdown::bookdown_site
 documentclass: book
 classoption: oneside # for PDFs
@@ -27,9 +27,10 @@ favicon: images/logos/favicon.ico # replace with your logo
 
 
 
+* [PDF version](template.pdf)
 
 
-`scholaRship` is a collection of tutorials on how to engage in the scholarship of teaching and learning using quantitative methods and R. It is written by Learning, Teaching, and Scholarship focused academics in the School of Psychology and Neuroscience and the School of Mathematics and Statistics at the University of Glasgow.
+`scholaRship` is a collection of tutorials on how to engage in the scholarship of teaching and learning using quantitative methods and R. It is written by Learning, Teaching, and Scholarship focused academics: Emily Nordmann, James Bartlett and Gaby Mahrholz from the School of Psychology and Neuroscience, University of Glasgow, Mitchum Bock, Eilidh Jack, and Craig Alexander, School of Mathematics and Statistics, University of Glasgow, and Jill MacKay, University of Edinburgh.
 
 This book should be considered a living document. The tutorials will be added over time as they are developed and both the content and structure of new and existing tutorials may be updated.
 

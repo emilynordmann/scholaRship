@@ -27,19 +27,13 @@ glossary_table()
 <pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;</code></pre></div>
 
 
-\begin{tabular}{l|l}
-\hline
-term & definition\\
-\hline
-character & A data type representing strings of text.\\
-\hline
-data-type & My custom definition of data types\\
-\hline
-double & A data type representing a real decimal number\\
-\hline
-integer & A data type representing whole numbers.\\
-\hline
-\end{tabular}
+
+|term                                                                                                 |definition                                     |
+|:----------------------------------------------------------------------------------------------------|:----------------------------------------------|
+|[character](https://psyteachr.github.io/glossary/c.html#character){class="glossary" target="_blank"} |A data type representing strings of text.      |
+|[data type](https://psyteachr.github.io/glossary/d.html#data-type){class="glossary" target="_blank"} |My custom definition of data types             |
+|[double](https://psyteachr.github.io/glossary/d.html#double){class="glossary" target="_blank"}       |A data type representing a real decimal number |
+|[integer](https://psyteachr.github.io/glossary/i.html#integer){class="glossary" target="_blank"}     |A data type representing whole numbers.        |
 
 
 
