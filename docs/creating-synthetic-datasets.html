@@ -4,15 +4,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>License | scholaRship</title>
+<title>Chapter 2 Creating synthetic datasets | scholaRship</title>
 <meta name="author" content="Emily Nordmann, Craig Alexander, James Bartlett, Eilidh Jack, Gaby Mahrholz, Jill MacKay, Mitchum Bock">
 <meta name="generator" content="bookdown 0.25 with bs4_book()">
-<meta property="og:title" content="License | scholaRship">
+<meta property="og:title" content="Chapter 2 Creating synthetic datasets | scholaRship">
 <meta property="og:type" content="book">
-<meta property="og:url" content="https://psyteachr.github.io/template/license.html">
+<meta property="og:url" content="https://psyteachr.github.io/template/creating-synthetic-datasets.html">
 <meta property="og:image" content="https://psyteachr.github.io/template/images/logos/logo.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="License | scholaRship">
+<meta name="twitter:title" content="Chapter 2 Creating synthetic datasets | scholaRship">
 <meta name="twitter:image" content="https://psyteachr.github.io/template/images/logos/logo.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -53,9 +53,9 @@
 <link rel="stylesheet" href="include/psyteachr.css">
 <link rel="stylesheet" href="include/webex.css">
 <link rel="stylesheet" href="include/style.css">
-<meta name="description" content="This book is licensed under Creative Commons Attribution-ShareAlike 4.0 International License (CC-BY-SA 4.0). You are free to share and adapt this book. You must give appropriate credit (DeBruine,...">
-<meta property="og:description" content="This book is licensed under Creative Commons Attribution-ShareAlike 4.0 International License (CC-BY-SA 4.0). You are free to share and adapt this book. You must give appropriate credit (DeBruine,...">
-<meta name="twitter:description" content="This book is licensed under Creative Commons Attribution-ShareAlike 4.0 International License (CC-BY-SA 4.0). You are free to share and adapt this book. You must give appropriate credit (DeBruine,...">
+<meta name="description" content='/* update total correct if #webex-total_correct exists */ update_total_correct = function() {  console.log("webex: update total_correct");  if (t = document.getElementById("webex-total_correct"))...'>
+<meta property="og:description" content='/* update total correct if #webex-total_correct exists */ update_total_correct = function() {  console.log("webex: update total_correct");  if (t = document.getElementById("webex-total_correct"))...'>
+<meta name="twitter:description" content='/* update total correct if #webex-total_correct exists */ update_total_correct = function() {  console.log("webex: update total_correct");  if (t = document.getElementById("webex-total_correct"))...'>
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -79,14 +79,14 @@
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Overview</a></li>
 <li><a class="" href="intro.html"><span class="header-section-number">1</span> Introduction</a></li>
-<li><a class="" href="creating-synthetic-datasets.html"><span class="header-section-number">2</span> Creating synthetic datasets</a></li>
+<li><a class="active" href="creating-synthetic-datasets.html"><span class="header-section-number">2</span> Creating synthetic datasets</a></li>
 <li><a class="" href="feedback.html"><span class="header-section-number">3</span> Do students access their feedback?</a></li>
 <li class="book-part">Appendices</li>
 <li><a class="" href="installing-r.html"><span class="header-section-number">A</span> Installing R</a></li>
 <li><a class="" href="symbols.html"><span class="header-section-number">B</span> Symbols</a></li>
 <li><a class="" href="conventions.html"><span class="header-section-number">C</span> Conventions</a></li>
 <li><a class="" href="glossary-1.html"><span class="header-section-number">D</span> Glossary</a></li>
-<li><a class="active" href="license.html">License</a></li>
+<li><a class="" href="license.html">License</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -95,10 +95,10 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="license" class="section level1 unnumbered">
-<h1>License<a class="anchor" aria-label="anchor" href="#license"><i class="fas fa-link"></i></a>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="creating-synthetic-datasets" class="section level1" number="2">
+<h1>
+<span class="header-section-number">2</span> Creating synthetic datasets<a class="anchor" aria-label="anchor" href="#creating-synthetic-datasets"><i class="fas fa-link"></i></a>
 </h1>
-<p>This book is licensed under Creative Commons Attribution-ShareAlike 4.0 International License <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">(CC-BY-SA 4.0)</a>. You are free to share and adapt this book. You must give appropriate credit <span class="citation">(<a href="references.html#ref-psyteachr-template" role="doc-biblioref">DeBruine, 2021</a>)</span>, provide a link to the license, and indicate if changes were made. If you adapt the material, you must distribute your contributions under the same license as the original.</p>
 
 </div>
 <script>
@@ -303,16 +303,16 @@ $( document ).ready(function() {
   window.onresize = move_sidebar;
 });
 </script><div class="chapter-nav">
-<div class="prev"><a href="glossary-1.html"><span class="header-section-number">D</span> Glossary</a></div>
-<div class="next"><a href="references.html">References</a></div>
+<div class="prev"><a href="intro.html"><span class="header-section-number">1</span> Introduction</a></div>
+<div class="next"><a href="feedback.html"><span class="header-section-number">3</span> Do students access their feedback?</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav"><li><a class="nav-link" href="#license">License</a></li></ul>
+      <ul class="nav navbar-nav"><li><a class="nav-link" href="#creating-synthetic-datasets"><span class="header-section-number">2</span> Creating synthetic datasets</a></li></ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/psyteachr/scholaRship/blob/master/book/appendix-y-license.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/psyteachr/scholaRship/edit/master/book/appendix-y-license.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/psyteachr/scholaRship/blob/master/book/02-synthpop.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/psyteachr/scholaRship/edit/master/book/02-synthpop.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>

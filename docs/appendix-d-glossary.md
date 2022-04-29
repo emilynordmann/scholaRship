@@ -26,14 +26,32 @@ glossary_table()
 
 <pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;</code></pre></div>
 
-
-
-|term                                                                                                 |definition                                     |
-|:----------------------------------------------------------------------------------------------------|:----------------------------------------------|
-|[character](https://psyteachr.github.io/glossary/c.html#character){class="glossary" target="_blank"} |A data type representing strings of text.      |
-|[data type](https://psyteachr.github.io/glossary/d.html#data-type){class="glossary" target="_blank"} |My custom definition of data types             |
-|[double](https://psyteachr.github.io/glossary/d.html#double){class="glossary" target="_blank"}       |A data type representing a real decimal number |
-|[integer](https://psyteachr.github.io/glossary/i.html#integer){class="glossary" target="_blank"}     |A data type representing whole numbers.        |
+<table class="table" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> term </th>
+   <th style="text-align:left;"> definition </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> [character](https://psyteachr.github.io/glossary/c.html#character){class="glossary" target="_blank"} </td>
+   <td style="text-align:left;"> A data type representing strings of text. </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> [data type](https://psyteachr.github.io/glossary/d.html#data-type){class="glossary" target="_blank"} </td>
+   <td style="text-align:left;"> My custom definition of data types </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> [double](https://psyteachr.github.io/glossary/d.html#double){class="glossary" target="_blank"} </td>
+   <td style="text-align:left;"> A data type representing a real decimal number </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> [integer](https://psyteachr.github.io/glossary/i.html#integer){class="glossary" target="_blank"} </td>
+   <td style="text-align:left;"> A data type representing whole numbers. </td>
+  </tr>
+</tbody>
+</table>
 
 
 

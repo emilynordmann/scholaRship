@@ -5,6 +5,10 @@ intro
 expectations-of-prior-knowledge
 r-and-rstudio
 research-methods-and-statistics
+creating-synthetic-datasets
+feedback
+introduction
+data-sources
 installing-r
 installing-base-r
 installing-rstudio

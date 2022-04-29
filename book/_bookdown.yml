@@ -6,6 +6,7 @@ before_chapter_script:
 - R/psyteachr_setup.R
 - R/my_setup.R
 delete_merged_file: yes
+bibliography: bibliography.bib
 clean: ["packages.bib"]
 language:
   ui:
