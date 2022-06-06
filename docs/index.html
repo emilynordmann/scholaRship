@@ -9,11 +9,11 @@
 <meta name="generator" content="bookdown 0.25 with bs4_book()">
 <meta property="og:title" content="Overview | scholaRship">
 <meta property="og:type" content="book">
-<meta property="og:url" content="https://psyteachr.github.io/template">
-<meta property="og:image" content="https://psyteachr.github.io/template/images/logos/logo.png">
+<meta property="og:url" content="https://psyteachr.github.io/scholaRship">
+<meta property="og:image" content="https://psyteachr.github.io/scholaRship/images/logos/logo.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Overview | scholaRship">
-<meta name="twitter:image" content="https://psyteachr.github.io/template/images/logos/logo.png">
+<meta name="twitter:image" content="https://psyteachr.github.io/scholaRship/images/logos/logo.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -80,14 +80,15 @@
 <li><a class="active" href="index.html">Overview</a></li>
 <li><a class="" href="intro.html"><span class="header-section-number">1</span> Introduction</a></li>
 <li><a class="" href="creating-synthetic-datasets.html"><span class="header-section-number">2</span> Creating synthetic datasets</a></li>
-<li><a class="" href="feedback.html"><span class="header-section-number">3</span> Do students access their feedback?</a></li>
+<li><a class="" href="conclusion.html"><span class="header-section-number">3</span> Conclusion</a></li>
+<li><a class="" href="references.html"><span class="header-section-number">4</span> References</a></li>
 <li class="book-part">Appendices</li>
 <li><a class="" href="installing-r.html"><span class="header-section-number">A</span> Installing R</a></li>
 <li><a class="" href="symbols.html"><span class="header-section-number">B</span> Symbols</a></li>
 <li><a class="" href="conventions.html"><span class="header-section-number">C</span> Conventions</a></li>
 <li><a class="" href="glossary-1.html"><span class="header-section-number">D</span> Glossary</a></li>
 <li><a class="" href="license.html">License</a></li>
-<li><a class="" href="references.html">References</a></li>
+<li><a class="" href="references-1.html">References</a></li>
 </ul>
 
         <div class="book-extra">
@@ -101,9 +102,6 @@
 <div class="small_right">
 <img src="images/logos/logo.png" alt="ADS Hex Logo">
 </div>
-<ul>
-<li><a href="template.pdf">PDF version</a></li>
-</ul>
 <p><code>scholaRship</code> is a collection of tutorials on how to engage in the scholarship of teaching and learning using quantitative methods and R. It is written by Learning, Teaching, and Scholarship focused academics: Emily Nordmann, James Bartlett and Gaby Mahrholz from the School of Psychology and Neuroscience, University of Glasgow, Mitchum Bock, Eilidh Jack, and Craig Alexander, School of Mathematics and Statistics, University of Glasgow, and Jill MacKay, University of Edinburgh.</p>
 <p>This book should be considered a living document. The tutorials will be added over time as they are developed and both the content and structure of new and existing tutorials may be updated.</p>
 <p>Contact: Emily Nordmann (<a href="mailto:Emily.Nordmann@glasgow.ac.uk" class="email">Emily.Nordmann@glasgow.ac.uk</a>)</p>
@@ -332,7 +330,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>scholaRship</strong>" was written by Emily Nordmann, Craig Alexander, James Bartlett, Eilidh Jack, Gaby Mahrholz, Jill MacKay, Mitchum Bock. It was last built on 2022-04-29.</p>
+    <p>"<strong>scholaRship</strong>" was written by Emily Nordmann, Craig Alexander, James Bartlett, Eilidh Jack, Gaby Mahrholz, Jill MacKay, Mitchum Bock. It was last built on 2022-06-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -340,6 +338,34 @@ $( document ).ready(function() {
   </div>
 
 </div></div>
-</footer>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
 </body>
 </html>

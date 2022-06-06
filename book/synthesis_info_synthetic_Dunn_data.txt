@@ -1,0 +1,9 @@
+Date saved: 06 Jun 2022, 13:17 
+Data frame with original data: short_data 
+Number of synthetic data sets: 1 
+Output file(s):(csv) synthetic_Dunn_data.csv
+Additional file: synobject_synthetic_Dunn_data.RData
+Methods used:
+    PASS      GSL 
+"sample"   "cart" 
+Seed used: 2018 

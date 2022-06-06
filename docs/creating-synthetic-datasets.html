@@ -9,11 +9,11 @@
 <meta name="generator" content="bookdown 0.25 with bs4_book()">
 <meta property="og:title" content="Chapter 2 Creating synthetic datasets | scholaRship">
 <meta property="og:type" content="book">
-<meta property="og:url" content="https://psyteachr.github.io/template/creating-synthetic-datasets.html">
-<meta property="og:image" content="https://psyteachr.github.io/template/images/logos/logo.png">
+<meta property="og:url" content="https://psyteachr.github.io/scholaRship/creating-synthetic-datasets.html">
+<meta property="og:image" content="https://psyteachr.github.io/scholaRship/images/logos/logo.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 2 Creating synthetic datasets | scholaRship">
-<meta name="twitter:image" content="https://psyteachr.github.io/template/images/logos/logo.png">
+<meta name="twitter:image" content="https://psyteachr.github.io/scholaRship/images/logos/logo.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -53,9 +53,9 @@
 <link rel="stylesheet" href="include/psyteachr.css">
 <link rel="stylesheet" href="include/webex.css">
 <link rel="stylesheet" href="include/style.css">
-<meta name="description" content='/* update total correct if #webex-total_correct exists */ update_total_correct = function() {  console.log("webex: update total_correct");  if (t = document.getElementById("webex-total_correct"))...'>
-<meta property="og:description" content='/* update total correct if #webex-total_correct exists */ update_total_correct = function() {  console.log("webex: update total_correct");  if (t = document.getElementById("webex-total_correct"))...'>
-<meta name="twitter:description" content='/* update total correct if #webex-total_correct exists */ update_total_correct = function() {  console.log("webex: update total_correct");  if (t = document.getElementById("webex-total_correct"))...'>
+<meta name="description" content="Lead author: James Bartlett  2.1 Introduction In the scholarship of teaching and learning, we might analyse data from sources like virtual learning environments and student characteristics....">
+<meta property="og:description" content="Lead author: James Bartlett  2.1 Introduction In the scholarship of teaching and learning, we might analyse data from sources like virtual learning environments and student characteristics....">
+<meta name="twitter:description" content="Lead author: James Bartlett  2.1 Introduction In the scholarship of teaching and learning, we might analyse data from sources like virtual learning environments and student characteristics....">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -80,14 +80,15 @@
 <li><a class="" href="index.html">Overview</a></li>
 <li><a class="" href="intro.html"><span class="header-section-number">1</span> Introduction</a></li>
 <li><a class="active" href="creating-synthetic-datasets.html"><span class="header-section-number">2</span> Creating synthetic datasets</a></li>
-<li><a class="" href="feedback.html"><span class="header-section-number">3</span> Do students access their feedback?</a></li>
+<li><a class="" href="conclusion.html"><span class="header-section-number">3</span> Conclusion</a></li>
+<li><a class="" href="references.html"><span class="header-section-number">4</span> References</a></li>
 <li class="book-part">Appendices</li>
 <li><a class="" href="installing-r.html"><span class="header-section-number">A</span> Installing R</a></li>
 <li><a class="" href="symbols.html"><span class="header-section-number">B</span> Symbols</a></li>
 <li><a class="" href="conventions.html"><span class="header-section-number">C</span> Conventions</a></li>
 <li><a class="" href="glossary-1.html"><span class="header-section-number">D</span> Glossary</a></li>
 <li><a class="" href="license.html">License</a></li>
-<li><a class="" href="references.html">References</a></li>
+<li><a class="" href="references-1.html">References</a></li>
 </ul>
 
         <div class="book-extra">
@@ -99,7 +100,448 @@
 <h1>
 <span class="header-section-number">2</span> Creating synthetic datasets<a class="anchor" aria-label="anchor" href="#creating-synthetic-datasets"><i class="fas fa-link"></i></a>
 </h1>
+<p>Lead author: <a href="https://twitter.com/JamesEBartlett">James Bartlett</a></p>
+<div id="introduction" class="section level2" number="2.1">
+<h2>
+<span class="header-section-number">2.1</span> Introduction<a class="anchor" aria-label="anchor" href="#introduction"><i class="fas fa-link"></i></a>
+</h2>
+<p>In the scholarship of teaching and learning, we might analyse data from sources like virtual learning environments and student characteristics. Student agreements normally allow educators to analyse these data for the purposes of internally improving education experiences, but if we want to disseminate our findings to a wider audience, we would need to gain ethical approval from the students to use their data for these additional purposes. Even with ethical approval, there might be additional concerns around privacy and anonymity if the data contain sensitive or personal information. As data sharing practices become routine, it is important to contribute to scholarly progress while maintaining participant anonymity. In this tutorial, we will demonstrate how you can create synthetic data sets as a strategy where sharing primary data would present ethical issues.</p>
+<p>Synthetic data mimics the properties of your original data as closely as possible, such as retaining the distribution of grades in your sample. This means that we can retain the underlying statistical properties between variables, but "individual participants" would no longer represent the original cases, meaning the risk of identification is much lower. The R package <code>synthpop</code> <a href="https://doi.org/10.18637/jss.v074.i11">(Nowok et al., 2016)</a> creates synthetic data by sampling from a probability distribution best suited to the variables in your data set. The precise technical details are beyond the scope of our tutorial, so we refer interested readers to Nowok et al. for further information.</p>
+<p>It is important to evaluate each project individually to judge whether you can ethically share research data, but <a href="https://doi.org/10.1177/2515245917747656">Meyer (2018)</a> provides practical tips:</p>
+<ol style="list-style-type: decimal">
+<li><p>Wherever possible, get informed consent from participants to retain and share data.</p></li>
+<li><p>Do not promise to destroy or to never share the data. Often researchers will reassure ethical review boards that the data will never be shared beyond the research team, but providing it would be appropriate to do so, you can simply ask the participants to consent to their data being shared.</p></li>
+<li><p>Be thoughtful when considering the risks of re-identification.</p></li>
+</ol>
+<p>Assuming you receive consent for data sharing, the likelihood of identifying individual participants motivates our synthetic data tutorial. Even if you exclude identifiable information like names or email addresses, participants could be re-identified through combining common demographic variables such as ethnicity, date of birth, and sex which you might want to share if they are related to your research question. The risk of re-identification may be even higher if participants know each other. For example, students might know you studied their cohort and be able to identify themselves in the data set and recognise other participants relative to their own details. Therefore, if you want to share the data as a part of your scholarship and you receive consent from participants to do so, it is important to think about whether the variables you want to share could be used to identify participants and whether providing a synthetic data set over the original data would be more appropriate. See Meyer (2018) for further details on ethical data sharing.</p>
+<p>In this tutorial, we will demonstrate how to create a synthetic data set using the <code>synthpop</code> package in R. <a href="https://doi.org/10.7554/eLife.53275">Quintana (2020)</a> has previously written an accessible tutorial to the package we recommend but focuses on biomedical science data. Our tutorial will use data on student's academic procrastination to resonate more closely with the scholarship of teaching and learning.</p>
+</div>
+<div id="dunn-2014-replication" class="section level2" number="2.2">
+<h2>
+<span class="header-section-number">2.2</span> Dunn (2014) Replication<a class="anchor" aria-label="anchor" href="#dunn-2014-replication"><i class="fas fa-link"></i></a>
+</h2>
+<p>The data set we will use below is from an unpublished replication attempt of <a href="http://link.springer.com/10.1007/s10755-013-9256-1">Dunn (2014)</a>. Dunn wanted to understand the impact of motivation and statistics anxiety on students' academic procrastination. The sample included graduate students on an online only course. We wanted to replicate the study to see if we would observe similar findings in response to the COVID-19 pandemic where face-to-face students were forced to study online. The Dunn replication is perfect to demonstrate a synthetic data set as it includes a range of data types and we included open data in the consent forms, meaning we can openly compare the properties of each data set.</p>
+<p>Our research question was: Do intrinsic motivation, academic self-regulation, and statistics anxiety influence students' passive procrastination? We expected intrinsic motivation and self-regulation to be negative predictors, whereas we expected statistics anxiety to be a positive predictor of passive procrastination. The study included the following variables:</p>
+<ul>
+<li><p>General strategies for learning (GSL; <code>GSL</code>) - A modified subscale of the Motivated Strategies for Learning Questionnaire (MSLQ) which measures academic self-regulation. Measured on a 1-7 scale, with higher values meaning higher self-regulation.</p></li>
+<li><p>Intrinsic motivation (<code>Intrinsic</code>) - A subscale of the MSLQ which measures intrinsic motivation or the inherent joy people find in a task. Measured on a 1-7 scale, with higher values meaning higher intrinsic motivation.</p></li>
+<li><p>Statistical Anxiety Rating Scale (STARS; <code>STARS</code>) - A measure of statistics anxiety where we only included the statistics test and class anxiety subscale. Measured on a 1-5 scale, with higher values meaning higher statistics anxiety.</p></li>
+<li><p>Procrastination Assessment Scale for Students (PASS; <code>PASS</code>) - A measure of passive procrastination on keeping up with writing assignments and studying for exams. Measured on a 1-5 scale with higher scores meaning greater procrastination, but this scale uses the sum of items creating a possible range of 6-30.</p></li>
+</ul>
+</div>
+<div id="prior-knowledge" class="section level2" number="2.3">
+<h2>
+<span class="header-section-number">2.3</span> Prior knowledge<a class="anchor" aria-label="anchor" href="#prior-knowledge"><i class="fas fa-link"></i></a>
+</h2>
+<p>To complete this tutorial you will need the following prior knowledge - recap links point to additional materials that will cover these in more detail):</p>
+<ul>
+<li>How to install and load packages in R (<a href="https://psyteachr.github.io/ads-v1/intro.html#packages">recap</a>)</li>
+<li>How (and why) to use the pipe <code>%&gt;%</code> operator (<a href="https://psyteachr.github.io/data-skills-v1/pipes.html">recap</a>)</li>
+<li>A conceptual understanding of linear regression (<a href="https://psyteachr.github.io/stat-models-v1/correlation-and-regression.html">recap</a>)</li>
+</ul>
+</div>
+<div id="synthpop-setup" class="section level2" number="2.4">
+<h2>
+<span class="header-section-number">2.4</span> Set-up<a class="anchor" aria-label="anchor" href="#synthpop-setup"><i class="fas fa-link"></i></a>
+</h2>
+<p>Before we demonstrate the <code>synthpop</code> package, we will explore the original data set and modelling. To follow along, you will need the following packages and data to load:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> <span class="co"># Collection of functions for data wrangling and visualisation</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://easystats.github.io/performance/">performance</a></span><span class="op">)</span> <span class="co"># Functions for assessing statistical models</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://easystats.github.io/effectsize/">effectsize</a></span><span class="op">)</span> <span class="co"># Functions for calculating effect sizes</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.synthpop.org.uk/">synthpop</a></span><span class="op">)</span> <span class="co"># Package to create our synthetic data set later</span>
 
+<span class="co"># Two functions to make prettier html tables</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://haozhu233.github.io/kableExtra/">kableExtra</a></span><span class="op">)</span>
+
+<span class="va">real_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/Dunn-replication.csv"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">user_id</span>, <span class="op">-</span><span class="va">SelfEfficacy</span>, <span class="op">-</span><span class="va">HelpSeeking</span><span class="op">)</span> <span class="co"># omit some columns we don't need</span></code></pre></div>
+</div>
+<div id="original-dataset-analyses" class="section level2" number="2.5">
+<h2>
+<span class="header-section-number">2.5</span> Original dataset analyses<a class="anchor" aria-label="anchor" href="#original-dataset-analyses"><i class="fas fa-link"></i></a>
+</h2>
+<p>To address our research question using the same model as Dunn (2014), we want to use linear regression with PASS as our outcome and three predictors of GSL, intrinsic motivation, and statistics anxiety.</p>
+<ul>
+<li>The function <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> constructs a linear model</li>
+<li>The formula takes the form <code>outcome ~ predictor1 + predictor2</code> etc.</li>
+<li>We first save the results of the regression to an object <code>model</code> and then pass this object to the <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> function to explore the model results:</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># One outcome, three predictors</span>
+<span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">PASS</span> <span class="op">~</span> <span class="va">GSL</span> <span class="op">+</span> <span class="va">Intrinsic</span> <span class="op">+</span> <span class="va">STARS</span>,
+            data <span class="op">=</span> <span class="va">real_data</span><span class="op">)</span>
+
+<span class="op">(</span><span class="va">model_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span><span class="op">)</span> <span class="co"># surround with brackets to both print and save</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = PASS ~ GSL + Intrinsic + STARS, data = real_data)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -14.8588  -3.4830   0.0803   3.2853   9.9100 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  23.6386     3.0068   7.862  3.2e-12 ***
+## GSL          -1.7677     0.4698  -3.762 0.000275 ***
+## Intrinsic    -0.1780     0.5160  -0.345 0.730767    
+## STARS         1.6926     0.5961   2.840 0.005408 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 4.405 on 107 degrees of freedom
+## Multiple R-squared:  0.1815, Adjusted R-squared:  0.1586 
+## F-statistic: 7.911 on 3 and 107 DF,  p-value: 8.154e-05</code></pre>
+<p>For a replication in a different setting, the results are pretty close to Dunn (2014). Overall, we have a significant model which explains 18% (adj. <span class="math inline">\(R^2\)</span> = 0.16) of the variance in passive procrastination. Similar to Dunn, GSL was a significant negative predictor of passive procrastination, with a 1 unit increase in GSL associated with a 1.77 decrease in passive procrastination. Intrinsic motivation was a non-significant weak negative predictor. Interestingly, statistics anxiety was not a significant predictor for Dunn, but it was a significant positive predictor in our replication, with a 1 unit increase in STARS associated with a 1.69 increase in passive procrastination. In other words, passive procrastination tended to increase with higher levels of statistics anxiety and lower levels of GSL.</p>
+<p>These values are in the original units of measurement, but we can also report standardised coefficients to express the values in standard deviations, consistent with how Dunn reported the results. You can do this yourself by standardising the predictors before entering them into the model, or you can use the handy <code><a href="https://easystats.github.io/effectsize/reference/standardize_parameters.html">standardize_parameters()</a></code> function from the <code>effectsize</code> package to get the 95% confidence intervals too. Below, we save the results as a table and add the estimates from Dunn (2014) for comparison.</p>
+<p>The below code:</p>
+<ul>
+<li>Calculates the standardized coefficients and saves them in an object named <code>table</code>
+</li>
+<li>Creates a <a class="glossary" target="_blank" title="A type of data structure that collects values with the same data type, like T/F values, numbers, or strings." href="https://psyteachr.github.io/glossary/v#vector">vector</a> of the coefficients from the original Dunn study</li>
+<li>Adds this vector as a column to <code>table</code>
+</li>
+<li>Makes a nice looking table using <code>kable</code>
+</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#1. Use the standardize_parameters function</span>
+<span class="co">#2. Select rows 2-4, ignoring the intercept</span>
+<span class="co">#3. Save in a data frame</span>
+<span class="co">#4. Drop the 95% CI column as it's just descriptive </span>
+
+<span class="va">table</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://easystats.github.io/effectsize/reference/standardize_parameters.html">standardize_parameters</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">7</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">CI</span><span class="op">)</span>
+
+<span class="co"># Manually save values from the original Dunn study for comparison</span>
+<span class="va">dunn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.55</span>, <span class="co"># GSL</span>
+          <span class="op">-</span><span class="fl">0.17</span>, <span class="co"># Intrinsic</span>
+          <span class="fl">0.15</span><span class="op">)</span> <span class="co"># STARS</span>
+
+<span class="co"># Add these values to our table above</span>
+<span class="va">table</span><span class="op">$</span><span class="va">dunn</span> <span class="op">&lt;-</span> <span class="va">dunn</span>
+
+<span class="co"># Use the kable and kableextra functions to create a nicer looking table </span>
+<span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">table</span>, 
+      digits <span class="op">=</span> <span class="fl">2</span>, 
+      format <span class="op">=</span> <span class="st">"html"</span>, 
+      col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Parameter"</span>, <span class="st">"Beta"</span>, <span class="st">"Lower 95% CI"</span>, <span class="st">"Upper 95% CI"</span>, <span class="st">"Beta from Dunn (2014)"</span><span class="op">)</span>, 
+      label <span class="op">=</span> <span class="st">"Table 1. Standardised Beta coefficients and their 95% confidence interval (CI) in the replication data compared to Dunn (2014)."</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html">kable_styling</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-table"><table class="table" style="margin-left: auto; margin-right: auto;">
+<thead><tr>
+<th style="text-align:left;">
+Parameter
+</th>
+<th style="text-align:right;">
+Beta
+</th>
+<th style="text-align:right;">
+Lower 95% CI
+</th>
+<th style="text-align:right;">
+Upper 95% CI
+</th>
+<th style="text-align:right;">
+Beta from Dunn (2014)
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+GSL
+</td>
+<td style="text-align:right;">
+-0.38
+</td>
+<td style="text-align:right;">
+-0.58
+</td>
+<td style="text-align:right;">
+-0.18
+</td>
+<td style="text-align:right;">
+-0.55
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Intrinsic
+</td>
+<td style="text-align:right;">
+-0.03
+</td>
+<td style="text-align:right;">
+-0.23
+</td>
+<td style="text-align:right;">
+0.16
+</td>
+<td style="text-align:right;">
+-0.17
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+STARS
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+0.43
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+</tr>
+</tbody>
+</table></div>
+<p>For comparison, our coefficient for STARS was larger than Dunn, but the coefficients for GSL and intrinsic motivation are smaller. The findings are largely consistent though, with all the coefficients in the same direction and within the 95% CI of our estimates. Despite intrinsic motivation not being a significant predictor, the findings are consistent with our hypotheses and largely replicate the findings from Dunn.</p>
+<p>As a final check, it's important to make sure the model results are consistent with the assumptions of linear regression. There is a great package called <code>performance</code> which includes helper functions like <code><a href="https://easystats.github.io/performance/reference/check_model.html">check_model()</a></code>. We can concisely check the model assumptions:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://easystats.github.io/performance/reference/check_model.html">check_model</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="02-synthpop_files/figure-html/model%20assumptions-1.png" width="100%" style="display: block; margin: auto;"></div>
+<p>Although the bottom right plot for the normality of residuals is not quite capturing the peak of a normal distribution, there is nothing here to suggest there are any warning signs for our model.</p>
+<p>With the findings and assumptions in order, we know what the real data set is telling us. Now, it is time to create a synthetic data set using the <code>synthpop</code> package to see how close it replicates the features.</p>
+</div>
+<div id="the-synthpop-package" class="section level2" number="2.6">
+<h2>
+<span class="header-section-number">2.6</span> The <code>synthpop</code> Package<a class="anchor" aria-label="anchor" href="#the-synthpop-package"><i class="fas fa-link"></i></a>
+</h2>
+<p>The <code>synthpop</code> package (<a href="https://www.jstatsoft.org/article/view/v074i11">Nowok et al., 2016</a>) aims to mimic observed data and preserve the relationship between variables. The authors developed the package to work around limitations when working with the vast data coming from national statistical agencies. These population level data sets can provide important insights, but the granularity of the data rightly leads to privacy concerns about how identifiable the participants are, restricting access to the data. Working with higher education data, we can face similar concerns. We have access to student level data which can provide important insights, but we often cannot access or share that data because of confidentiality constraints. This is where synthetic data can be useful.</p>
+<p>Packages like <code>synthpop</code> attempt to reconstruct the data set by sampling from probability distributions relevant to the type of data you are working on. This means the properties of the variables and relationships between them are retained as closely as possible. Sometimes this is more or less accurate, but we will explore factors to keep in mind later on.</p>
+<div id="preparing-the-data-set" class="section level3" number="2.6.1">
+<h3>
+<span class="header-section-number">2.6.1</span> Preparing the data set<a class="anchor" aria-label="anchor" href="#preparing-the-data-set"><i class="fas fa-link"></i></a>
+</h3>
+<p>Before creating a synthetic data set it is important to check your data to determine the number and type of variables, as well as how much missing data you have (if any) and you can do so using the <code><a href="https://rdrr.io/pkg/synthpop/man/codebook.syn.html">codebook.syn()</a></code> function.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/synthpop/man/codebook.syn.html">codebook.syn</a></span><span class="op">(</span><span class="va">real_data</span><span class="op">)</span></code></pre></div>
+<pre><code>## $tab
+##           variable     class nmiss perctmiss ndistinct details
+## 1              age   numeric     0         0        16        
+## 2           gender character     0         0         4        
+## 3 degree_programme character     0         0         4        
+## 4              GSL   numeric     0         0        24        
+## 5        Intrinsic   numeric     0         0        18        
+## 6            STARS   numeric     0         0        25        
+## 7             PASS   numeric     0         0        20        
+## 
+## $labs
+## NULL</code></pre>
+<p>Whilst this output might look useful, it's actually missing a lot of information and that's because both the dataset and the individual variables are not quite in the right format.</p>
+<p>The first step is to convert the object to a data frame. As we used the "tidyverse" family of packages, the data were saved as something called a tibble. Tibbles are similar to data frames, but have a few tweaks to work better in the tidyverse (see <a href="https://r4ds.had.co.nz/tibbles.html">the tibble chapter in the R for Data Science book</a>; Wickham &amp; Grolemund, 2017). Although tibbles can be useful within the tidyverse framework, they can occasionally cause problems. We found this the hard way when writing this tutorial as if you try and use the data without converting it to a data frame, you get a cryptic error message <code>Error in tab.obs[[i]] + tab.syn[[i]] : non-conformable array</code> that took us an hour or so to figure out. It was only after reading a forum highlighting tibbles caused a similar problem for another package that we tried converting it to a data frame first which solved the issue.</p>
+<p>The second step is to ensure all character variables are set to factors because whilst the data in these columns is text data, it's more informative than that as the text represents different categories. When creating the synthetic data set, the function works out a probability distribution using the original data, so setting characters to factors establishes the number of unique groups per variable.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Resave real_data as a data frame instead of a tibble</span>
+<span class="va">real_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">real_data</span><span class="op">)</span>
+
+<span class="co"># Convert gender to a factor</span>
+<span class="va">real_data</span><span class="op">$</span><span class="va">gender</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">real_data</span><span class="op">$</span><span class="va">gender</span><span class="op">)</span>
+
+<span class="co"># Convert degree programme to a factor</span>
+<span class="va">real_data</span><span class="op">$</span><span class="va">degree_programme</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">real_data</span><span class="op">$</span><span class="va">degree_programme</span><span class="op">)</span></code></pre></div>
+<p>Now, when we repeat the codebook function, we get added details informing us of the number of levels per variable for factors and the data range for numeric variables. For this data set, we do not have any missing data, but if we did, the central columns would inform us of the number and percent of missing values, as this is also something that can be estimated as part of the synthetic data function.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/synthpop/man/codebook.syn.html">codebook.syn</a></span><span class="op">(</span><span class="va">real_data</span><span class="op">)</span></code></pre></div>
+<pre><code>## $tab
+##           variable   class nmiss perctmiss ndistinct           details
+## 1              age numeric     0         0        16    Range: 18 - 50
+## 2           gender  factor     0         0         4 See table in labs
+## 3 degree_programme  factor     0         0         4 See table in labs
+## 4              GSL numeric     0         0        24  Range: 1.6 - 6.8
+## 5        Intrinsic numeric     0         0        18 Range: 2.5 - 6.75
+## 6            STARS numeric     0         0        25  Range: 1.875 - 5
+## 7             PASS numeric     0         0        20     Range: 6 - 30
+## 
+## $labs
+## $labs$gender
+##                  label
+## 1               Female
+## 2                 Male
+## 3           Non-binary
+## 4 Prefer not to answer
+## 
+## $labs$degree_programme
+##   label
+## 1    BA
+## 2   BSc
+## 3    MA
+## 4   MSc</code></pre>
+</div>
+<div id="subset-the-data" class="section level3" number="2.6.2">
+<h3>
+<span class="header-section-number">2.6.2</span> Subset the data<a class="anchor" aria-label="anchor" href="#subset-the-data"><i class="fas fa-link"></i></a>
+</h3>
+<p>Previously, we mentioned <code>synthpop</code> will match the features of the original data as closely as possible, but this can be more or less accurate. One factor associated with this is the ratio of the number of participants to the number of variables in the data set. A synthetic data set tries to retain the association between variables, so the larger the number of variables, the more combinations the function must consider. If you do not have enough participants, <code>synthpop</code> will provide a warning with the number of participants it recommends based on the number of variables in the data set. This is 100 + 10 * the number of variables. So, with two variables, they recommend 120 participants, eight variables 180 participants etc. If you have fewer participants than recommended, the estimation process might be less precise.</p>
+<p>For this demonstration, we will first create a limited data set of two variables to show how it works, then scale it up to the full data set. In the following code, we set a seed to make the analyses reproducible. The function <code><a href="https://rdrr.io/r/base/Random.html">set.seed()</a></code> controls the random number generator - if you're using any functions that use randomness, running <code><a href="https://rdrr.io/r/base/Random.html">set.seed()</a></code> will ensure that you get the same result each time you run the function (in many cases this may not be what you want to do). Because the estimation for the synthetic data set is based on simulations, if you don't set a seed you won't get the same results as in this tutorial.</p>
+<p>We know GSL was the strongest predictor in the original data, so we will limit the results to just predicting academic procrastination from GSL and then create a synthetic data set using the <code><a href="https://rdrr.io/pkg/synthpop/man/syn.html">syn()</a></code> function.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Set a seed for reproducible analyses</span>
+<span class="va">my_seed</span> <span class="op">&lt;-</span> <span class="fl">2018</span>
+
+<span class="co"># limit the real data to just two variables </span>
+<span class="va">short_data</span> <span class="op">&lt;-</span> <span class="va">real_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">PASS</span>, <span class="va">GSL</span><span class="op">)</span>
+
+<span class="co"># Save the synthetic data using the reproducible seed from above</span>
+<span class="va">synth_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/synthpop/man/syn.html">syn</a></span><span class="op">(</span><span class="va">short_data</span>, 
+                   seed <span class="op">=</span> <span class="va">my_seed</span><span class="op">)</span></code></pre></div>
+<pre><code>## CAUTION: Your data set has fewer observations (111) than we advise.
+## We suggest that there should be at least 120 observations
+## (100 + 10 * no. of variables used in modelling the data).
+## Please check your synthetic data carefully with functions
+## compare(), utility.tab(), and utility.gen().
+## 
+## Synthesis
+## -----------
+##  PASS GSL</code></pre>
+<p>Now, our synthetic data set is only saved as an object in the environment, but <code>synthpop</code> includes a function to save the new data in your current working directory. The following function takes the synthetic data object, what you would like the file to be called, and what file type you want it saved as:</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/synthpop/man/write.syn.html">write.syn</a></span><span class="op">(</span><span class="va">synth_data</span>, 
+          filename <span class="op">=</span> <span class="st">"synthetic_Dunn_data"</span>, 
+          filetype <span class="op">=</span> <span class="st">"csv"</span><span class="op">)</span></code></pre></div>
+<pre><code>## Synthetic data exported as csv file(s).
+## Information on synthetic data written to
+##   C:/Users/staff/OneDrive - University of Glasgow/Teaching/psyteachR/scholaRship/book/synthesis_info_synthetic_Dunn_data.txt</code></pre>
+<p>If you ran the code to save the synthetic data set, you will see three new files in your working directory. There is an. RData object which you can reload into R. By choosing a .csv file, we also have a spreadsheet containing the data which we could analyse in other software or read into R. Finally, there is a .txt file with information on the synthetic data process like the name of the original data file, the seed you used, and the variables.</p>
+</div>
+<div id="compare-data-sets" class="section level3" number="2.6.3">
+<h3>
+<span class="header-section-number">2.6.3</span> Compare data sets<a class="anchor" aria-label="anchor" href="#compare-data-sets"><i class="fas fa-link"></i></a>
+</h3>
+<p>Now we have our synthetic data, <code>synthpop</code> has some useful functions to compare your new data to the observed data. For example, you can compare the distribution of values between the two data sets to see how well it reconstructed the values. In the stat argument, you can choose either "counts" or "percents" to show the histogram as frequency or percentage of the values, depending on which you prefer to interpret.</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/synthpop/man/compare.html">compare</a></span><span class="op">(</span><span class="va">synth_data</span>, <span class="co"># synthetic data object</span>
+        <span class="va">short_data</span>, <span class="co"># original data</span>
+        stat <span class="op">=</span> <span class="st">"counts"</span><span class="op">)</span> <span class="co"># Choice of counts or percents</span></code></pre></div>
+<div class="inline-figure"><img src="02-synthpop_files/figure-html/compare%20data%201-1.png" width="100%" style="display: block; margin: auto;"></div>
+<pre><code>## 
+## Comparing counts observed with synthetic
+## 
+## 
+## Selected utility measures:
+##          pMSE   S_pMSE df
+## PASS 0.000207 0.091919  4
+## GSL  0.002052 0.911044  4</code></pre>
+<p>We can see here two histograms for the limited selection of two variables. In dark blue, we have the frequency of observations from the observed data, and in light blue, we have the frequency of observations from the synthetic data. It is not a perfect match, with some observed values higher than synthetic, and some synthetic values higher than observed. It's never going to be perfect, so we are trying to capture the features as closely as possible, as different underlying distributions can produce the same relationships between variables.</p>
+<p>After the histograms, we have the default settings for utility measures. These are statistics to summarise how closely the synthetic data compares to the observed data, assuming that the synthesis model is correct. The three default results are pMSE (propensity score mean-squared error), S_pMSE (a standardised measure of pMSE), and df (the degrees of freedom for the Chi-Square tests). There are many other utility measures which you can request using the <code>utility.stats</code> argument. To explore what measures are available, read the documentation by entering <code><a href="https://rdrr.io/pkg/synthpop/man/utility.tab.html">help("utility.tab")</a></code> into the console.</p>
+<p>If you want to fall down the statistics rabbit role, we refer you to <a href="http://arxiv.org/abs/2109.12717">Raab et al. (2021)</a> and <a href="https://rss.onlinelibrary.wiley.com/doi/10.1111/rssa.12358">Snoke et al. (2018)</a> who test different utility measures. For a brief overview, there are general/global or specific/narrow utility measures. Global measures attempt to capture how well the synthesis process reconstructs relationships across the whole data set rather than the result of one specific statistical model. In the output above, pMSE is one such measure. Propensity scores work by combining the two data sets and calculating the probability that an observation comes from the synthetic data. This means the propensity score mean-squared error (pMSE) measures the error associated with this process, with higher values meaning greater error. The closer to 0 the better, as this means the highest utility and it is hard to distinguish the two data sets. The further away from 0, the easier it is to distinguish the two data sets. Both values here are very small, so there should be nothing to worry about.</p>
+<p>On the other hand, narrow measures compare the same models between data sets, such as how closely regression coefficients are replicated. The <code><a href="https://rdrr.io/pkg/synthpop/man/glm.synds.html">lm.synds()</a></code> function from <code>synthpop</code> creates a linear model using the synthetic data sets, which you can then refit using the observed data to compare how different they are.</p>
+<p>In the following code, we first create a simple linear regression model using PASS as the outcome and GSL as the single predictor. We save this as an object and use the <code><a href="https://rdrr.io/pkg/synthpop/man/compare.html">compare()</a></code> function from before.</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Linear model equivalent in synthetic data, one outcome and one predictor</span>
+<span class="va">s_lm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/synthpop/man/glm.synds.html">lm.synds</a></span><span class="op">(</span><span class="va">PASS</span> <span class="op">~</span> <span class="va">GSL</span>,
+                 data <span class="op">=</span> <span class="va">synth_data</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/synthpop/man/compare.html">compare</a></span><span class="op">(</span><span class="va">s_lm</span>, <span class="co"># saved object from above for lm applied to synthetic data</span>
+        <span class="va">short_data</span><span class="op">)</span> <span class="co"># original data</span></code></pre></div>
+<div class="inline-figure"><img src="02-synthpop_files/figure-html/synthetic%20model%201-1.png" width="100%" style="display: block; margin: auto;"></div>
+<pre><code>## 
+## Call used to fit models to the data:
+## lm.synds(formula = PASS ~ GSL, data = synth_data)
+## 
+## Differences between results based on synthetic and observed data:
+##             Synthetic  Observed       Diff Std. coef diff CI overlap
+## (Intercept) 27.856804 28.319159 -0.4623549     -0.2619675  0.9331703
+## GSL         -1.497014 -1.598289  0.1012751      0.2409324  0.9385365
+## 
+## Measures for one synthesis and 2 coefficients
+## Mean confidence interval overlap:  0.9358534
+## Mean absolute std. coef diff:  0.25145
+## 
+## Mahalanobis distance ratio for lack-of-fit (target 1.0): 0.04
+## Lack-of-fit test: 0.07152817; p-value 0.9649 for test that synthesis model is compatible 
+## with a chi-squared test with 2 degrees of freedom.
+## 
+## Confidence interval plot:</code></pre>
+<p>There is a bunch of output to dissect here, so we will start with the plot for a visual overview. Similar to the last <code><a href="https://rdrr.io/pkg/synthpop/man/compare.html">compare()</a></code> output, the observed data are displayed in dark blue and the synthetic data are displayed in light blue. The plot here shows the point estimate and confidence interval for the regression coefficient as a Z value. Visually, it looks pretty good. The synthetic data estimate is slightly smaller, but the confidence intervals largely overlap.</p>
+<p>Now we have an initial impression, let's break down the output table. After informing you of the model you fitted, we have a summary of the model coefficients for the synthetic and observed data, the difference between them, and how much the confidence intervals overlap. For the intercept, there is a difference of -0.46 and for the GSL coefficient, a difference of 0.10. These are quite small, but keep in mind they are in the original units of measurement, so you will need to interpret the differences relative to the measures. Reinforcing our visual interpretation, the confidence intervals largely overlap, with approximately 93% coverage for both parameters.</p>
+<p>Finally, we have a Chi-Square test which assumes the synthetic data model is compatible with the observed data model. In essence, the null hypothesis is that there is no difference between the two models. Acknowledging the limitations of null hypothesis significance testing, the smaller the <em>p</em>-value, the more incompatible the two models are. The <em>p</em>-value here is close to 1, suggesting there is not a significant difference between the two models. If the <em>p</em>-value was much smaller, such as below the traditional threshold of .05, we would suspect the synthetic data process did not capture the relationships in the observed data.</p>
+<p>To summarise the smaller selection procedure, we limited the data set to two variables: predicting PASS from GSL scores. We created a synthetic data set using the <code>synthpop</code> package and explored general and narrow utility measures. Both types of measures showed the synthetic data set did a good job of capturing the properties of the observed data. This means we could share the synthetic data set if we had concerns about sharing the original observed data set. Just remember to clearly label the synthetic data set as a fake data set and inform readers this has replaced your observed data.</p>
+</div>
+</div>
+<div id="full-data-set" class="section level2" number="2.7">
+<h2>
+<span class="header-section-number">2.7</span> Full data set<a class="anchor" aria-label="anchor" href="#full-data-set"><i class="fas fa-link"></i></a>
+</h2>
+<p>Now we have taken a close look at a limited selection of variables, let's scale things up to see what <code>synthpop</code> looks like with more variable types and more relationships to consider. We will go back to using the original <code>real_data</code> file with all seven variables. The first step is using the <code><a href="https://rdrr.io/pkg/synthpop/man/syn.html">syn()</a></code> function again to create a new synthetic data set. We already processed this data set before reducing the number of variables, so remember to check if you are using a tibble and whether character variables need converting to factors.</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">synth_data2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/synthpop/man/syn.html">syn</a></span><span class="op">(</span><span class="va">real_data</span>, <span class="co"># return to using the original larger data set</span>
+                   seed <span class="op">=</span> <span class="va">my_seed</span><span class="op">)</span> <span class="co"># use same seed as above </span></code></pre></div>
+<pre><code>## CAUTION: Your data set has fewer observations (111) than we advise.
+## We suggest that there should be at least 170 observations
+## (100 + 10 * no. of variables used in modelling the data).
+## Please check your synthetic data carefully with functions
+## compare(), utility.tab(), and utility.gen().
+## 
+## Synthesis
+## -----------
+##  age gender degree_programme GSL Intrinsic STARS PASS</code></pre>
+<p>We are working with the same amount of data from 111 participants but trying to reconstruct more variables. Remember the synthetic data process is based on sampling from an appropriate probability distribution, so the package recommends a minimum number of participants (100 + 10 * the number of predictors). In the smaller selection, we were close to this recommendation as two predictors should have at least 120 participants. However, for the larger selection, we are further away from the recommendation as we should now have at least 170 participants. Keep this in mind when checking the utility measures.</p>
+<p>Next, compare the two data sets to see how close we reconstructed the variables:</p>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/synthpop/man/compare.html">compare</a></span><span class="op">(</span><span class="va">synth_data2</span>, 
+        <span class="va">real_data</span>, 
+        stat <span class="op">=</span> <span class="st">"counts"</span><span class="op">)</span></code></pre></div>
+<p><img src="02-synthpop_files/figure-html/compare%20data%202-1.png" width="100%" style="display: block; margin: auto;"><img src="02-synthpop_files/figure-html/compare%20data%202-2.png" width="100%" style="display: block; margin: auto;"></p>
+<pre><code>## 
+## Comparing counts observed with synthetic
+## 
+## Press return for next variable(s): 
+## 
+## Selected utility measures:
+##                      pMSE   S_pMSE df
+## age              0.003145 2.792530  2
+## gender           0.000425 0.251701  3
+## degree_programme 0.003070 1.817685  3
+## GSL              0.001869 0.829618  4
+## Intrinsic        0.000741 0.329097  4
+## STARS            0.004231 1.878619  4
+## PASS             0.002649 1.175969  4</code></pre>
+<p>The output here is longer since we now have seven variables to reconstruct instead of our smaller selection of two. We can also see what character variables look like since the smaller selection only contained two numeric variables. We have some demographic information we omitted for the smaller selection, so we can now see age, gender, and the participant's degree programme.</p>
+<p>Below, we then have our variables of interest and what we will use next in multiple linear regression, using PASS (academic procrastination) as our outcome and three predictors of intrinsic motivation, GSL (general strategies for learning), and STARS (statistics and test anxiety). The final table is our general utility measures to see how well the synthetic data set captured the features of the observed data set. Remember pMSE is the error associated with classifying the data as coming from the synthetic or observed data set, with values further from 0 indicating greater error.</p>
+<p>We will use the same function as before to create a linear model with the synthetic data set, then use the <code><a href="https://rdrr.io/pkg/synthpop/man/compare.html">compare()</a></code> function to see how the same model performs under each data set for our narrow utility measures:</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Second linear model using the full three predictors</span>
+<span class="va">s_lm2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/synthpop/man/glm.synds.html">lm.synds</a></span><span class="op">(</span><span class="va">PASS</span> <span class="op">~</span> <span class="va">GSL</span> <span class="op">+</span> <span class="va">Intrinsic</span> <span class="op">+</span> <span class="va">STARS</span>,
+                 data <span class="op">=</span> <span class="va">synth_data2</span><span class="op">)</span>
+
+<span class="op">(</span><span class="va">synth_compare2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/synthpop/man/compare.html">compare</a></span><span class="op">(</span><span class="va">s_lm2</span>, <span class="co"># New full multiple linear regression model</span>
+        <span class="va">real_data</span><span class="op">)</span><span class="op">)</span> <span class="co"># Full observed data file with our 7 variables</span></code></pre></div>
+<div class="inline-figure"><img src="02-synthpop_files/figure-html/synthetic%20lm%202-1.png" width="100%" style="display: block; margin: auto;"></div>
+<pre><code>## 
+## Call used to fit models to the data:
+## lm.synds(formula = PASS ~ GSL + Intrinsic + STARS, data = synth_data2)
+## 
+## Differences between results based on synthetic and observed data:
+##             Synthetic   Observed       Diff Std. coef diff CI overlap
+## (Intercept) 27.316140 23.6386257  3.6775144      1.2230587  0.6879895
+## GSL         -2.308385 -1.7676992 -0.5406860     -1.1508323  0.7064149
+## Intrinsic   -1.002581 -0.1780281 -0.8245529     -1.5979280  0.5923578
+## STARS        2.280006  1.6926311  0.5873745      0.9853746  0.7486243
+## 
+## Measures for one synthesis and 4 coefficients
+## Mean confidence interval overlap:  0.6838466
+## Mean absolute std. coef diff:  1.239298
+## 
+## Mahalanobis distance ratio for lack-of-fit (target 1.0): 1.92
+## Lack-of-fit test: 7.683872; p-value 0.1039 for test that synthesis model is compatible 
+## with a chi-squared test with 4 degrees of freedom.
+## 
+## Confidence interval plot:</code></pre>
+<p>Starting again with a visual interpretation, the synthetic (light blue) and observed (dark blue) estimates are pretty close. GSL is a strong negative predictor, STARS is a moderate positive predictor, and intrinsic motivation is a weak predictor of PASS hovering around zero. The confidence intervals do not overlap quite as closely as for the smaller selection, but we will look at the precise statistics in a moment.</p>
+<p>Moving to the table of estimates, we now have four parameters to check. We have the coefficients for the synthetic data set, observed data set, and the difference between them. Remember these values are unstandardised in the original units of measurement, so judge the differences as relative. Compared to the smaller selection, it had a harder time reconstructing the intercept, but the performance is OK for the three predictors. Supporting our visual inspection, the confidence interval coverage is lower than the smaller selection, but still captures the main features. The intrinsic motivation interval is the worst, while the STARS interval is the best. Now we have more parameters, it can also be helpful to look at the mean overlap across all confidence intervals, which was 68% in this case. The poorer performance is probably due to the smaller than recommended sample size compared to the smaller selection.</p>
+<p>Finally, we can look at the Chi-Square test which assumes the synthetic data model is compatible with the observed data model. Smaller <em>p</em>-values suggest there is greater incompatibility between the two models. For the larger selection, it is also not statistically significant, suggesting narrow utility performance is not ideal, but it is not too inconsistent with the observed data.</p>
+</div>
 </div>
 <script>
 
@@ -304,10 +746,25 @@ $( document ).ready(function() {
 });
 </script><div class="chapter-nav">
 <div class="prev"><a href="intro.html"><span class="header-section-number">1</span> Introduction</a></div>
-<div class="next"><a href="feedback.html"><span class="header-section-number">3</span> Do students access their feedback?</a></div>
+<div class="next"><a href="conclusion.html"><span class="header-section-number">3</span> Conclusion</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav"><li><a class="nav-link" href="#creating-synthetic-datasets"><span class="header-section-number">2</span> Creating synthetic datasets</a></li></ul>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#creating-synthetic-datasets"><span class="header-section-number">2</span> Creating synthetic datasets</a></li>
+<li><a class="nav-link" href="#introduction"><span class="header-section-number">2.1</span> Introduction</a></li>
+<li><a class="nav-link" href="#dunn-2014-replication"><span class="header-section-number">2.2</span> Dunn (2014) Replication</a></li>
+<li><a class="nav-link" href="#prior-knowledge"><span class="header-section-number">2.3</span> Prior knowledge</a></li>
+<li><a class="nav-link" href="#synthpop-setup"><span class="header-section-number">2.4</span> Set-up</a></li>
+<li><a class="nav-link" href="#original-dataset-analyses"><span class="header-section-number">2.5</span> Original dataset analyses</a></li>
+<li>
+<a class="nav-link" href="#the-synthpop-package"><span class="header-section-number">2.6</span> The synthpop Package</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#preparing-the-data-set"><span class="header-section-number">2.6.1</span> Preparing the data set</a></li>
+<li><a class="nav-link" href="#subset-the-data"><span class="header-section-number">2.6.2</span> Subset the data</a></li>
+<li><a class="nav-link" href="#compare-data-sets"><span class="header-section-number">2.6.3</span> Compare data sets</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#full-data-set"><span class="header-section-number">2.7</span> Full data set</a></li>
+</ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
@@ -324,7 +781,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>scholaRship</strong>" was written by Emily Nordmann, Craig Alexander, James Bartlett, Eilidh Jack, Gaby Mahrholz, Jill MacKay, Mitchum Bock. It was last built on 2022-04-29.</p>
+    <p>"<strong>scholaRship</strong>" was written by Emily Nordmann, Craig Alexander, James Bartlett, Eilidh Jack, Gaby Mahrholz, Jill MacKay, Mitchum Bock. It was last built on 2022-06-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -332,6 +789,34 @@ $( document ).ready(function() {
   </div>
 
 </div></div>
-</footer>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
 </body>
 </html>
