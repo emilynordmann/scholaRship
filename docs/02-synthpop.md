@@ -20,7 +20,7 @@ Assuming you receive consent for data sharing, the likelihood of identifying ind
 
 In this tutorial, we will demonstrate how to create a synthetic data set using the `synthpop` package in R. [Quintana (2020)](https://doi.org/10.7554/eLife.53275) has previously written an accessible tutorial to the package we recommend but focuses on biomedical science data. Our tutorial will use data on student's academic procrastination to resonate more closely with the scholarship of teaching and learning.
 
-## Dunn (2014) Replication
+### Dunn (2014) Replication
 
 The data set we will use below is from an unpublished replication attempt of [Dunn (2014)](http://link.springer.com/10.1007/s10755-013-9256-1). Dunn wanted to understand the impact of motivation and statistics anxiety on students' academic procrastination. The sample included graduate students on an online only course. We wanted to replicate the study to see if we would observe similar findings in response to the COVID-19 pandemic where face-to-face students were forced to study online. The Dunn replication is perfect to demonstrate a synthetic data set as it includes a range of data types and we included open data in the consent forms, meaning we can openly compare the properties of each data set. 
 
@@ -34,7 +34,7 @@ Our research question was: Do intrinsic motivation, academic self-regulation, an
 
 - Procrastination Assessment Scale for Students (PASS; `PASS`) - A measure of passive procrastination on keeping up with writing assignments and studying for exams. Measured on a 1-5 scale with higher scores meaning greater procrastination, but this scale uses the sum of items creating a possible range of 6-30.
 
-## Prior knowledge
+### Prior knowledge
 
 To complete this tutorial you will need the following prior knowledge - recap links point to additional materials that will cover these in more detail):
 
@@ -42,7 +42,7 @@ To complete this tutorial you will need the following prior knowledge - recap li
 * How (and why) to use the pipe `%>%` operator ([recap](https://psyteachr.github.io/data-skills-v1/pipes.html))
 * A conceptual understanding of linear regression ([recap](https://psyteachr.github.io/stat-models-v1/correlation-and-regression.html))
 
-## Set-up {#synthpop-setup}
+### Set-up {#synthpop-setup}
 
 Before we demonstrate the `synthpop` package, we will explore the original data set and modelling. To follow along, you will need the following packages and data to load: 
 
@@ -60,7 +60,6 @@ library(kableExtra)
 real_data <- read_csv("data/Dunn-replication.csv") %>% 
   select(-user_id, -SelfEfficacy, -HelpSeeking) # omit some columns we don't need
 ```
-
 
 
 ## Original dataset analyses 
@@ -193,11 +192,7 @@ Although the bottom right plot for the normality of residuals is not quite captu
 
 With the findings and assumptions in order, we know what the real data set is telling us. Now, it is time to create a synthetic data set using the `synthpop` package to see how close it replicates the features.  
 
-<<<<<<< HEAD
-## The `synthpop` package 
-=======
-## The `synthpop` Package 
->>>>>>> 8a74fdd815e55ad6f496408ca95319da9c1df2a1
+## Synthesise with `synthpop`
 
 The `synthpop` package ([Nowok et al., 2016](https://www.jstatsoft.org/article/view/v074i11)) aims to mimic observed data and preserve the relationship between variables. The authors developed the package to work around limitations when working with the vast data coming from national statistical agencies. These population level data sets can provide important insights, but the granularity of the data rightly leads to privacy concerns about how identifiable the participants are, restricting access to the data. Working with higher education data, we can face similar concerns. We have access to student level data which can provide important insights, but we often cannot access or share that data because of confidentiality constraints. This is where synthetic data can be useful. 
 
@@ -405,11 +400,7 @@ Finally, we have a Chi-Square test which assumes the synthetic data model is com
 
 To summarise the smaller selection procedure, we limited the data set to two variables: predicting PASS from GSL scores. We created a synthetic data set using the `synthpop` package and explored general and narrow utility measures. Both types of measures showed the synthetic data set did a good job of capturing the properties of the observed data. This means we could share the synthetic data set if we had concerns about sharing the original observed data set. Just remember to clearly label the synthetic data set as a fake data set and inform readers this has replaced your observed data. 
 
-<<<<<<< HEAD
 ### Full data set
-=======
-## Full data set
->>>>>>> 8a74fdd815e55ad6f496408ca95319da9c1df2a1
 
 Now we have taken a close look at a limited selection of variables, let's scale things up to see what `synthpop` looks like with more variable types and more relationships to consider. We will go back to using the original `real_data` file with all seven variables. The first step is using the `syn()` function again to create a new synthetic data set. We already processed this data set before reducing the number of variables, so remember to check if you are using a tibble and whether character variables need converting to factors. 
 
@@ -508,11 +499,7 @@ Moving to the table of estimates, we now have four parameters to check. We have 
 
 Finally, we can look at the Chi-Square test which assumes the synthetic data model is compatible with the observed data model. Smaller *p*-values suggest there is greater incompatibility between the two models. For the larger selection, it is also not statistically significant, suggesting narrow utility performance is not ideal, but it is not too inconsistent with the observed data. 
 
-<<<<<<< HEAD
 ## Summary
-=======
-# Conclusion
->>>>>>> 8a74fdd815e55ad6f496408ca95319da9c1df2a1
 
 In this tutorial, we explored how to create synthetic data sets in the context of the scholarship of teaching and learning. We often work with sensitive data or risk the anonymity of participants which may prevent us from accessing or sharing data. Open scholarship practices recognise the role and value of sharing research data, so synthetic data sets can provide a useful compromise between our scientific and ethical responsibilities. 
 
@@ -522,11 +509,7 @@ We tried to provide a relatively non-technical introduction to synthetic data se
 
 As a final remember, always include a label and instructions informing readers when you provide synthetic data, so they do not mistake it for the real observed data. 
 
-<<<<<<< HEAD
 ## References
-=======
-# References
->>>>>>> 8a74fdd815e55ad6f496408ca95319da9c1df2a1
 
 Meyer, M. N. (2018). Practical Tips for Ethical Data Sharing. *Advances in Methods and Practices in Psychological Science*, 1(1), 131–144. https://doi.org/10.1177/2515245917747656
 
