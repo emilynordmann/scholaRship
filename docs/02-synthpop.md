@@ -193,7 +193,11 @@ Although the bottom right plot for the normality of residuals is not quite captu
 
 With the findings and assumptions in order, we know what the real data set is telling us. Now, it is time to create a synthetic data set using the `synthpop` package to see how close it replicates the features.  
 
+<<<<<<< HEAD
+## The `synthpop` package 
+=======
 ## The `synthpop` Package 
+>>>>>>> 8a74fdd815e55ad6f496408ca95319da9c1df2a1
 
 The `synthpop` package ([Nowok et al., 2016](https://www.jstatsoft.org/article/view/v074i11)) aims to mimic observed data and preserve the relationship between variables. The authors developed the package to work around limitations when working with the vast data coming from national statistical agencies. These population level data sets can provide important insights, but the granularity of the data rightly leads to privacy concerns about how identifiable the participants are, restricting access to the data. Working with higher education data, we can face similar concerns. We have access to student level data which can provide important insights, but we often cannot access or share that data because of confidentiality constraints. This is where synthetic data can be useful. 
 
@@ -401,7 +405,11 @@ Finally, we have a Chi-Square test which assumes the synthetic data model is com
 
 To summarise the smaller selection procedure, we limited the data set to two variables: predicting PASS from GSL scores. We created a synthetic data set using the `synthpop` package and explored general and narrow utility measures. Both types of measures showed the synthetic data set did a good job of capturing the properties of the observed data. This means we could share the synthetic data set if we had concerns about sharing the original observed data set. Just remember to clearly label the synthetic data set as a fake data set and inform readers this has replaced your observed data. 
 
+<<<<<<< HEAD
+### Full data set
+=======
 ## Full data set
+>>>>>>> 8a74fdd815e55ad6f496408ca95319da9c1df2a1
 
 Now we have taken a close look at a limited selection of variables, let's scale things up to see what `synthpop` looks like with more variable types and more relationships to consider. We will go back to using the original `real_data` file with all seven variables. The first step is using the `syn()` function again to create a new synthetic data set. We already processed this data set before reducing the number of variables, so remember to check if you are using a tibble and whether character variables need converting to factors. 
 
@@ -500,7 +508,11 @@ Moving to the table of estimates, we now have four parameters to check. We have 
 
 Finally, we can look at the Chi-Square test which assumes the synthetic data model is compatible with the observed data model. Smaller *p*-values suggest there is greater incompatibility between the two models. For the larger selection, it is also not statistically significant, suggesting narrow utility performance is not ideal, but it is not too inconsistent with the observed data. 
 
+<<<<<<< HEAD
+## Summary
+=======
 # Conclusion
+>>>>>>> 8a74fdd815e55ad6f496408ca95319da9c1df2a1
 
 In this tutorial, we explored how to create synthetic data sets in the context of the scholarship of teaching and learning. We often work with sensitive data or risk the anonymity of participants which may prevent us from accessing or sharing data. Open scholarship practices recognise the role and value of sharing research data, so synthetic data sets can provide a useful compromise between our scientific and ethical responsibilities. 
 
@@ -510,7 +522,11 @@ We tried to provide a relatively non-technical introduction to synthetic data se
 
 As a final remember, always include a label and instructions informing readers when you provide synthetic data, so they do not mistake it for the real observed data. 
 
+<<<<<<< HEAD
+## References
+=======
 # References
+>>>>>>> 8a74fdd815e55ad6f496408ca95319da9c1df2a1
 
 Meyer, M. N. (2018). Practical Tips for Ethical Data Sharing. *Advances in Methods and Practices in Psychological Science*, 1(1), 131–144. https://doi.org/10.1177/2515245917747656
 

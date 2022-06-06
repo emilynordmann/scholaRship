@@ -11,13 +11,9 @@ dunn-2014-replication
 prior-knowledge
 synthpop-setup
 original-dataset-analyses
-the-synthpop-package
 preparing-the-data-set
 subset-the-data
 compare-data-sets
-full-data-set
-conclusion
-references
 installing-r
 installing-base-r
 installing-rstudio
