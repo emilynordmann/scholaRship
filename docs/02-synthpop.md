@@ -115,7 +115,7 @@ The below code:
 * Calculates the standardized coefficients and saves them in an object named `table`
 * Creates a <a class='glossary' target='_blank' title='A type of data structure that collects values with the same data type, like T/F values, numbers, or strings.' href='https://psyteachr.github.io/glossary/v#vector'>vector</a> of the coefficients from the original Dunn study
 * Adds this vector as a column to `table`
-* Makes a nice looking table using `kable`
+* Makes a nice looking table using `kable` - note that your table output might look slightly different because the <code class='package'>bookdown</code> package we use to write this book applies some additional formatting.
 
 
 ```r

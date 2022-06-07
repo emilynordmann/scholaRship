@@ -13,7 +13,7 @@ Each tutorial in this book will contain:
 -   A short summary of the **evidence-base** for the problem under investigation to promote engagement with the SoTL literature;
 -   **Real**[^1] data drawn from commonly available sources such as Moodle, Turnitin, Microsoft Forms, and Echo360;
 -   A walkthrough of how to **clean and wrangle** the data using a predominantly `tidyverse` approach;
--   A walkthrough of how to **analyse** and **interpret, the analysis, alongside an honest discussion of the limitations of the approach used.
+-   A walkthrough of how to **analyse** and **interpret**, the analysis, alongside an honest discussion of the limitations of the approach used.
 
 [^1]: **Due to the need for ethical approval, the data we use in this book won't be strictly real data, instead, it will be a simulated, synthetic copy of real data. All the mess, none of the consent issues.**
 
