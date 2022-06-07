@@ -3,6 +3,7 @@ fig:settings-general
 fig:settings-code
 fig:img-soundimals-hash
 intro
+planned-tutorials
 expectations-of-prior-knowledge
 r-and-rstudio
 research-methods-and-statistics

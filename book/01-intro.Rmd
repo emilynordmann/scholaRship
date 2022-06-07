@@ -17,6 +17,14 @@ Each tutorial in this book will contain:
 
 [^1]: **Due to the need for ethical approval, the data we use in this book won't be strictly real data, instead, it will be a simulated, synthetic copy of real data. All the mess, none of the consent issues.**
 
+## Planned tutorials
+
+We have the following tutorials planned but we're happy to take suggestions - please e-mail Emily.Nordmann@glasgow.ac.uk.
+
+* Analysing the impact of whether students check their feedback through Turnitin Feedback Studio on subsequent assessment performance. 
+* Creating exam board and moderation reports using R
+* Using Moodle logs to predict engagement and retention
+
 ## Expectations of prior knowledge
 
 ### R and RStudio
