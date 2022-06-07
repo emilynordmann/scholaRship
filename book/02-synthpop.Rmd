@@ -39,12 +39,16 @@ Our research question was: Do intrinsic motivation, academic self-regulation, an
 To complete this tutorial you will need the following prior knowledge - recap links point to additional materials that will cover these in more detail):
 
 * How to install and load packages in R ([recap](https://psyteachr.github.io/ads-v1/intro.html#packages))
+* How to set the working directory and run code in R ([recap](https://psyteachr.github.io/data-skills-v1/ref1.html#activity-3-open-and-save-a-new-r-markdown-document))
 * How (and why) to use the pipe `%>%` operator ([recap](https://psyteachr.github.io/data-skills-v1/pipes.html))
 * A conceptual understanding of linear regression ([recap](https://psyteachr.github.io/stat-models-v1/correlation-and-regression.html))
 
 ### Set-up {#synthpop-setup}
 
-Before we demonstrate the `synthpop` package, we will explore the original data set and modelling. To follow along, you will need the following packages and data to load: 
+Before we demonstrate the `synthpop` package, we will explore the original data set and modelling. 
+
+* Download <a href="data/Dunn-replication.csv" download>Dunn-replication.csv</a> and save it into a folder named `data` in your working directory.
+* Then run the below code to load the required packages (may require installation) and data.
 
 ```{r packages and data, message=FALSE, warning=FALSE}
 library(tidyverse) # Collection of functions for data wrangling and visualisation
@@ -90,7 +94,7 @@ The below code:
 * Adds this vector as a column to `table`
 * Makes a nice looking table using `kable`
 
-```{r standardised paras}
+```{r}
 
 #1. Use the standardize_parameters function
 #2. Select rows 2-4, ignoring the intercept
@@ -115,7 +119,7 @@ kable(table,
       digits = 2, 
       format = "html", 
       col.names = c("Parameter", "Beta", "Lower 95% CI", "Upper 95% CI", "Beta from Dunn (2014)"), 
-      label = "Table 1. Standardised Beta coefficients and their 95% confidence interval (CI) in the replication data compared to Dunn (2014).") %>% 
+      caption = "Standardised Beta coefficients and their 95% confidence interval (CI) in the replication data compared to Dunn (2014).") %>% 
   kable_styling()
 
 ```

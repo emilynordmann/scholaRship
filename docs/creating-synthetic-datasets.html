@@ -133,6 +133,7 @@
 <p>To complete this tutorial you will need the following prior knowledge - recap links point to additional materials that will cover these in more detail):</p>
 <ul>
 <li>How to install and load packages in R (<a href="https://psyteachr.github.io/ads-v1/intro.html#packages">recap</a>)</li>
+<li>How to set the working directory and run code in R (<a href="https://psyteachr.github.io/data-skills-v1/ref1.html#activity-3-open-and-save-a-new-r-markdown-document">recap</a>)</li>
 <li>How (and why) to use the pipe <code>%&gt;%</code> operator (<a href="https://psyteachr.github.io/data-skills-v1/pipes.html">recap</a>)</li>
 <li>A conceptual understanding of linear regression (<a href="https://psyteachr.github.io/stat-models-v1/correlation-and-regression.html">recap</a>)</li>
 </ul>
@@ -141,7 +142,11 @@
 <h3>
 <span class="header-section-number">2.1.3</span> Set-up<a class="anchor" aria-label="anchor" href="#synthpop-setup"><i class="fas fa-link"></i></a>
 </h3>
-<p>Before we demonstrate the <code>synthpop</code> package, we will explore the original data set and modelling. To follow along, you will need the following packages and data to load:</p>
+<p>Before we demonstrate the <code>synthpop</code> package, we will explore the original data set and modelling.</p>
+<ul>
+<li>Download <a href="data/Dunn-replication.csv" download>Dunn-replication.csv</a> and save it into a folder named <code>data</code> in your working directory.</li>
+<li>Then run the below code to load the required packages (may require installation) and data.</li>
+</ul>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> <span class="co"># Collection of functions for data wrangling and visualisation</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://easystats.github.io/performance/">performance</a></span><span class="op">)</span> <span class="co"># Functions for assessing statistical models</span>
@@ -228,9 +233,12 @@
       digits <span class="op">=</span> <span class="fl">2</span>, 
       format <span class="op">=</span> <span class="st">"html"</span>, 
       col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Parameter"</span>, <span class="st">"Beta"</span>, <span class="st">"Lower 95% CI"</span>, <span class="st">"Upper 95% CI"</span>, <span class="st">"Beta from Dunn (2014)"</span><span class="op">)</span>, 
-      label <span class="op">=</span> <span class="st">"Table 1. Standardised Beta coefficients and their 95% confidence interval (CI) in the replication data compared to Dunn (2014)."</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+      caption <span class="op">=</span> <span class="st">"Standardised Beta coefficients and their 95% confidence interval (CI) in the replication data compared to Dunn (2014)."</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html">kable_styling</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-table"><table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-1">Table 2.1: </span>Standardised Beta coefficients and their 95% confidence interval (CI) in the replication data compared to Dunn (2014).
+</caption>
 <thead><tr>
 <th style="text-align:left;">
 Parameter
@@ -810,7 +818,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>scholaRship</strong>" was written by Emily Nordmann, Craig Alexander, James Bartlett, Eilidh Jack, Gaby Mahrholz, Jill MacKay, Mitchum Bock. It was last built on 2022-06-06.</p>
+    <p>"<strong>scholaRship</strong>" was written by Emily Nordmann, Craig Alexander, James Bartlett, Eilidh Jack, Gaby Mahrholz, Jill MacKay, Mitchum Bock. It was last built on 2022-06-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
