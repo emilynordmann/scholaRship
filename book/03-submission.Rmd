@@ -7,7 +7,7 @@ Platforms like Moodle provide extremely detailed assignment submission reports t
 
 Install (if required) and load the following packages
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 library(tidyverse) # data wrangling and visualisation
 library(rio) # import data
 library(lubridate) # working with dates
@@ -21,7 +21,7 @@ The data file is a simulated assignment submission report for 300 students for a
 * The first three lines of the assignment submission report file are blank and the main data table starts on line 4, so we add `skip = 3` to skip the first three lines of data from the import.
 
 ```{r}
-dat <- import("data/essay_data.xlsx", skip = 3)
+dat <- import("https://github.com/emilynordmann/scholaRship/raw/master/book/data/essay_data.xlsx", skip = 3)
 ```
 
 ## Data types
@@ -109,7 +109,7 @@ assignment_stats <- dat_cleaned %>%
   mutate(percent = round((n/total_submissions)*100, 2))
 ```
 
-```{r}
+```{r message=FALSE}
 
 p1 <- ggplot(dat_cleaned, aes(Modified, fill = submission_category)) +
   geom_histogram(colour = "black") +
@@ -126,7 +126,7 @@ p1
 
 You can also produce a interactive version of the plot using `ggplotly()` - you can hover over the bars to see the counts and remove certain groups from the data:
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 ggplotly(p1)
 ```
 
@@ -137,7 +137,7 @@ We use a 22-point scale where each alphanumeric grade has a corresponding grade 
 I do this so often that the easiest way is to have a spreadsheet that contains the grades with the associated gradepoints, import this, and then use `inner_join()` to combine the two files. This will join the two files by their common columns, so we now have a variable `Points` in our dataset that has the corresponding
 
 ```{r}
-grade_points <- import("data/grade_points.csv")
+grade_points <- import("https://raw.githubusercontent.com/emilynordmann/scholaRship/master/book/data/grade_points.csv")
 dat_cleaned <- inner_join(dat_cleaned, grade_points, by = "Grade")
 ```
 
@@ -223,7 +223,11 @@ dat_cleaned %>%
   group_by(submission_category) %>%
   summarise(mean_grade = mean(Turnitin, na.rm = TRUE),
             median_grade = median(Turnitin, na.rm = TRUE))
+```
 
+With an associated visualisation:
+
+```{r}
 dat_cleaned %>%
   filter(Turnitin < 75) %>%
   ggplot(aes(x = submission_category, y = Turnitin, fill = submission_category)) +
@@ -233,9 +237,7 @@ dat_cleaned %>%
   theme_minimal() +
   scale_fill_viridis_d(option = "E") +
   labs(x = NULL, title = "Turnitin score by submission category")
-  
 ```
-
 
 Finally, we could also look at grades by marker:
 
