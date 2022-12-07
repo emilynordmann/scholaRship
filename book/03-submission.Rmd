@@ -1,0 +1,276 @@
+
+# Assignment submission reports
+
+Platforms like Moodle provide extremely detailed assignment submission reports that contain data on when the student submitted, extensions, and their grade. This tutorial explains how to use R to create a series of simple reports on the data available in this sheet that can be helpful for generating insights into student behavior on your course.
+
+## Set-up
+
+Install (if required) and load the following packages
+
+```{r}
+library(tidyverse) # data wrangling and visualisation
+library(rio) # import data
+library(lubridate) # working with dates
+library(plotly) # interactive plots
+library(psych) # for descriptive stats
+```
+
+The data file is a simulated assignment submission report for 300 students for an essay that was submitted in November 2020. Although the data has been simulated, the file is identical to the one that is downloaded from Moodle so you should be able to use this code with any assignment submission reports downloaded from Moodle (assuming that the variable names don't change between institutions!).
+
+* The assignment submission report is an .xlsx file. There are lots of functions you can use in R to import specific types of files, however, the `import` function from the `rio` package is a great wrapper function that works for pretty much any type of file and avoids me having to remember which function I need for each specific file type.
+* The first three lines of the assignment submission report file are blank and the main data table starts on line 4, so we add `skip = 3` to skip the first three lines of data from the import.
+
+```{r}
+dat <- import("data/essay_data.xlsx", skip = 3)
+```
+
+## Data types
+
+Before we do anything we need to do a little work to tidy up the file and ensure that R has our data encoded as the right type. First, check the data using `str()`:
+
+```{r}
+str(dat)
+```
+
+Based on this, there's three things we need to do:
+
+* Remove the `-` Moodle uses to represent missing data and replace with an actual empty cell (i.e., an `NA`) using `mutate()` and `na_if`
+* Convert all date and time variables to a date/time class as R currently has it stored as character. `Modified` (the time the student last changed the file, i.e., when they submitted), `Extension`, and `Released` are currently in the format day-month-year-hour-minute so we'll use the `dmy_hm` function from the `lubridate` package.
+* Convert any numeric data to numeric. If a variable has any character text in it, R will read that variable in as a character. Because Moodle used `-` to encode missing values, the numeric Turnitin score is represented as character variable so once we've gotten rid of the `-` we need to convert it back.  
+
+```{r}
+dat_cleaned <- dat %>%
+  mutate(across(where(is.character), ~na_if(., "-"))) %>% # replace - with NAs
+  mutate(Modified = dmy_hm(Modified),
+         Extension = dmy_hm(Extension),
+         Released = dmy_hm(Released),
+         Turnitin = as.numeric(Turnitin))
+```
+
+There's a lot you can do with the data contained in this file, below are some suggestions for insights you can generate.
+
+## Extensions and late submissions
+
+Rates of extensions and late submission increased significantly over covid and we've found it helpful to look at patterns of when students submit their work relative to the deadline.
+
+* First, create a date time variable that contains the deadline. We'll use the same format as above as therefore use the `dmy_hm` function again to convert this information to the right format so R recognises it as a date. The deadline you state should be the time at which the assignment would become a late submission - for us it's one minute after the stated deadline so in this example it would be 1 minute past 12 noon on 13th November 2020.
+* It's also helpful to have variables that store how many students were on the course in total, and how many submitted.
+
+```{r}
+deadline <-dmy_hm("13/11/2020 12:01")
+total_students <- nrow(dat_cleaned)
+total_submissions <- dat_cleaned %>%
+  filter(Status == "submitted") %>%
+  nrow()
+```
+
+There's a few ways we can look at the extension and late submission data. First, let's calculate the number of extensions that were applied with a simple count. The below code gives us the number of extensions for each day.
+
+```{r}
+dat_cleaned %>%
+  count(Extension)
+```
+
+To get the total number of extensions, we adapt the same code but remove the NAs from the calculation and then sum up the total and calculate what percent of submissions had an extension applied:
+
+```{r}
+dat_cleaned %>%
+  count(Extension) %>%
+  filter(!is.na(Extension)) %>%
+  summarise(total = sum(n),
+            percent = round((total/total_submissions)*100, 2))
+```
+
+We might want something more fine-grained than that and need to look at the numbers of on-time submissions, extensions, late submissions, and non-submissions and this requires a bit of data wrangling.
+
+`case_when()` allows you to recode values based on multiple if-then statements. Our conditions are:
+
+1. If the essay is submitted on or before the deadline, it is labelled as on-time. 
+2. If the essay is submitted after the deadline but on or before the extension deadline, it is labelled as on-time with an extension. 
+3 If the essay is submitted after the deadline and there is no extension applied, it is labelled as late. 
+4. If the essay is not submitted it is labelled as non-submission.
+
+If this makes your head explode, please know that this code took me half an hour and multiple errors to write before I got the logic correct.
+
+```{r}
+dat_cleaned <- dat_cleaned %>%
+  mutate(submission_category= case_when((Modified <= deadline)~ "On-time",
+                            (Modified > deadline & deadline <= Extension) ~ "On-time w extension",
+                            (Modified > deadline & is.na(Extension)) ~ "Late",
+                            (Modified > Extension) ~ "Late with extension",
+                            TRUE ~ "What"))
+```
+
+We can then use these new categories to calculate descriptives:
+
+```{r}
+assignment_stats <- dat_cleaned %>%
+  count(submission_category) %>%
+  mutate(percent = round((n/total_submissions)*100, 2))
+```
+
+```{r}
+
+p1 <- ggplot(dat_cleaned, aes(Modified, fill = submission_category)) +
+  geom_histogram(colour = "black") +
+  theme_minimal() +
+  theme(legend.position = "bottom") +
+  labs(fill = NULL, x = NULL, title = "Assignment submission report") +
+  scale_fill_viridis_d(option = "E") +
+  theme(axis.text.x = element_text(angle=90)) +
+  scale_x_datetime(date_breaks = "1 day", date_labels = "%b %d") + 
+  geom_vline(xintercept = deadline, colour = "red", linetype = "dashed", size = 1.5)
+
+p1
+```
+
+You can also produce a interactive version of the plot using `ggplotly()` - you can hover over the bars to see the counts and remove certain groups from the data:
+
+```{r}
+ggplotly(p1)
+```
+
+## Grades
+
+We use a 22-point scale where each alphanumeric grade has a corresponding grade point total on a 22-point scale (e.g., a B2 = 16).The grades in Moodle are stored as in their alphanumeric form so we need to convert this to numbers. 
+
+I do this so often that the easiest way is to have a spreadsheet that contains the grades with the associated gradepoints, import this, and then use `inner_join()` to combine the two files. This will join the two files by their common columns, so we now have a variable `Points` in our dataset that has the corresponding
+
+```{r}
+grade_points <- import("data/grade_points.csv")
+dat_cleaned <- inner_join(dat_cleaned, grade_points, by = "Grade")
+```
+
+We can now create some basic descriptive stats and visualisations on the grade point values. The `describe()` function from the `psych()` library is great for quickly producing a range of descriptive statistics.
+
+**At this stage I want to highlight again that these are simulated data so don't read anything into the actual patterns, it's not real data, any patterns you see are meaningless**
+
+```{r}
+dat_cleaned %>%
+  select(Points) %>%
+  describe()
+```
+
+```{r}
+ggplot(dat_cleaned, aes(Points)) +
+  geom_histogram(binwidth = 1, colour = "black") +
+  theme_minimal() +
+  labs(title = "Distribution of essay grades", 
+       x = NULL, 
+       colour = NULL, 
+       subtitle = "Dashed line = mean grade") +
+  scale_x_continuous(breaks = seq(1,22, by = 1)) + 
+  geom_vline(aes(xintercept=mean(Points),color="red"), 
+             linetype="dashed",
+             size = 1, 
+             show.legend = FALSE) 
+```
+
+We could also look at the distribution of grades by submission category:
+
+```{r}
+ggplot(dat_cleaned, aes(Points, fill = submission_category)) +
+  geom_histogram(binwidth = 1, colour = "black") +
+  theme_minimal() +
+  labs(title = "Distribution of essay grades", 
+       x = NULL, 
+       subtitle = "Dashed line = mean grade",
+       fill = NULL) +
+  geom_vline(aes(xintercept=mean(Points),color="red"), 
+             linetype="dashed",
+             size=1,
+             show.legend = FALSE) +
+  theme(legend.position = "bottom") +
+  scale_fill_viridis_d(option = "E")
+```
+
+Or the descriptives by category:
+
+```{r}
+dat_cleaned %>%
+  group_by(submission_category) %>%
+  summarise(mean_grade = mean(Points, na.rm = TRUE),
+            median_grade = median(Points, na.rm = TRUE))
+```
+
+With an associated visualization:
+
+```{r}
+ggplot(dat_cleaned, aes(x = submission_category, y = Points, fill = submission_category)) +
+  geom_violin(show.legend = FALSE,
+              alpha = .4) +
+  geom_boxplot(width = .2, show.legend = FALSE) +
+  theme_minimal() +
+  scale_fill_viridis_d(option = "E") +
+  labs(x = NULL, title = "Grade point by submission category")
+  
+```
+
+The correlation between Turnitin score and grade (even with real data I think this would be a bit pointless but you never know):
+
+```{r}
+ggplot(dat_cleaned, aes(Points, Turnitin)) +
+  geom_jitter() +
+  geom_smooth() +
+  labs(x = "Grade point", y = "Turnitin score")
+```
+
+The relationship between Turnitin score and submission category - this code removes the two outliers - remove the filter line to put them back in.
+
+```{r}
+dat_cleaned %>%
+  filter(Turnitin < 75) %>%
+  group_by(submission_category) %>%
+  summarise(mean_grade = mean(Turnitin, na.rm = TRUE),
+            median_grade = median(Turnitin, na.rm = TRUE))
+
+dat_cleaned %>%
+  filter(Turnitin < 75) %>%
+  ggplot(aes(x = submission_category, y = Turnitin, fill = submission_category)) +
+  geom_violin(show.legend = FALSE,
+              alpha = .4) +
+  geom_boxplot(width = .2, show.legend = FALSE) +
+  theme_minimal() +
+  scale_fill_viridis_d(option = "E") +
+  labs(x = NULL, title = "Turnitin score by submission category")
+  
+```
+
+
+Finally, we could also look at grades by marker:
+
+```{r}
+dat_cleaned %>%
+  group_by(Grader) %>%
+  summarise(mean_grade = mean(Points, na.rm = TRUE),
+            median_grade = median(Points, na.rm = TRUE))
+```
+
+Violin-boxplots:
+
+```{r}
+dat_cleaned %>%
+  ggplot(aes(x = Grader, y = Points, fill = Grader)) +
+  geom_violin(show.legend = FALSE,
+              alpha = .4) +
+  geom_boxplot(width = .2, show.legend = FALSE) +
+  theme_minimal() +
+  scale_fill_viridis_d(option = "E") +
+  labs(x = NULL, title = "Grade point by marker")
+```
+
+Finally, rather than using grouped histograms as we've done previously, it's better to visualise the distributions of different markers using `facet_wrap()` as it makes it easier to compare the distributions:
+
+```{r}
+ggplot(dat_cleaned, aes(Points, fill = Grader)) +
+  geom_histogram(binwidth = 1, colour = "black", show.legend = FALSE) +
+  theme_minimal() +
+  labs(title = "Distribution of essay grades", 
+       x = "Grade point", 
+       subtitle = "Dashed line = mean grade",
+       fill = NULL) +
+  theme(legend.position = "bottom") +
+  scale_fill_viridis_d(option = "E") +
+  facet_wrap(~Grader, nrow = 4)
+```
+

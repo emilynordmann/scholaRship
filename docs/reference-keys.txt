@@ -20,6 +20,11 @@ compare-data-sets
 full-data-set
 summary
 references
+assignment-submission-reports
+set-up
+data-types
+extensions-and-late-submissions
+grades
 installing-r
 installing-base-r
 installing-rstudio
