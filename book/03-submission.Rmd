@@ -87,7 +87,7 @@ We might want something more fine-grained than that and need to look at the numb
 
 1. If the essay is submitted on or before the deadline, it is labelled as on-time. 
 2. If the essay is submitted after the deadline but on or before the extension deadline, it is labelled as on-time with an extension. 
-3 If the essay is submitted after the deadline and there is no extension applied, it is labelled as late. 
+3 If the essay is submitted after the deadline and there is no extension applied, it is labelled as late.   
 4. If the essay is not submitted it is labelled as non-submission.
 
 If this makes your head explode, please know that this code took me half an hour and multiple errors to write before I got the logic correct.
@@ -195,6 +195,7 @@ ggplot(dat_cleaned, aes(Points, fill = submission_category)) +
              linetype="dashed",
              size=1,
              show.legend = FALSE) +
+  scale_x_continuous(breaks = seq(1,22, by = 1)) +
   theme(legend.position = "bottom") +
   scale_fill_viridis_d(option = "E")
 ```
