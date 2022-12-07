@@ -1,7 +1,7 @@
 
-# Assignment submission reports
+# Moodle Assignment submission reports
 
-Platforms like Moodle provide extremely detailed assignment submission reports that contain data on when the student submitted, extensions, and their grade. This tutorial explains how to use R to create a series of simple reports on the data available in this sheet that can be helpful for generating insights into student behavior on your course.
+Platforms like Moodle provide extremely detailed assignment submission reports that contain data on when the student submitted, extensions, and their grade. This tutorial explains how to use R to create a series of simple reports on the data provided by [Moodle Assignment Submission reports](https://moodle.org/plugins/report_assign) that can be helpful for generating insights into student behavior on your course. This tutorial is designed with a Moodle report in mind, but it would be possible to adapt much of this code to the reports produced by other systems.
 
 ## Set-up
 
@@ -15,7 +15,7 @@ library(plotly) # interactive plots
 library(psych) # for descriptive stats
 ```
 
-The data file is a simulated assignment submission report for 300 students for an essay that was submitted in November 2020. Although the data has been simulated, the file is identical to the one that is downloaded from Moodle so you should be able to use this code with any assignment submission reports downloaded from Moodle (assuming that the variable names don't change between institutions!).
+The data file is a simulated assignment submission report for 300 students for an essay submission. Although the data has been simulated, the file is identical to the one that is downloaded from Moodle so you should be able to use this code with any assignment submission reports downloaded from Moodle (assuming that the variable names don't change between institutions!).
 
 * The assignment submission report is an .xlsx file. There are lots of functions you can use in R to import specific types of files, however, the `import` function from the `rio` package is a great wrapper function that works for pretty much any type of file and avoids me having to remember which function I need for each specific file type.
 * The first three lines of the assignment submission report file are blank and the main data table starts on line 4, so we add `skip = 3` to skip the first three lines of data from the import.
@@ -76,7 +76,7 @@ To get the total number of extensions, we adapt the same code but remove the NAs
 ```{r}
 dat_cleaned %>%
   count(Extension) %>%
-  filter(!is.na(Extension)) %>%
+  filter(!is.na(Extension)) %>% # remove rows that don't have an extension date
   summarise(total = sum(n),
             percent = round((total/total_submissions)*100, 2))
 ```
@@ -94,32 +94,36 @@ If this makes your head explode, please know that this code took me half an hour
 
 ```{r}
 dat_cleaned <- dat_cleaned %>%
-  mutate(submission_category= case_when((Modified <= deadline)~ "On-time",
+  mutate(submission_category= case_when((Status == "submitted" & Modified <= deadline)~ "On-time",
                             (Modified > deadline & deadline <= Extension) ~ "On-time w extension",
                             (Modified > deadline & is.na(Extension)) ~ "Late",
                             (Modified > Extension) ~ "Late with extension",
-                            TRUE ~ "What"))
+                            TRUE ~ "Non-submission"))
 ```
 
 We can then use these new categories to calculate descriptives:
 
 ```{r}
-assignment_stats <- dat_cleaned %>%
+dat_cleaned %>%
   count(submission_category) %>%
   mutate(percent = round((n/total_submissions)*100, 2))
 ```
 
+We'll remove the non-submissions from the distribution plot as otherwise they are plotted as having been submitted when the assignment first opened:
+
 ```{r message=FALSE}
 
-p1 <- ggplot(dat_cleaned, aes(Modified, fill = submission_category)) +
+p1 <- dat_cleaned %>%
+  filter(submission_category != "Non-submission") %>%
+  ggplot(aes(Modified, fill = submission_category)) +
   geom_histogram(colour = "black") +
-  theme_minimal() +
-  theme(legend.position = "bottom") +
-  labs(fill = NULL, x = NULL, title = "Assignment submission report") +
-  scale_fill_viridis_d(option = "E") +
-  theme(axis.text.x = element_text(angle=90)) +
-  scale_x_datetime(date_breaks = "1 day", date_labels = "%b %d") + 
-  geom_vline(xintercept = deadline, colour = "red", linetype = "dashed", size = 1.5)
+  theme_minimal() + # add theme
+  theme(legend.position = "bottom") + # move legend to bottom
+  labs(fill = NULL, x = NULL, title = "Assignment submission report") + #labels
+  scale_fill_viridis_d(option = "E") + # colour blind friendly palette
+  theme(axis.text.x = element_text(angle=90)) + # rotate axis labels
+  scale_x_datetime(date_breaks = "1 day", date_labels = "%b %d") + # set breaks
+  geom_vline(xintercept = deadline, colour = "red", linetype = "dashed", size = 1.5) # add dashed line
 
 p1
 ```
@@ -128,6 +132,17 @@ You can also produce a interactive version of the plot using `ggplotly()` - you 
 
 ```{r warning=FALSE, message=FALSE}
 ggplotly(p1)
+```
+
+If you don't have the extensions applied through Moodle or if you just wanted to look at the difference between on-time submissions and collapse lates and extensions into one group then you could do the following:
+
+```{r}
+dat_cleaned <- dat_cleaned %>%
+  mutate(submission_category_blunt= case_when((Status == "submitted" & 
+                                                 Modified <= deadline)~ "On-time",
+                            (Modified > deadline) ~ "Late or extension",
+                            
+                            TRUE ~ "Non-submission"))
 ```
 
 ## Grades
@@ -147,7 +162,7 @@ We can now create some basic descriptive stats and visualisations on the grade p
 
 ```{r}
 dat_cleaned %>%
-  select(Points) %>%
+  select(Points) %>% # just select points column for stats
   describe()
 ```
 
@@ -210,8 +225,8 @@ The correlation between Turnitin score and grade (even with real data I think th
 
 ```{r}
 ggplot(dat_cleaned, aes(Points, Turnitin)) +
-  geom_jitter() +
-  geom_smooth() +
+  geom_jitter() + # use jitter rather than geom_point as some overlapping data points
+  geom_smooth(method = "loess") + # no clear linear relationship, otherwise use method = "lm"
   labs(x = "Grade point", y = "Turnitin score")
 ```
 

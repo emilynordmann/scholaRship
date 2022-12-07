@@ -20,7 +20,7 @@ compare-data-sets
 full-data-set
 summary
 references
-assignment-submission-reports
+moodle-assignment-submission-reports
 set-up
 data-types
 extensions-and-late-submissions

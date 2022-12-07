@@ -1,4 +1,4 @@
-Date saved: 07 Dec 2022, 14:21 
+Date saved: 07 Dec 2022, 14:42 
 Data frame with original data: short_data 
 Number of synthetic data sets: 1 
 Output file(s):(csv) synthetic_Dunn_data.csv

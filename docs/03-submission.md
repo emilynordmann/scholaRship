@@ -1,7 +1,7 @@
 
-# Assignment submission reports
+# Moodle Assignment submission reports
 
-Platforms like Moodle provide extremely detailed assignment submission reports that contain data on when the student submitted, extensions, and their grade. This tutorial explains how to use R to create a series of simple reports on the data available in this sheet that can be helpful for generating insights into student behavior on your course.
+Platforms like Moodle provide extremely detailed assignment submission reports that contain data on when the student submitted, extensions, and their grade. This tutorial explains how to use R to create a series of simple reports on the data provided by [Moodle Assignment Submission reports](https://moodle.org/plugins/report_assign) that can be helpful for generating insights into student behavior on your course. This tutorial is designed with a Moodle report in mind, but it would be possible to adapt much of this code to the reports produced by other systems.
 
 ## Set-up
 
@@ -16,7 +16,7 @@ library(plotly) # interactive plots
 library(psych) # for descriptive stats
 ```
 
-The data file is a simulated assignment submission report for 300 students for an essay that was submitted in November 2020. Although the data has been simulated, the file is identical to the one that is downloaded from Moodle so you should be able to use this code with any assignment submission reports downloaded from Moodle (assuming that the variable names don't change between institutions!).
+The data file is a simulated assignment submission report for 300 students for an essay submission. Although the data has been simulated, the file is identical to the one that is downloaded from Moodle so you should be able to use this code with any assignment submission reports downloaded from Moodle (assuming that the variable names don't change between institutions!).
 
 * The assignment submission report is an .xlsx file. There are lots of functions you can use in R to import specific types of files, however, the `import` function from the `rio` package is a great wrapper function that works for pretty much any type of file and avoids me having to remember which function I need for each specific file type.
 * The first three lines of the assignment submission report file are blank and the main data table starts on line 4, so we add `skip = 3` to skip the first three lines of data from the import.
@@ -140,7 +140,7 @@ To get the total number of extensions, we adapt the same code but remove the NAs
 ```r
 dat_cleaned %>%
   count(Extension) %>%
-  filter(!is.na(Extension)) %>%
+  filter(!is.na(Extension)) %>% # remove rows that don't have an extension date
   summarise(total = sum(n),
             percent = round((total/total_submissions)*100, 2))
 ```
@@ -178,33 +178,73 @@ If this makes your head explode, please know that this code took me half an hour
 
 ```r
 dat_cleaned <- dat_cleaned %>%
-  mutate(submission_category= case_when((Modified <= deadline)~ "On-time",
+  mutate(submission_category= case_when((Status == "submitted" & Modified <= deadline)~ "On-time",
                             (Modified > deadline & deadline <= Extension) ~ "On-time w extension",
                             (Modified > deadline & is.na(Extension)) ~ "Late",
                             (Modified > Extension) ~ "Late with extension",
-                            TRUE ~ "What"))
+                            TRUE ~ "Non-submission"))
 ```
 
 We can then use these new categories to calculate descriptives:
 
 
 ```r
-assignment_stats <- dat_cleaned %>%
+dat_cleaned %>%
   count(submission_category) %>%
   mutate(percent = round((n/total_submissions)*100, 2))
 ```
 
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> submission_category </th>
+   <th style="text-align:right;"> n </th>
+   <th style="text-align:right;"> percent </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Late </td>
+   <td style="text-align:right;"> 12 </td>
+   <td style="text-align:right;"> 4.20 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Non-submission </td>
+   <td style="text-align:right;"> 14 </td>
+   <td style="text-align:right;"> 4.90 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> On-time </td>
+   <td style="text-align:right;"> 238 </td>
+   <td style="text-align:right;"> 83.22 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> On-time w extension </td>
+   <td style="text-align:right;"> 36 </td>
+   <td style="text-align:right;"> 12.59 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+
+We'll remove the non-submissions from the distribution plot as otherwise they are plotted as having been submitted when the assignment first opened:
+
 
 ```r
-p1 <- ggplot(dat_cleaned, aes(Modified, fill = submission_category)) +
+p1 <- dat_cleaned %>%
+  filter(submission_category != "Non-submission") %>%
+  ggplot(aes(Modified, fill = submission_category)) +
   geom_histogram(colour = "black") +
-  theme_minimal() +
-  theme(legend.position = "bottom") +
-  labs(fill = NULL, x = NULL, title = "Assignment submission report") +
-  scale_fill_viridis_d(option = "E") +
-  theme(axis.text.x = element_text(angle=90)) +
-  scale_x_datetime(date_breaks = "1 day", date_labels = "%b %d") + 
-  geom_vline(xintercept = deadline, colour = "red", linetype = "dashed", size = 1.5)
+  theme_minimal() + # add theme
+  theme(legend.position = "bottom") + # move legend to bottom
+  labs(fill = NULL, x = NULL, title = "Assignment submission report") + #labels
+  scale_fill_viridis_d(option = "E") + # colour blind friendly palette
+  theme(axis.text.x = element_text(angle=90)) + # rotate axis labels
+  scale_x_datetime(date_breaks = "1 day", date_labels = "%b %d") + # set breaks
+  geom_vline(xintercept = deadline, colour = "red", linetype = "dashed", size = 1.5) # add dashed line
 
 p1
 ```
@@ -219,8 +259,20 @@ ggplotly(p1)
 ```
 
 ```{=html}
-<div id="htmlwidget-28b925f41fed38225a19" style="width:100%;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-28b925f41fed38225a19">{"x":{"data":[{"orientation":"v","width":[56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348],"base":[14,0,0,0,1,3,7,4,20,73,130,0,0,0,3,5,5,5,7,2,2,5,1,0,0,0,0,0,0,1],"x":[1604680417.24138,1604736806.89655,1604793196.55172,1604849586.2069,1604905975.86207,1604962365.51724,1605018755.17241,1605075144.82759,1605131534.48276,1605187924.13793,1605244313.7931,1605300703.44828,1605357093.10345,1605413482.75862,1605469872.41379,1605526262.06897,1605582651.72414,1605639041.37931,1605695431.03448,1605751820.68966,1605808210.34483,1605864600,1605920989.65517,1605977379.31034,1606033768.96552,1606090158.62069,1606146548.27586,1606202937.93103,1606259327.58621,1606315717.24138],"y":[0,0,0,0,0,0,0,0,0,0,6,3,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0],"text":["count:   0<br />Modified: 1604680417<br />submission_category: Late","count:   0<br />Modified: 1604736807<br />submission_category: Late","count:   0<br />Modified: 1604793197<br />submission_category: Late","count:   0<br />Modified: 1604849586<br />submission_category: Late","count:   0<br />Modified: 1604905976<br />submission_category: Late","count:   0<br />Modified: 1604962366<br />submission_category: Late","count:   0<br />Modified: 1605018755<br />submission_category: Late","count:   0<br />Modified: 1605075145<br />submission_category: Late","count:   0<br />Modified: 1605131534<br />submission_category: Late","count:   0<br />Modified: 1605187924<br />submission_category: Late","count:   6<br />Modified: 1605244314<br />submission_category: Late","count:   3<br />Modified: 1605300703<br />submission_category: Late","count:   1<br />Modified: 1605357093<br />submission_category: Late","count:   1<br />Modified: 1605413483<br />submission_category: Late","count:   0<br />Modified: 1605469872<br />submission_category: Late","count:   0<br />Modified: 1605526262<br />submission_category: Late","count:   0<br />Modified: 1605582652<br />submission_category: Late","count:   1<br />Modified: 1605639041<br />submission_category: Late","count:   0<br />Modified: 1605695431<br />submission_category: Late","count:   0<br />Modified: 1605751821<br />submission_category: Late","count:   0<br />Modified: 1605808210<br />submission_category: Late","count:   0<br />Modified: 1605864600<br />submission_category: Late","count:   0<br />Modified: 1605920990<br />submission_category: Late","count:   0<br />Modified: 1605977379<br />submission_category: Late","count:   0<br />Modified: 1606033769<br />submission_category: Late","count:   0<br />Modified: 1606090159<br />submission_category: Late","count:   0<br />Modified: 1606146548<br />submission_category: Late","count:   0<br />Modified: 1606202938<br />submission_category: Late","count:   0<br />Modified: 1606259328<br />submission_category: Late","count:   0<br />Modified: 1606315717<br />submission_category: Late"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,32,77,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"Late","legendgroup":"Late","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348],"base":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,5,5,5,7,2,2,5,1,0,0,0,0,0,0,1],"x":[1604680417.24138,1604736806.89655,1604793196.55172,1604849586.2069,1604905975.86207,1604962365.51724,1605018755.17241,1605075144.82759,1605131534.48276,1605187924.13793,1605244313.7931,1605300703.44828,1605357093.10345,1605413482.75862,1605469872.41379,1605526262.06897,1605582651.72414,1605639041.37931,1605695431.03448,1605751820.68966,1605808210.34483,1605864600,1605920989.65517,1605977379.31034,1606033768.96552,1606090158.62069,1606146548.27586,1606202937.93103,1606259327.58621,1606315717.24138],"y":[14,0,0,0,1,3,7,4,20,73,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"text":["count:  14<br />Modified: 1604680417<br />submission_category: On-time","count:   0<br />Modified: 1604736807<br />submission_category: On-time","count:   0<br />Modified: 1604793197<br />submission_category: On-time","count:   0<br />Modified: 1604849586<br />submission_category: On-time","count:   1<br />Modified: 1604905976<br />submission_category: On-time","count:   3<br />Modified: 1604962366<br />submission_category: On-time","count:   7<br />Modified: 1605018755<br />submission_category: On-time","count:   4<br />Modified: 1605075145<br />submission_category: On-time","count:  20<br />Modified: 1605131534<br />submission_category: On-time","count:  73<br />Modified: 1605187924<br />submission_category: On-time","count: 130<br />Modified: 1605244314<br />submission_category: On-time","count:   0<br />Modified: 1605300703<br />submission_category: On-time","count:   0<br />Modified: 1605357093<br />submission_category: On-time","count:   0<br />Modified: 1605413483<br />submission_category: On-time","count:   0<br />Modified: 1605469872<br />submission_category: On-time","count:   0<br />Modified: 1605526262<br />submission_category: On-time","count:   0<br />Modified: 1605582652<br />submission_category: On-time","count:   0<br />Modified: 1605639041<br />submission_category: On-time","count:   0<br />Modified: 1605695431<br />submission_category: On-time","count:   0<br />Modified: 1605751821<br />submission_category: On-time","count:   0<br />Modified: 1605808210<br />submission_category: On-time","count:   0<br />Modified: 1605864600<br />submission_category: On-time","count:   0<br />Modified: 1605920990<br />submission_category: On-time","count:   0<br />Modified: 1605977379<br />submission_category: On-time","count:   0<br />Modified: 1606033769<br />submission_category: On-time","count:   0<br />Modified: 1606090159<br />submission_category: On-time","count:   0<br />Modified: 1606146548<br />submission_category: On-time","count:   0<br />Modified: 1606202938<br />submission_category: On-time","count:   0<br />Modified: 1606259328<br />submission_category: On-time","count:   0<br />Modified: 1606315717<br />submission_category: On-time"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(124,123,120,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"On-time","legendgroup":"On-time","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348,56389.655172348],"base":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"x":[1604680417.24138,1604736806.89655,1604793196.55172,1604849586.2069,1604905975.86207,1604962365.51724,1605018755.17241,1605075144.82759,1605131534.48276,1605187924.13793,1605244313.7931,1605300703.44828,1605357093.10345,1605413482.75862,1605469872.41379,1605526262.06897,1605582651.72414,1605639041.37931,1605695431.03448,1605751820.68966,1605808210.34483,1605864600,1605920989.65517,1605977379.31034,1606033768.96552,1606090158.62069,1606146548.27586,1606202937.93103,1606259327.58621,1606315717.24138],"y":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,5,5,5,7,2,2,5,1,0,0,0,0,0,0,1],"text":["count:   0<br />Modified: 1604680417<br />submission_category: On-time w extension","count:   0<br />Modified: 1604736807<br />submission_category: On-time w extension","count:   0<br />Modified: 1604793197<br />submission_category: On-time w extension","count:   0<br />Modified: 1604849586<br />submission_category: On-time w extension","count:   0<br />Modified: 1604905976<br />submission_category: On-time w extension","count:   0<br />Modified: 1604962366<br />submission_category: On-time w extension","count:   0<br />Modified: 1605018755<br />submission_category: On-time w extension","count:   0<br />Modified: 1605075145<br />submission_category: On-time w extension","count:   0<br />Modified: 1605131534<br />submission_category: On-time w extension","count:   0<br />Modified: 1605187924<br />submission_category: On-time w extension","count:   0<br />Modified: 1605244314<br />submission_category: On-time w extension","count:   0<br />Modified: 1605300703<br />submission_category: On-time w extension","count:   0<br />Modified: 1605357093<br />submission_category: On-time w extension","count:   0<br />Modified: 1605413483<br />submission_category: On-time w extension","count:   3<br />Modified: 1605469872<br />submission_category: On-time w extension","count:   5<br />Modified: 1605526262<br />submission_category: On-time w extension","count:   5<br />Modified: 1605582652<br />submission_category: On-time w extension","count:   5<br />Modified: 1605639041<br />submission_category: On-time w extension","count:   7<br />Modified: 1605695431<br />submission_category: On-time w extension","count:   2<br />Modified: 1605751821<br />submission_category: On-time w extension","count:   2<br />Modified: 1605808210<br />submission_category: On-time w extension","count:   5<br />Modified: 1605864600<br />submission_category: On-time w extension","count:   1<br />Modified: 1605920990<br />submission_category: On-time w extension","count:   0<br />Modified: 1605977379<br />submission_category: On-time w extension","count:   0<br />Modified: 1606033769<br />submission_category: On-time w extension","count:   0<br />Modified: 1606090159<br />submission_category: On-time w extension","count:   0<br />Modified: 1606146548<br />submission_category: On-time w extension","count:   0<br />Modified: 1606202938<br />submission_category: On-time w extension","count:   0<br />Modified: 1606259328<br />submission_category: On-time w extension","count:   1<br />Modified: 1606315717<br />submission_category: On-time w extension"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(255,234,70,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"On-time w extension","legendgroup":"On-time w extension","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":["2020-11-13 12:01:00.000000","2020-11-13 12:01:00.000000"],"y":[-6.8,142.8],"text":"xintercept: 2020-11-13 12:01:00","type":"scatter","mode":"lines","line":{"width":5.66929133858268,"color":"rgba(255,0,0,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.7625570776256,"r":7.30593607305936,"b":48.9497716894977,"l":43.1050228310502},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":{"text":"Assignment submission report","font":{"color":"rgba(0,0,0,1)","family":"","size":17.5342465753425},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[1604567637.93103,1606428496.55172],"tickmode":"array","ticktext":["Nov 06","Nov 07","Nov 08","Nov 09","Nov 10","Nov 11","Nov 12","Nov 13","Nov 14","Nov 15","Nov 16","Nov 17","Nov 18","Nov 19","Nov 20","Nov 21","Nov 22","Nov 23","Nov 24","Nov 25","Nov 26"],"tickvals":[1604620800,1604707200,1604793600,1604880000,1604966400,1605052800,1605139200,1605225600,1605312000,1605398400,1605484800,1605571200,1605657600,1605744000,1605830400,1605916800,1606003200,1606089600,1606176000,1606262400,1606348800],"categoryorder":"array","categoryarray":["Nov 06","Nov 07","Nov 08","Nov 09","Nov 10","Nov 11","Nov 12","Nov 13","Nov 14","Nov 15","Nov 16","Nov 17","Nov 18","Nov 19","Nov 20","Nov 21","Nov 22","Nov 23","Nov 24","Nov 25","Nov 26"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-90,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-6.8,142.8],"tickmode":"array","ticktext":["0","50","100"],"tickvals":[8.88178419700125e-16,50,100],"categoryorder":"array","categoryarray":["0","50","100"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"count","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"4ac86af29f2":{"x":{},"fill":{},"type":"bar"},"4ac8692d6dcc":{"xintercept":{}}},"cur_data":"4ac86af29f2","visdat":{"4ac86af29f2":["function (y) ","x"],"4ac8692d6dcc":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-3295ff220c2c5f887770" style="width:100%;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3295ff220c2c5f887770">{"x":{"data":[{"orientation":"v","width":[47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478],"base":[3,2,6,8,16,26,94,83,0,0,0,3,3,6,2,5,6,2,1,2,4,1,0,0,0,0,0,0,0,1],"x":[1604939511.72414,1604986957.24138,1605034402.75862,1605081848.27586,1605129293.7931,1605176739.31034,1605224184.82759,1605271630.34483,1605319075.86207,1605366521.37931,1605413966.89655,1605461412.41379,1605508857.93103,1605556303.44828,1605603748.96552,1605651194.48276,1605698640,1605746085.51724,1605793531.03448,1605840976.55172,1605888422.06897,1605935867.58621,1605983313.10345,1606030758.62069,1606078204.13793,1606125649.65517,1606173095.17241,1606220540.68966,1606267986.2069,1606315431.72414],"y":[0,0,0,0,0,0,0,9,0,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"text":["count:  0<br />Modified: 1604939512<br />submission_category: Late","count:  0<br />Modified: 1604986957<br />submission_category: Late","count:  0<br />Modified: 1605034403<br />submission_category: Late","count:  0<br />Modified: 1605081848<br />submission_category: Late","count:  0<br />Modified: 1605129294<br />submission_category: Late","count:  0<br />Modified: 1605176739<br />submission_category: Late","count:  0<br />Modified: 1605224185<br />submission_category: Late","count:  9<br />Modified: 1605271630<br />submission_category: Late","count:  0<br />Modified: 1605319076<br />submission_category: Late","count:  1<br />Modified: 1605366521<br />submission_category: Late","count:  1<br />Modified: 1605413967<br />submission_category: Late","count:  0<br />Modified: 1605461412<br />submission_category: Late","count:  0<br />Modified: 1605508858<br />submission_category: Late","count:  0<br />Modified: 1605556303<br />submission_category: Late","count:  1<br />Modified: 1605603749<br />submission_category: Late","count:  0<br />Modified: 1605651194<br />submission_category: Late","count:  0<br />Modified: 1605698640<br />submission_category: Late","count:  0<br />Modified: 1605746086<br />submission_category: Late","count:  0<br />Modified: 1605793531<br />submission_category: Late","count:  0<br />Modified: 1605840977<br />submission_category: Late","count:  0<br />Modified: 1605888422<br />submission_category: Late","count:  0<br />Modified: 1605935868<br />submission_category: Late","count:  0<br />Modified: 1605983313<br />submission_category: Late","count:  0<br />Modified: 1606030759<br />submission_category: Late","count:  0<br />Modified: 1606078204<br />submission_category: Late","count:  0<br />Modified: 1606125650<br />submission_category: Late","count:  0<br />Modified: 1606173095<br />submission_category: Late","count:  0<br />Modified: 1606220541<br />submission_category: Late","count:  0<br />Modified: 1606267986<br />submission_category: Late","count:  0<br />Modified: 1606315432<br />submission_category: Late"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,32,77,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"Late","legendgroup":"Late","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478],"base":[0,0,0,0,0,0,0,0,0,0,0,3,3,6,2,5,6,2,1,2,4,1,0,0,0,0,0,0,0,1],"x":[1604939511.72414,1604986957.24138,1605034402.75862,1605081848.27586,1605129293.7931,1605176739.31034,1605224184.82759,1605271630.34483,1605319075.86207,1605366521.37931,1605413966.89655,1605461412.41379,1605508857.93103,1605556303.44828,1605603748.96552,1605651194.48276,1605698640,1605746085.51724,1605793531.03448,1605840976.55172,1605888422.06897,1605935867.58621,1605983313.10345,1606030758.62069,1606078204.13793,1606125649.65517,1606173095.17241,1606220540.68966,1606267986.2069,1606315431.72414],"y":[3,2,6,8,16,26,94,83,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"text":["count:  3<br />Modified: 1604939512<br />submission_category: On-time","count:  2<br />Modified: 1604986957<br />submission_category: On-time","count:  6<br />Modified: 1605034403<br />submission_category: On-time","count:  8<br />Modified: 1605081848<br />submission_category: On-time","count: 16<br />Modified: 1605129294<br />submission_category: On-time","count: 26<br />Modified: 1605176739<br />submission_category: On-time","count: 94<br />Modified: 1605224185<br />submission_category: On-time","count: 83<br />Modified: 1605271630<br />submission_category: On-time","count:  0<br />Modified: 1605319076<br />submission_category: On-time","count:  0<br />Modified: 1605366521<br />submission_category: On-time","count:  0<br />Modified: 1605413967<br />submission_category: On-time","count:  0<br />Modified: 1605461412<br />submission_category: On-time","count:  0<br />Modified: 1605508858<br />submission_category: On-time","count:  0<br />Modified: 1605556303<br />submission_category: On-time","count:  0<br />Modified: 1605603749<br />submission_category: On-time","count:  0<br />Modified: 1605651194<br />submission_category: On-time","count:  0<br />Modified: 1605698640<br />submission_category: On-time","count:  0<br />Modified: 1605746086<br />submission_category: On-time","count:  0<br />Modified: 1605793531<br />submission_category: On-time","count:  0<br />Modified: 1605840977<br />submission_category: On-time","count:  0<br />Modified: 1605888422<br />submission_category: On-time","count:  0<br />Modified: 1605935868<br />submission_category: On-time","count:  0<br />Modified: 1605983313<br />submission_category: On-time","count:  0<br />Modified: 1606030759<br />submission_category: On-time","count:  0<br />Modified: 1606078204<br />submission_category: On-time","count:  0<br />Modified: 1606125650<br />submission_category: On-time","count:  0<br />Modified: 1606173095<br />submission_category: On-time","count:  0<br />Modified: 1606220541<br />submission_category: On-time","count:  0<br />Modified: 1606267986<br />submission_category: On-time","count:  0<br />Modified: 1606315432<br />submission_category: On-time"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(124,123,120,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"On-time","legendgroup":"On-time","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478],"base":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"x":[1604939511.72414,1604986957.24138,1605034402.75862,1605081848.27586,1605129293.7931,1605176739.31034,1605224184.82759,1605271630.34483,1605319075.86207,1605366521.37931,1605413966.89655,1605461412.41379,1605508857.93103,1605556303.44828,1605603748.96552,1605651194.48276,1605698640,1605746085.51724,1605793531.03448,1605840976.55172,1605888422.06897,1605935867.58621,1605983313.10345,1606030758.62069,1606078204.13793,1606125649.65517,1606173095.17241,1606220540.68966,1606267986.2069,1606315431.72414],"y":[0,0,0,0,0,0,0,0,0,0,0,3,3,6,2,5,6,2,1,2,4,1,0,0,0,0,0,0,0,1],"text":["count:  0<br />Modified: 1604939512<br />submission_category: On-time w extension","count:  0<br />Modified: 1604986957<br />submission_category: On-time w extension","count:  0<br />Modified: 1605034403<br />submission_category: On-time w extension","count:  0<br />Modified: 1605081848<br />submission_category: On-time w extension","count:  0<br />Modified: 1605129294<br />submission_category: On-time w extension","count:  0<br />Modified: 1605176739<br />submission_category: On-time w extension","count:  0<br />Modified: 1605224185<br />submission_category: On-time w extension","count:  0<br />Modified: 1605271630<br />submission_category: On-time w extension","count:  0<br />Modified: 1605319076<br />submission_category: On-time w extension","count:  0<br />Modified: 1605366521<br />submission_category: On-time w extension","count:  0<br />Modified: 1605413967<br />submission_category: On-time w extension","count:  3<br />Modified: 1605461412<br />submission_category: On-time w extension","count:  3<br />Modified: 1605508858<br />submission_category: On-time w extension","count:  6<br />Modified: 1605556303<br />submission_category: On-time w extension","count:  2<br />Modified: 1605603749<br />submission_category: On-time w extension","count:  5<br />Modified: 1605651194<br />submission_category: On-time w extension","count:  6<br />Modified: 1605698640<br />submission_category: On-time w extension","count:  2<br />Modified: 1605746086<br />submission_category: On-time w extension","count:  1<br />Modified: 1605793531<br />submission_category: On-time w extension","count:  2<br />Modified: 1605840977<br />submission_category: On-time w extension","count:  4<br />Modified: 1605888422<br />submission_category: On-time w extension","count:  1<br />Modified: 1605935868<br />submission_category: On-time w extension","count:  0<br />Modified: 1605983313<br />submission_category: On-time w extension","count:  0<br />Modified: 1606030759<br />submission_category: On-time w extension","count:  0<br />Modified: 1606078204<br />submission_category: On-time w extension","count:  0<br />Modified: 1606125650<br />submission_category: On-time w extension","count:  0<br />Modified: 1606173095<br />submission_category: On-time w extension","count:  0<br />Modified: 1606220541<br />submission_category: On-time w extension","count:  0<br />Modified: 1606267986<br />submission_category: On-time w extension","count:  1<br />Modified: 1606315432<br />submission_category: On-time w extension"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(255,234,70,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"On-time w extension","legendgroup":"On-time w extension","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":["2020-11-13 12:01:00.000000","2020-11-13 12:01:00.000000"],"y":[-4.7,98.7],"text":"xintercept: 2020-11-13 12:01:00","type":"scatter","mode":"lines","line":{"width":5.66929133858268,"color":"rgba(255,0,0,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.7625570776256,"r":7.30593607305936,"b":48.9497716894977,"l":37.2602739726027},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":{"text":"Assignment submission report","font":{"color":"rgba(0,0,0,1)","family":"","size":17.5342465753425},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[1604844620.68966,1606410322.75862],"tickmode":"array","ticktext":["Nov 09","Nov 10","Nov 11","Nov 12","Nov 13","Nov 14","Nov 15","Nov 16","Nov 17","Nov 18","Nov 19","Nov 20","Nov 21","Nov 22","Nov 23","Nov 24","Nov 25","Nov 26"],"tickvals":[1604880000,1604966400,1605052800,1605139200,1605225600,1605312000,1605398400,1605484800,1605571200,1605657600,1605744000,1605830400,1605916800,1606003200,1606089600,1606176000,1606262400,1606348800],"categoryorder":"array","categoryarray":["Nov 09","Nov 10","Nov 11","Nov 12","Nov 13","Nov 14","Nov 15","Nov 16","Nov 17","Nov 18","Nov 19","Nov 20","Nov 21","Nov 22","Nov 23","Nov 24","Nov 25","Nov 26"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-90,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-4.7,98.7],"tickmode":"array","ticktext":["0","25","50","75"],"tickvals":[0,25,50,75],"categoryorder":"array","categoryarray":["0","25","50","75"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"count","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"58ec66b6353f":{"x":{},"fill":{},"type":"bar"},"58ec1dea342c":{"xintercept":{}}},"cur_data":"58ec66b6353f","visdat":{"58ec66b6353f":["function (y) ","x"],"58ec1dea342c":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+```
+
+If you don't have the extensions applied through Moodle or if you just wanted to look at the difference between on-time submissions and collapse lates and extensions into one group then you could do the following:
+
+
+```r
+dat_cleaned <- dat_cleaned %>%
+  mutate(submission_category_blunt= case_when((Status == "submitted" & 
+                                                 Modified <= deadline)~ "On-time",
+                            (Modified > deadline) ~ "Late or extension",
+                            
+                            TRUE ~ "Non-submission"))
 ```
 
 ## Grades
@@ -242,7 +294,7 @@ We can now create some basic descriptive stats and visualisations on the grade p
 
 ```r
 dat_cleaned %>%
-  select(Points) %>%
+  select(Points) %>% # just select points column for stats
   describe()
 ```
 
@@ -305,7 +357,7 @@ ggplot(dat_cleaned, aes(Points)) +
              show.legend = FALSE) 
 ```
 
-<img src="03-submission_files/figure-html/unnamed-chunk-14-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="03-submission_files/figure-html/unnamed-chunk-15-1.png" width="100%" style="display: block; margin: auto;" />
 
 We could also look at the distribution of grades by submission category:
 
@@ -326,7 +378,7 @@ ggplot(dat_cleaned, aes(Points, fill = submission_category)) +
   scale_fill_viridis_d(option = "E")
 ```
 
-<img src="03-submission_files/figure-html/unnamed-chunk-15-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="03-submission_files/figure-html/unnamed-chunk-16-1.png" width="100%" style="display: block; margin: auto;" />
 
 Or the descriptives by category:
 
@@ -382,23 +434,23 @@ ggplot(dat_cleaned, aes(x = submission_category, y = Points, fill = submission_c
   labs(x = NULL, title = "Grade point by submission category")
 ```
 
-<img src="03-submission_files/figure-html/unnamed-chunk-17-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="03-submission_files/figure-html/unnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;" />
 
 The correlation between Turnitin score and grade (even with real data I think this would be a bit pointless but you never know):
 
 
 ```r
 ggplot(dat_cleaned, aes(Points, Turnitin)) +
-  geom_jitter() +
-  geom_smooth() +
+  geom_jitter() + # use jitter rather than geom_point as some overlapping data points
+  geom_smooth(method = "loess") + # no clear linear relationship, otherwise use method = "lm"
   labs(x = "Grade point", y = "Turnitin score")
 ```
 
 ```
-## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="03-submission_files/figure-html/unnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="03-submission_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" />
 
 The relationship between Turnitin score and submission category - this code removes the two outliers - remove the filter line to put them back in.
 
@@ -457,7 +509,7 @@ dat_cleaned %>%
   labs(x = NULL, title = "Turnitin score by submission category")
 ```
 
-<img src="03-submission_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="03-submission_files/figure-html/unnamed-chunk-21-1.png" width="100%" style="display: block; margin: auto;" />
 
 Finally, we could also look at grades by marker:
 
@@ -519,7 +571,7 @@ dat_cleaned %>%
   labs(x = NULL, title = "Grade point by marker")
 ```
 
-<img src="03-submission_files/figure-html/unnamed-chunk-22-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="03-submission_files/figure-html/unnamed-chunk-23-1.png" width="100%" style="display: block; margin: auto;" />
 
 Finally, rather than using grouped histograms as we've done previously, it's better to visualise the distributions of different markers using `facet_wrap()` as it makes it easier to compare the distributions:
 
@@ -537,5 +589,5 @@ ggplot(dat_cleaned, aes(Points, fill = Grader)) +
   facet_wrap(~Grader, nrow = 4)
 ```
 
-<img src="03-submission_files/figure-html/unnamed-chunk-23-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="03-submission_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;" />
 
