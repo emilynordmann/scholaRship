@@ -2,7 +2,7 @@
 title: "scholaRship" 
 #subtitle: "optional" 
 author: "Emily Nordmann, Craig Alexander, James Bartlett, Eilidh Jack, Gaby Mahrholz, Jill MacKay, Mitchum Bock" # edit
-date: "2022-12-07"
+date: "2022-12-08"
 site: bookdown::bookdown_site
 documentclass: book
 classoption: oneside # for PDFs

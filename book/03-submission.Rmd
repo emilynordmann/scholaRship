@@ -1,6 +1,9 @@
 
 # Moodle Assignment submission reports
 
+Lead author: [Emily Nordmann](https://twitter.com/emilynordmann)
+
+
 Platforms like Moodle provide extremely detailed assignment submission reports that contain data on when the student submitted, extensions, and their grade. This tutorial explains how to use R to create a series of simple reports on the data provided by [Moodle Assignment Submission reports](https://moodle.org/plugins/report_assign) that can be helpful for generating insights into student behavior on your course. This tutorial is designed with a Moodle report in mind, but it would be possible to adapt much of this code to the reports produced by other systems.
 
 ## Set-up
@@ -149,7 +152,7 @@ dat_cleaned <- dat_cleaned %>%
 
 We use a 22-point scale where each alphanumeric grade has a corresponding grade point total on a 22-point scale (e.g., a B2 = 16).The grades in Moodle are stored as in their alphanumeric form so we need to convert this to numbers. 
 
-I do this so often that the easiest way is to have a spreadsheet that contains the grades with the associated gradepoints, import this, and then use `inner_join()` to combine the two files. This will join the two files by their common columns, so we now have a variable `Points` in our dataset that has the corresponding
+I do this so often that the easiest way is to have a spreadsheet that contains the grades with the associated gradepoints, import this, and then use `inner_join()` to combine the two files. This will join the two files by their common columns, so we now have a variable `Points` in our dataset that has the corresponding number for the alphanumeric grade. 
 
 ```{r}
 grade_points <- import("https://raw.githubusercontent.com/emilynordmann/scholaRship/master/book/data/grade_points.csv")
