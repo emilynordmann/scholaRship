@@ -55,9 +55,9 @@
 <link rel="stylesheet" href="include/psyteachr.css">
 <link rel="stylesheet" href="include/webex.css">
 <link rel="stylesheet" href="include/style.css">
-<meta name="description" content="The dplyr package in tidyverse has a number of functions that merge or “join” data. As the reference page states:">
-<meta property="og:description" content="The dplyr package in tidyverse has a number of functions that merge or “join” data. As the reference page states:">
-<meta name="twitter:description" content="The dplyr package in tidyverse has a number of functions that merge or “join” data. As the reference page states:">
+<meta name="description" content="library(tidyverse) library(plotly) ## ## Attaching package: 'plotly' ## The following object is masked from 'package:ggplot2': ## ##   last_plot ## The following object is masked from...">
+<meta property="og:description" content="library(tidyverse) library(plotly) ## ## Attaching package: 'plotly' ## The following object is masked from 'package:ggplot2': ## ##   last_plot ## The following object is masked from...">
+<meta name="twitter:description" content="library(tidyverse) library(plotly) ## ## Attaching package: 'plotly' ## The following object is masked from 'package:ggplot2': ## ##   last_plot ## The following object is masked from...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -105,8 +105,224 @@
 <h1>
 <span class="header-section-number">7</span> Combining Echo360 data with other sources of data in R with tidyverse<a class="anchor" aria-label="anchor" href="#Echo_combine"><i class="fas fa-link"></i></a>
 </h1>
-<p>The dplyr package in tidyverse has a number of functions that merge or “join” data. As the reference page states:</p>
+<div class="sourceCode" id="cb110"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://plotly-r.com">plotly</a></span><span class="op">)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: 'plotly'</code></pre>
+<pre><code>## The following object is masked from 'package:ggplot2':
+## 
+##     last_plot</code></pre>
+<pre><code>## The following object is masked from 'package:stats':
+## 
+##     filter</code></pre>
+<pre><code>## The following object is masked from 'package:graphics':
+## 
+##     layout</code></pre>
+<div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span></code></pre></div>
+<pre><code>## Loading required package: timechange</code></pre>
+<pre><code>## 
+## Attaching package: 'lubridate'</code></pre>
+<pre><code>## The following objects are masked from 'package:base':
+## 
+##     date, intersect, setdiff, union</code></pre>
+<div class="sourceCode" id="cb119"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rpkgs.datanovia.com/ggpubr/">ggpubr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://purrr.tidyverse.org/">purrr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org">scales</a></span><span class="op">)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: 'scales'</code></pre>
+<pre><code>## The following object is masked from 'package:purrr':
+## 
+##     discard</code></pre>
+<pre><code>## The following object is masked from 'package:readr':
+## 
+##     col_factor</code></pre>
+<p>The <code>dplyr</code> package in <code>tidyverse</code> has a number of functions that merge or "join" data. As the <a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">reference page</a> states:</p>
+<blockquote>
+<p>Mutating joins add columns from y to x, matching observations based on the keys. There are four mutating joins: the inner join, and the three outer joins.</p>
+</blockquote>
+<blockquote>
+<p>Inner join
+An inner_join() only keeps observations from x that have a matching key in y.</p>
+</blockquote>
+<blockquote>
+<p>The most important property of an inner join is that unmatched rows in either input are not included in the result. This means that generally inner joins are not appropriate in most analyses, because it is too easy to lose observations.</p>
+</blockquote>
+<blockquote>
+<p>Outer joins
+The three outer joins keep observations that appear in at least one of the data frames:</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>A left_join() keeps all observations in x.</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>A right_join() keeps all observations in y.</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>A full_join() keeps all observations in x and y.</li>
+</ul>
+</blockquote>
+<p>To illustrate these functions we will consider data from Echo360 together with data from a checklist which records the percentage of tasks that student have marked as complete and also with data containing the results of multiple choice quizzes (MCQ). In both the checklist and MCQ data objects each student only appears once.</p>
+<div id="merging-data-where-each-student-only-appears-once-in-each-data-object" class="section level2" number="7.1">
+<h2>
+<span class="header-section-number">7.1</span> Merging data where each student only appears once in each data object<a class="anchor" aria-label="anchor" href="#merging-data-where-each-student-only-appears-once-in-each-data-object"><i class="fas fa-link"></i></a>
+</h2>
+<p>If we are interested in combining Echo360 data from just one lecture (and thus where each student will appear once) together with the MCQ data we could follow the following steps.</p>
+<ul>
+<li>First select the variables of interest from each data object, where <code>Lectures_01</code> contains the Echo360 data from the first lecture.</li>
+</ul>
+<div class="sourceCode" id="cb123"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Lecture01_to_merge</span> <span class="op">&lt;-</span> <span class="va">Lecture01</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">user_name</span>,<span class="va">email_address</span>,<span class="va">total_views</span>,<span class="va">total_view_time</span>,<span class="va">average_view_time</span>,<span class="va">last_viewed</span><span class="op">)</span>
+<span class="va">MCQ_to_merge</span> <span class="op">&lt;-</span> <span class="va">MCQ</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">first_name</span>,<span class="va">surname</span>,<span class="va">id_number</span>,<span class="va">email_address</span>,<span class="va">quiz_mcq_summative_assessment_real</span>,<span class="va">quiz_mcq_summative_assessment_perc</span><span class="op">)</span></code></pre></div>
+<ul>
+<li>Second, specify the type of 'join', e.g.</li>
+</ul>
+<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Lecture01_MCQ_left</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">Lecture01_to_merge</span>,<span class="va">MCQ_to_merge</span>,by <span class="op">=</span> <span class="st">"email_address"</span><span class="op">)</span>
+<span class="va">Lecture01_MCQ_right</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join</a></span><span class="op">(</span><span class="va">Lecture01_to_merge</span>,<span class="va">MCQ_to_merge</span>,by <span class="op">=</span> <span class="st">"email_address"</span><span class="op">)</span>
+<span class="va">Lecture01_MCQ_full</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">Lecture01_to_merge</span>,<span class="va">MCQ_to_merge</span>,by <span class="op">=</span> <span class="st">"email_address"</span><span class="op">)</span></code></pre></div>
+<ul>
+<li>Third, check that the input and ouput data objects are as we expect. For example the <code><a href="https://rdrr.io/r/base/dim.html">dim()</a></code> and <code><a href="https://rdrr.io/r/base/names.html">names()</a></code> functions return the dimensions and variable names of each object.</li>
+</ul>
+<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">Lecture01_to_merge</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">MCQ_to_merge</span><span class="op">)</span>
 
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">Lecture01_to_merge</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">MCQ_to_merge</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">Lecture01_MCQ_left</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">Lecture01_MCQ_right</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">Lecture01_MCQ_full</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">Lecture01_MCQ_left</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">Lecture01_MCQ_right</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">Lecture01_MCQ_full</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 67  6
+## [1] 243   6
+## [1] "user_name"         "email_address"     "total_views"      
+## [4] "total_view_time"   "average_view_time" "last_viewed"      
+## [1] "first_name"                         "surname"                           
+## [3] "id_number"                          "email_address"                     
+## [5] "quiz_mcq_summative_assessment_real" "quiz_mcq_summative_assessment_perc"
+## [1] 67 11
+## [1] 243  11
+## [1] 245  11
+##  [1] "user_name"                          "email_address"                     
+##  [3] "total_views"                        "total_view_time"                   
+##  [5] "average_view_time"                  "last_viewed"                       
+##  [7] "first_name"                         "surname"                           
+##  [9] "id_number"                          "quiz_mcq_summative_assessment_real"
+## [11] "quiz_mcq_summative_assessment_perc"
+##  [1] "user_name"                          "email_address"                     
+##  [3] "total_views"                        "total_view_time"                   
+##  [5] "average_view_time"                  "last_viewed"                       
+##  [7] "first_name"                         "surname"                           
+##  [9] "id_number"                          "quiz_mcq_summative_assessment_real"
+## [11] "quiz_mcq_summative_assessment_perc"
+##  [1] "user_name"                          "email_address"                     
+##  [3] "total_views"                        "total_view_time"                   
+##  [5] "average_view_time"                  "last_viewed"                       
+##  [7] "first_name"                         "surname"                           
+##  [9] "id_number"                          "quiz_mcq_summative_assessment_real"
+## [11] "quiz_mcq_summative_assessment_perc"</code></pre>
+<p>We note the following properties, each of which are as expected:</p>
+<ul>
+<li>each type of join/merge returns the same variables</li>
+<li>the <code>left</code> join retains all 67 student email addresses listed in the Echo360 <code>Lecture01_to_merge</code> object</li>
+<li>the <code>right</code> join retains all 243 student email addresses listed in the <code>MCQ_to_merge</code> object</li>
+<li>the <code>full</code> join retains all 245 unique student email addresses listed in both <code>Lecture01_to_merge</code> and <code>MCQ_to_merge</code>. On inspection, there are two observations in <code>Lecture01_to_merge</code> that have missing values (<code>NA</code>) for <code>email_address</code> and these correspond to the two "extra" observations in <code>Lecture01_MCQ_full</code> compared to <code>Lecture01_MCQ_right</code>.</li>
+</ul>
+</div>
+<div id="merging-data-where-each-student-may-appear-more-than-once-in-the-echo360-data" class="section level2" number="7.2">
+<h2>
+<span class="header-section-number">7.2</span> Merging data where each student may appear more than once in the Echo360 data<a class="anchor" aria-label="anchor" href="#merging-data-where-each-student-may-appear-more-than-once-in-the-echo360-data"><i class="fas fa-link"></i></a>
+</h2>
+<p>If we are interested in combining Echo360 data from <em>multiple</em> lectures (and thus where students may appear more than once) together with another data object where the students appear only once (such as the checklist and MCQ data described above) then we can still use the <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> function. Despite the function including the argument <code>multiple</code> for the "handling of rows in x with multiple matches in y", this argument is not relevant to our scenario since if the Echo360 data is the <code>x</code> argument and has multiple rows for each student it can be merged with another data source as the <code>y</code> argument (within which each student only appears once) in one of the ways shown previously:</p>
+<ul>
+<li>First select the variables of interest from each data object, where <code>Lectures_010203</code> contains the Echo360 data from the first three lectures.</li>
+</ul>
+<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Lecture010203_to_merge</span> <span class="op">&lt;-</span> <span class="va">Lectures_010203</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">user_name</span>, <span class="va">email_address</span>,<span class="va">media_name</span>,<span class="va">total_views</span>,
+         <span class="va">total_view_time</span>,<span class="va">average_view_time</span>,<span class="va">last_viewed</span><span class="op">)</span>
+
+<span class="va">MCQ_to_merge</span> <span class="op">&lt;-</span> <span class="va">MCQ</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">first_name</span>,<span class="va">surname</span>,<span class="va">id_number</span>,<span class="va">email_address</span>,
+         <span class="va">quiz_mcq_summative_assessment_real</span>,<span class="va">quiz_mcq_summative_assessment_perc</span><span class="op">)</span></code></pre></div>
+<p>NB. Where students may appear more than once, its necessary to include a variable that distinguishes between the repeated appearances. In this case its the variable <code>media_name</code> which identifies the lecture that the Echo360 data is from.</p>
+<ul>
+<li>Second, specify the type of 'join', in this case there is only one :</li>
+</ul>
+<div class="sourceCode" id="cb128"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Lecture010203_MCQ_left</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">Lecture010203_to_merge</span>,<span class="va">MCQ_to_merge</span>,by <span class="op">=</span> <span class="st">"email_address"</span><span class="op">)</span></code></pre></div>
+<ul>
+<li>Third, check that the input and output data objects are as we expect.</li>
+</ul>
+<div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">Lecture010203_to_merge</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">MCQ_to_merge</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">Lecture010203_to_merge</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">MCQ_to_merge</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">Lecture010203_MCQ_left</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">Lecture010203_MCQ_left</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 145   7
+## [1] 243   6
+## [1] "user_name"         "email_address"     "media_name"       
+## [4] "total_views"       "total_view_time"   "average_view_time"
+## [7] "last_viewed"      
+## [1] "first_name"                         "surname"                           
+## [3] "id_number"                          "email_address"                     
+## [5] "quiz_mcq_summative_assessment_real" "quiz_mcq_summative_assessment_perc"
+## [1] 145  12
+##  [1] "user_name"                          "email_address"                     
+##  [3] "media_name"                         "total_views"                       
+##  [5] "total_view_time"                    "average_view_time"                 
+##  [7] "last_viewed"                        "first_name"                        
+##  [9] "surname"                            "id_number"                         
+## [11] "quiz_mcq_summative_assessment_real" "quiz_mcq_summative_assessment_perc"</code></pre>
+<p>We note the following property:</p>
+<ul>
+<li>the <code>left</code> join retains all 145 observations listed in the Echo360 <code>Lecture010203_to_merge</code> object and combines them the (single) corresponding observation in <code>MCQ_to_merge</code>
+</li>
+</ul>
+</div>
+<div id="illustration-visualizing-merged-data" class="section level2" number="7.3">
+<h2>
+<span class="header-section-number">7.3</span> Illustration: Visualizing merged data<a class="anchor" aria-label="anchor" href="#illustration-visualizing-merged-data"><i class="fas fa-link"></i></a>
+</h2>
+<p>Merging data enables the exploration of how video engagement (recorded in the Echo360 data) is related to student performance. For example, the number of times each student views video content can be combined with their performance in an assessment (such as contained in the the MCQ data above). A visualization of this data can be obtained as follows:</p>
+<div class="sourceCode" id="cb131"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">student_data</span> <span class="op">&lt;-</span> <span class="va">Lectures_010203</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">email_address</span><span class="op">)</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>total_views<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">total_views</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate_all.html">mutate_at</a></span><span class="op">(</span><span class="st">'email_address'</span>, <span class="va">factor</span><span class="op">)</span>
+
+<span class="va">student_MCQ</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">student_data</span>,<span class="va">MCQ_to_merge</span>,by <span class="op">=</span> <span class="st">"email_address"</span><span class="op">)</span>
+
+<span class="va">fig.no_viewed.mcq</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">student_MCQ</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">total_views</span>, y<span class="op">=</span><span class="va">quiz_mcq_summative_assessment_perc</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="st">"Number of video views vs. Percentage Score in a Multiple Choice Quiz"</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Percentage Score in MCQ"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"No. of video views"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="va">fig.no_viewed.mcq</span></code></pre></div>
+<div class="inline-figure"><img src="07-Echo_combine_files/figure-html/merge_plot-1.png" width="100%" style="display: block; margin: auto;"></div>
+<p>The plot can be made interactive using the <code><a href="https://rdrr.io/pkg/plotly/man/plotly.html">plotly()</a></code> funciton as illustrated in previous sections.</p>
+
+</div>
 </div>
 
 
@@ -116,7 +332,12 @@
 <div class="next"><a href="installing-r.html"><span class="header-section-number">A</span> Installing R</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav"><li><a class="nav-link" href="#Echo_combine"><span class="header-section-number">7</span> Combining Echo360 data with other sources of data in R with tidyverse</a></li></ul>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#Echo_combine"><span class="header-section-number">7</span> Combining Echo360 data with other sources of data in R with tidyverse</a></li>
+<li><a class="nav-link" href="#merging-data-where-each-student-only-appears-once-in-each-data-object"><span class="header-section-number">7.1</span> Merging data where each student only appears once in each data object</a></li>
+<li><a class="nav-link" href="#merging-data-where-each-student-may-appear-more-than-once-in-the-echo360-data"><span class="header-section-number">7.2</span> Merging data where each student may appear more than once in the Echo360 data</a></li>
+<li><a class="nav-link" href="#illustration-visualizing-merged-data"><span class="header-section-number">7.3</span> Illustration: Visualizing merged data</a></li>
+</ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">

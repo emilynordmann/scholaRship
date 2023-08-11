@@ -4,6 +4,65 @@
 
 ## Reading downloaded data into R using tidyverse
 
-The `readr` library in tidyverse provides us with a host of functions for reading in data to R. Often in a course, you will have multiple video recordings which you have Echo360 data on. It is useful to keep all this data within one data frame in R for analysis, as we will often consider metrics across the full course and not for one video.
+```{r}
+library(tidyverse)
+library(plotly)
+library(lubridate)
+library(ggpubr)
+library(purrr)
+library(scales)
+```
 
-The list.files command will list all of the files available within our current working directory. Echo360 data is stored in .csv files and we can specifically list those files using the command pattern = ".csv" as shown below:
+The `readr` library in `tidyverse` provides us with a host of functions for reading in data to R. Often in a course, you will have multiple video recordings which you have Echo360 data on. It is useful to keep all this data within one data frame in R for analysis, as we will often consider metrics across the full course and not for one video. 
+
+The `list.files` command will list all of the files available within our current working directory. Echo360 data is stored in .csv files and we can specifically list those files using the command `pattern = ".csv"` as shown below:
+
+```{r,message=F}
+# Obtain list of files from directory
+files <- list.files(path = "data/Echo360_Data/", 
+                    pattern=".csv") 
+
+# Read in all files
+data <- read_csv(paste0("data/Echo360_Data/", files), id="file_name")
+
+# Fill in spaces between column names
+data <- tibble(data, .name_repair = "universal")
+```
+
+The names of the various Echo360 videos is stored under `file_name`, though the naming conventions can at times be quite awkward to handle in R. We can simply number these videos by using the code below.
+
+```{r,echo=F}
+data$file_name <- as.numeric(as.factor(data$file_name))
+colnames(data)[1] <- "Video"
+```
+
+## Data descriptions for each field in downloaded data
+
+Within the Echo360 data, we will have various fields of data in different formats. It is important to understand what each of these fields corresponds to for any exploratory analysis of the data. 
+
+R will often read the data in the correct format and store the variables in the right way. Though it is best to check this has been carried out correctly. We can obtain a summary of each column of data using the `str` command:
+
+```{r}
+str(data)
+```
+
+The output of this command details the variable type of each column and how this has been stored in R. At this point, it is worthwhile checking the raw data (by visually inspecting the .csv file(s) read in) and the output of `str()` to check that R has correctly converted each column to it's preferred variable type. 
+
+## Quick summaries of data
+We can obtain some quick summaries of our variables to get an early feel for our data and check for any potential outliers in our data.
+
+### Numerical data
+For numerical data, we can obtain a series of numerical summaries. We can compute the mean observations for all numerical columns by using the following code 
+
+```{r}
+data %>% select(where(is.numeric)) %>% summarise_all(mean)
+```
+
+The `select()` command allows us to select all variables based on a criteria (such as variable name or a condition). Here, we select those variables which are numeric by using `where(is.numeric)`. We can then obtain the mean for all numeric variables by using the `summarise_all()` command and then specifying our chosen summary metric (which here, is `mean`).
+
+For observations in counts, we can look at the total number of observations for each count
+```{r}
+data %>% group_by(total_views) %>% summarise(n=n())
+```
+
+`group_by()` allows us to carry out computations by groups defined by variables. We can then use `summarise()` to obtain the total number of counts for each total number of views using `n()`.

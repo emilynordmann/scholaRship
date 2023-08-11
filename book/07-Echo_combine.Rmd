@@ -1,4 +1,232 @@
 # Combining Echo360 data with other sources of data in R with tidyverse {#Echo_combine}
 
-The dplyr package in tidyverse has a number of functions that merge or “join” data. As the reference page states:
+```{r}
+library(tidyverse)
+library(plotly)
+library(lubridate)
+library(ggpubr)
+library(purrr)
+library(scales)
+```
 
+```{r previous_data_check, message=F, echo=FALSE, eval=FALSE}
+#There is only one email address in the data above that appears in the MCQ data
+MCQ <- read.csv("Data/Moodle_duplicate/MCQ.csv")  #Results from Multiple Choice Quiz
+
+unique(data$email_address)[(unique(data$email_address) %in% MCQ$email_address)]
+# [1] "257295@university.ac.uk"
+
+# Use different Echo360 data below with email addresses correponding to MCQ/Checklist data
+```
+
+```{r data_to_merge, message=F, echo=FALSE}
+
+# Reading the Echo360 data from three lectures into three data objects
+Lecture01 <- read.csv("Data/RM1_duplicate/Lecture01.csv")
+Lecture02 <- read.csv("Data/RM1_duplicate/Lecture02.csv")
+Lecture03 <- read.csv("Data/RM1_duplicate/Lecture03.csv")
+# names(Lecture01)
+# names(Lecture02)
+# names(Lecture03)
+#  [1] "media_id"          "media_name"        "create_date"       "duration"          "owner_name"        "course"            "user_name"        
+#  [8] "email_address"     "total_views"       "total_view_time"   "average_view_time" "on_demand_views"   "live_view_count"   "downloads"        
+# [15] "last_viewed"      
+
+# Reading the Echo360 data from three lectures into one data object
+# Obtain list of files from directory
+
+files <- list.files(path="data/RM1_duplicate/",pattern=".csv",full.names = TRUE) 
+
+Lectures_010203 <- read_csv(files, id="file_name")
+# names(Lectures_010203)
+#  [1] "file_name"         "media_id"          "media_name"        "create_date"       "duration"          "owner_name"        "course"           
+#  [8] "user_name"         "email_address"     "total_views"       "total_view_time"   "average_view_time" "on_demand_views"   "live_view_count"  
+# [15] "downloads"         "last_viewed" 
+
+# str(data_010203)
+# str(Lecture01)
+# str(Lecture02)
+# str(Lecture03)
+
+
+# Reading student data from other Moodle activities into two data objects
+Checklist <- read.csv("Data/Moodle_duplicate/Checklist.csv")  #A log of checklist elements clicked
+MCQ <- read.csv("Data/Moodle_duplicate/MCQ.csv")  #Results from Multiple Choice Quiz
+
+# names(Checklist)
+#  [1] "first_name"                                  "surname"                                     "id_number"                                  
+#  [4] "email_address"                               "institution"                                 "department"                                 
+#  [7] "checklist_rm1_week_1_progress_tracker_real"  "checklist_rm1_week_2_progress_tracker_real"  "checklist_rm1_week_3_progress_tracker_real" 
+# [10] "checklist_rm1_week_4_progress_tracker_real"  "checklist_rm1_week_5_progress_tracker_real"  "checklist_rm1_week_7_progress_tracker_real" 
+# [13] "checklist_rm1_week_8_progress_tracker_real"  "checklist_rm1_week_9_progress_tracker_real"  "checklist_rm1_week_10_progress_tracker_real"
+# [16] "last_downloaded_from_this_course" 
+
+# names(MCQ)
+# [1] "first_name"                         "surname"                            "id_number"                         
+# [4] "email_address"                      "institution"                        "department"                        
+# [7] "quiz_mcq_summative_assessment_real" "quiz_mcq_summative_assessment_perc" "last_downloaded_from_this_course"  
+
+# str(Checklist)
+# str(MCQ)
+```
+
+The `dplyr` package in `tidyverse` has a number of functions that merge or "join" data. As the [reference page](https://dplyr.tidyverse.org/reference/mutate-joins.html) states:
+
+> Mutating joins add columns from y to x, matching observations based on the keys. There are four mutating joins: the inner join, and the three outer joins.
+
+> Inner join
+> An inner_join() only keeps observations from x that have a matching key in y.
+
+> The most important property of an inner join is that unmatched rows in either input are not included in the result. This means that generally inner joins are not appropriate in most analyses, because it is too easy to lose observations.
+
+> Outer joins
+> The three outer joins keep observations that appear in at least one of the data frames:
+
+> - A left_join() keeps all observations in x.
+
+> - A right_join() keeps all observations in y.
+
+> - A full_join() keeps all observations in x and y.
+
+
+To illustrate these functions we will consider data from Echo360 together with data from a checklist which records the percentage of tasks that student have marked as complete and also with data containing the results of multiple choice quizzes (MCQ). In both the checklist and MCQ data objects each student only appears once.
+
+## Merging data where each student only appears once in each data object
+
+If we are interested in combining Echo360 data from just one lecture (and thus where each student will appear once) together with the MCQ data we could follow the following steps.
+
+* First select the variables of interest from each data object, where `Lectures_01` contains the Echo360 data from the first lecture.
+
+```{r select, message=FALSE}
+Lecture01_to_merge <- Lecture01 %>% 
+  select(user_name,email_address,total_views,total_view_time,average_view_time,last_viewed)
+MCQ_to_merge <- MCQ %>% 
+  select(first_name,surname,id_number,email_address,quiz_mcq_summative_assessment_real,quiz_mcq_summative_assessment_perc)
+```
+
+* Second, specify the type of 'join', e.g.
+```{r merge, message=FALSE}
+Lecture01_MCQ_left <- left_join(Lecture01_to_merge,MCQ_to_merge,by = "email_address")
+Lecture01_MCQ_right <- right_join(Lecture01_to_merge,MCQ_to_merge,by = "email_address")
+Lecture01_MCQ_full <- full_join(Lecture01_to_merge,MCQ_to_merge,by = "email_address")
+```
+
+
+```{r, echo=FALSE, eval=FALSE}
+Checklist_to_merge <- Checklist %>% 
+  select(first_name,surname,id_number,email_address,checklist_rm1_week_1_progress_tracker_real)
+```
+
+* Third, check that the input and ouput data objects are as we expect.  For example the `dim()` and `names()` functions return the dimensions and variable names of each object.
+
+```{r check}
+dim(Lecture01_to_merge)
+dim(MCQ_to_merge)
+
+names(Lecture01_to_merge)
+names(MCQ_to_merge)
+
+dim(Lecture01_MCQ_left)
+dim(Lecture01_MCQ_right)
+dim(Lecture01_MCQ_full)
+
+names(Lecture01_MCQ_left)
+names(Lecture01_MCQ_right)
+names(Lecture01_MCQ_full)
+```
+
+We note the following properties, each of which are as expected:
+
+* each type of join/merge returns the same variables
+* the `left` join retains all 67 student email addresses listed in the Echo360 `Lecture01_to_merge` object
+* the `right` join retains all 243 student email addresses listed in the `MCQ_to_merge` object
+* the `full` join retains all 245 unique student email addresses listed in both `Lecture01_to_merge` and `MCQ_to_merge`.  On inspection, there are two observations in `Lecture01_to_merge` that have missing values (`NA`) for `email_address` and these correspond to the two "extra" observations in `Lecture01_MCQ_full` compared to `Lecture01_MCQ_right`.
+
+## Merging data where each student may appear more than once in the Echo360 data
+
+If we are interested in combining Echo360 data from *multiple* lectures (and thus where students may appear more than once) together with another data object where the students appear only once (such as the checklist and MCQ data described above) then we can still use the `left_join()` function. Despite the function including the argument `multiple` for the "handling of rows in x with multiple matches in y", this argument is not relevant to our scenario since if the Echo360 data is the `x` argument and has multiple rows for each student it can be merged with another data source as the `y` argument (within which each student only appears once) in one of the ways shown previously: 
+
+* First select the variables of interest from each data object, where `Lectures_010203` contains the Echo360 data from the first three lectures.
+
+```{r select2, message=FALSE}
+Lecture010203_to_merge <- Lectures_010203 %>% 
+  select(user_name, email_address,media_name,total_views,
+         total_view_time,average_view_time,last_viewed)
+
+MCQ_to_merge <- MCQ %>% 
+  select(first_name,surname,id_number,email_address,
+         quiz_mcq_summative_assessment_real,quiz_mcq_summative_assessment_perc)
+```
+
+NB. Where students may appear more than once, its necessary to include a variable that distinguishes between the repeated appearances.  In this case its the variable `media_name` which identifies the lecture that the Echo360 data is from.
+
+* Second, specify the type of 'join', in this case there is only one :
+
+```{r merge2, message=FALSE}
+Lecture010203_MCQ_left <- left_join(Lecture010203_to_merge,MCQ_to_merge,by = "email_address")
+```
+
+* Third, check that the input and output data objects are as we expect. 
+
+```{r check2}
+dim(Lecture010203_to_merge)
+dim(MCQ_to_merge)
+
+names(Lecture010203_to_merge)
+names(MCQ_to_merge)
+
+dim(Lecture010203_MCQ_left)
+names(Lecture010203_MCQ_left)
+```
+
+We note the following property:
+
+* the `left` join retains all 145 observations listed in the Echo360 `Lecture010203_to_merge` object and combines them the (single) corresponding observation in `MCQ_to_merge`
+
+## Illustration: Visualizing merged data
+
+Merging data enables the exploration of how video engagement (recorded in the Echo360 data) is related to student performance.  For example, the number of times each student views video content can be combined with their performance in an assessment (such as contained in the the MCQ data above).  A visualization of this data can be obtained as follows:
+
+```{r merge_plot, message=FALSE, warning=FALSE}
+student_data <- Lectures_010203 %>% 
+  group_by(email_address) %>%
+  summarise(total_views=sum(total_views)) %>%
+  mutate_at('email_address', factor)
+
+student_MCQ <- left_join(student_data,MCQ_to_merge,by = "email_address")
+
+fig.no_viewed.mcq <- ggplot(student_MCQ, aes(x=total_views, y=quiz_mcq_summative_assessment_perc)) +
+  geom_point()+ 
+  labs(title="Number of video views vs. Percentage Score in a Multiple Choice Quiz") + 
+  ylab("Percentage Score in MCQ") +
+  xlab("No. of video views") +
+  theme_bw()
+
+fig.no_viewed.mcq
+```
+
+The plot can be made interactive using the `plotly()` funciton as illustrated in previous sections.
+
+```{r merge3, message=FALSE, eval=FALSE, echo=FALSE}
+# NOT USED
+Lecture010203_Checklist_left <- left_join(Lecture010203_to_merge,Checklist_to_merge,by = "email_address")
+Lecture010203_Checklist_left_multiple <- left_join(Checklist_to_merge,Lecture010203_to_merge,by = "email_address")
+Lecture010203_Checklist_full_multiple <- full_join(Checklist_to_merge,Lecture010203_to_merge,by = "email_address")
+```
+
+```{r check3, eval=FALSE, echo=FALSE}
+# NOT USED
+dim(Lecture010203_to_merge)
+dim(Checklist_to_merge)
+
+names(Lecture010203_to_merge)
+names(Checklist_to_merge)
+
+dim(Lecture010203_Checklist_left)
+dim(Lecture010203_Checklist_left_multiple)
+dim(Lecture010203_Checklist_full_multiple)
+
+names(Lecture010203_Checklist_left)
+names(Lecture010203_Checklist_left_multiple)
+names(Lecture010203_Checklist_full_multiple)
+```

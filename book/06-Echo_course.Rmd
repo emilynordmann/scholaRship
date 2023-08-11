@@ -1,6 +1,254 @@
 # Exploring Echo360 video/course level data in R with `tidyverse` {#Echo_course}
 
-## Handling date/time data with `lubridate`
+```{r}
+library(tidyverse)
+library(plotly)
+library(lubridate)
+library(ggpubr)
+library(purrr)
+library(scales)
+```
 
-Handling data that is of a date/time format in R is somewhat different from other variable types and should be treated differently and handled with care. The lubridate package in R allows us to easily handle tricky date/time data and extract useful variables from these.
+```{r}
+# Obtain list of files from directory
+files <- list.files(path = "data/Echo360_Data/", 
+                    pattern=".csv") 
+
+# Read in all files
+data <- read_csv(paste0("data/Echo360_Data/", files), id="file_name")
+
+# Fill in spaces between column names
+data <- tibble(data, .name_repair = "universal")
+
+data$file_name <- as.numeric(as.factor(data$file_name))
+colnames(data)[1] <- "Video"
+```
+
+
+## Handling date/time data with `lubridate`
+Handling data that is of a date/time format in R is somewhat different from other variable types and should be treated differently and handled with care. The `lubridate` package in R allows us to easily handle tricky date/time data and extract useful variables from these. 
+
+### Converting data to date/time format
+The first task will be to convert any date/time data we have into the correct format. In the sample data we are working with, we have five variables which contain such data which are: `Create.Date, Duration, Total.View.Time,Average.View.Time` and `Last.Viewed`. 
+
+These variables fall into two types on closer inspection:
+
+- `Create.Data` & `Last.Viewed` - These are listed as a date (a particular day)
+- `Duration, Total.View.Time` and `Average.View.Time` - These are listed as a time, recorded in hours, minutes and seconds.
+
+Several functions can be used to take a string of data and convert it into the desired date/time format. There is a useful cheat sheet for the `lubridate` library which contains examples of such functions which can be found [here](https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_lubridate.pdf). For our data, we will use the `mdy` and `hms` functions as follows:
+
+```{r}
+data<-data %>%
+  mutate_at(c('duration', 'total_view_time', 'average_view_time'), hms) %>%
+  mutate_at(c('create_date', 'last_viewed'), mdy)
+```
+
+Here, the `mutate_at()` function allows us to update selected variables and modify these by the specified function that follows. `hms` converts a string into a date/time object which is set by hours-minutes-seconds. `mdy` converts a string into a date/time object which is set by month-day-year (note Echo360 data saves date/times in US format).
+
+We can take a look at these transformations more closely:
+
+```{r}
+head(data$duration)
+head(data$last_viewed)
+```
+
+We can see that those variables converted using `hms`are printed in the format `10M 20S`. If you would prefer to visualise these in a more standard format, you can use `hms::as_hms()` to do so.
+
+
+### Extracting elements from date/time data
+Sometimes we may wish to obtain specific parts of a date/time such as month, minutes etc. There are several functions in `lubridate` which allow us to extract these easily from a date/time object.
+
+Say we wish to only obtain the minutes from `Average.View.Time`, we can obtain this easily using the `minute` function. The commands below show the spread of duration in minutes with a boxplot
+
+```{r}
+data <- data %>% mutate(average_view_minute=minute(data$average_view_time))
+
+ggplot(data,aes(y=average_view_minute)) + geom_boxplot() + labs(title="Boxplot of average video viewing times") + ylab("View time (mins)") + theme_bw()
+```
+
+We can also produce an interactive version of the boxplot by using `plotly`
+
+```{r}
+fig_avg_views <- plot_ly(data,y=~ average_view_minute,type="box",name="")
+fig_avg_views <- fig_avg_views %>% layout(title="Boxplot of average video viewing times")
+fig_avg_views
+```
+
+Suppose we want to look at the last month students viewed videos across the course. We can obtain this by applying the `month` function to the `Last.Viewed` variable
+
+
+```{r}
+data <- data %>% mutate(month_last_viewed=month(data$last_viewed))
+
+last_viewed <- ggplot(data,aes(x=month_last_viewed)) + geom_bar() + labs(title="Las month videos viewed") + ylab("Count") + theme_bw() + scale_x_continuous(breaks= pretty_breaks())
+last_viewed
+```
+
+We can easily display the above plot in `plotly` using the command `ggplotly` with our stored `ggplot` output:
+
+```{r}
+ggplotly(last_viewed)
+```
+
+### Maths with date-times
+Sometimes, we may wish to compare the difference in time between certain events. Again, `lubridate` provides some useful functions to help us with this. For example, we can look at the difference in average view time to total view time by for a certain video by using simple arithmetic operators
+
+```{r}
+data_video1 <- data[data$Video==1,]
+data_video1 <- data_video1 %>% mutate(time_difference=average_view_time-duration)
+head(data_video1$time_difference)
+```
+As this data returns values in minutes and seconds, we will have to transform this to one unit type to visualise
+
+```{r}
+data_video1$time_difference <- second(data_video1$time_difference)
+
+time_difference <- ggplot(data_video1,aes(y=time_difference)) + geom_boxplot() + labs(title="Boxplot of average video viewing times compared to total times") + ylab("View time (seconds)") + theme_bw() + geom_hline(yintercept=0,color="red")
+time_difference
+```
+
+```{r}
+ggplotly(time_difference)
+```
+
+## Total views for each video
+In the following sections we will mostly be creating plots of our data summarised at video level. Given that our data is currently stored at student level (one row per student per video) we will transform our data into a new data set called `video_data` which will group the data by video and create some variables of interest. Firstly, let's create this new data set with two columns:
+
+* `Video`: The video number stored as a factor (this will make it easier to plot later on);
+* `Total_Views`: The total number of views per video.
+
+```{r}
+video_data <- data %>% group_by(Video) %>%
+  summarise(total_views=sum(total_views)) %>%
+  mutate_at('Video', factor)
+```
+
+We can now easily create a bar chart of the total number of views per video as follows:
+
+```{r}
+fig.total.views <- ggplot(video_data, aes(x=Video, y=total_views)) +
+  geom_bar(stat = "identity") + 
+  labs(title="Total number of views per video") + 
+  ylab("Total views") +
+  xlab("Video") +
+  theme_bw()
+
+fig.total.views
+```
+
+
+
+Here we plot the video number along the x-axis and the total number of views for each video on the y-axis. These numbers include duplications from students who have watched the videos multiple times. We may also be interested in the total number of unique views, i.e. the total number of students who watched the video at least once. To do this, we need to create a new variable called `unique_views` which will contain the sum of the rows for each video. We can add this to the video-level data set `video_data`.
+
+```{r}
+video_data <- data %>% group_by(Video) %>%
+  summarise(Total_Views=sum(total_views), unique_views=n()) %>%
+  mutate_at('Video', factor)
+```
+We can edit the code for the previous bar cahrt to create a bar chart of the total number of unique student views per video as follows:
+
+```{r}
+fig.unique.views<-ggplot(video_data, aes(x=Video, y=unique_views)) +
+  geom_bar(stat = "identity") + 
+  labs(title="Total number of unique student views per video") + 
+  ylab("Unique student views") +
+  xlab("Video") +
+  theme_bw()
+
+fig.unique.views
+```
+
+### Creating an interactive version using `plotly`.
+
+We can create mor interactive plots, allowing us to share information on our data in a more interactive environment using `plotly`. First start by installing and loading the `plotly` library.
+
+```{r}
+library(plotly)
+```
+
+Let's start by creating a `plotly` version of the barchart of unique student views using the following the `ggplotly()` function.
+```{r}
+ggplotly(fig.unique.views)
+
+```
+
+**Advanced**
+We can add additional information such as total views, duration of video and average view time into the hover text as follows.
+
+```{r}
+video_data <- data %>%
+  group_by(Video) %>%
+  summarise(total_views=sum(total_views), video_data=n(), average_view_time=mean(period_to_seconds(average_view_time), na.rm=T)) %>%
+  mutate(average_view_time=round(seconds_to_period(average_view_time),0),
+         repeated_views=total_views-video_data,
+         duration = hms(c('00:10:48', '00:13:11', '00:13:55', '00:14:11', '00:14:42', '00:15:08', '00:16:20', '00:16:34', '00:18:28')),
+         percentage_viewed=average_view_time/duration*100)
+
+fig.all.views <- plot_ly(video_data,
+  x = ~as.factor(Video),
+  y = ~video_data,
+  name = "Unique Views",
+  type = "bar",
+  hovertemplate = paste0("Video %{x}",
+                         "<br>Total views:", video_data$total_views,
+                         "<br>Unique views: %{y}",
+                         "<br> Duration: ", video_data$duration,
+                         "<br> Average view time: ", video_data$average_view_time,
+                         "<extra></extra>")
+
+)%>%
+  layout(title = 'Video views', xaxis = list(title = 'Video number'),
+         yaxis = list(title = 'Unique views'))
+
+fig.all.views
+```
+We might also want to create a stacked barchart with the total number of views split into unique student views and repeated views. We can do this in `plotly` as follows.
+
+```{r}
+fig.all.views <- fig.all.views %>% add_trace(y = ~repeated_views, name = 'Repeated views')
+
+fig.all.views <- fig.all.views %>% layout(yaxis = list(title = 'Count'), barmode = 'stack')
+
+fig.all.views
+```
+
+## Video duration vs. average percentage viewed
+
+We will now create a scatterplot of video duration vs. the average percentage of video viewed using `ggplot` as follows.
+
+```{r}
+fig.duration.viewed<-ggplot(video_data, aes(x=as.numeric(duration, 'minutes'), y=percentage_viewed)) +
+  geom_point()+ 
+  labs(title="Video duration vs. average percentage viewed") + 
+  ylab("Average percentage of video viewed") +
+  xlab("Video duration") +
+  theme_bw()
+
+fig.duration.viewed
+```
+
+```{r}
+ggplotly(fig.duration.viewed)
+```
+
+**Advanced**
+We can add additional information such as video number average view time into the hover text as follows.
+```{r}
+fig.duration.viewed.2 <- plot_ly(video_data,
+               x = ~as.numeric(duration, 'minutes'),
+               y = ~percentage_viewed,
+               type = "scatter",
+               mode = "markers",
+               hovertemplate = paste0("Video ", video_data$Video,
+                                      "<br>Average percentage viewed: ", round(video_data$percentage_viewed,1), "%",
+                                      "<br> Duration: ", video_data$duration,
+                                      "<br> Average view time: ", video_data$average_view_time,
+                                      "<extra></extra>"))%>%
+  layout(xaxis = list(title = 'Duration of video'),
+         yaxis = list(title = 'Percentage of video viewed'))
+
+fig.duration.viewed.2
+```
+
 
