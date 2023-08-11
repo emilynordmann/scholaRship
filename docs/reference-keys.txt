@@ -25,6 +25,13 @@ set-up
 data-types
 extensions-and-late-submissions
 grades
+anonymous
+Echo_tidy
+how-to-access-echo360-data
+reading-downloaded-data-into-r-using-tidyverse
+Echo_course
+handling-datetime-data-with-lubridate
+Echo_combine
 installing-r
 installing-base-r
 installing-rstudio

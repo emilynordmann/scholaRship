@@ -191,6 +191,10 @@ As a final check, it's important to make sure the model results are consistent w
 check_model(model)
 ```
 
+```
+## Variable `Component` is not in your data frame :/
+```
+
 <img src="02-synthpop_files/figure-html/model assumptions-1.png" width="100%" style="display: block; margin: auto;" />
 
 Although the bottom right plot for the normality of residuals is not quite capturing the peak of a normal distribution, there is nothing here to suggest there are any warning signs for our model.
@@ -325,7 +329,7 @@ write.syn(synth_data,
 ```
 ## Synthetic data exported as csv file(s).
 ## Information on synthetic data written to
-##   C:/Users/staff/OneDrive - University of Glasgow/Teaching/psyteachR/scholaRship/book/synthesis_info_synthetic_Dunn_data.txt
+##   /Users/jamesbartlett/Documents/git_repos/scholaRship/book/synthesis_info_synthetic_Dunn_data.txt
 ```
 
 If you ran the code to save the synthetic data set, you will see three new files in your working directory. There is an. RData object which you can reload into R. By choosing a .csv file, we also have a spreadsheet containing the data which we could analyse in other software or read into R. Finally, there is a .txt file with information on the synthetic data process like the name of the original data file, the seed you used, and the variables. 
