@@ -27,8 +27,7 @@ extensions-and-late-submissions
 grades
 anonymous
 Echo_tidy
-how-to-access-echo360-data
-reading-downloaded-data-into-r-using-tidyverse
+reading-downloaded-data-into-r
 data-descriptions-for-each-field-in-downloaded-data
 quick-summaries-of-data
 numerical-data

@@ -55,9 +55,9 @@
 <link rel="stylesheet" href="include/psyteachr.css">
 <link rel="stylesheet" href="include/webex.css">
 <link rel="stylesheet" href="include/style.css">
-<meta name="description" content="5.1 How to access Echo360 Data   5.2 Reading downloaded data into R using tidyverse library(tidyverse) library(plotly) ## ## Attaching package: 'plotly' ## The following object is masked from...">
-<meta property="og:description" content="5.1 How to access Echo360 Data   5.2 Reading downloaded data into R using tidyverse library(tidyverse) library(plotly) ## ## Attaching package: 'plotly' ## The following object is masked from...">
-<meta name="twitter:description" content="5.1 How to access Echo360 Data   5.2 Reading downloaded data into R using tidyverse library(tidyverse) library(plotly) ## ## Attaching package: 'plotly' ## The following object is masked from...">
+<meta name="description" content="5.1 Reading downloaded data into R Before we start with the tutorial, you will down to install the following packages. We note in a comment what we need each package for. library(tidyverse) #...">
+<meta property="og:description" content="5.1 Reading downloaded data into R Before we start with the tutorial, you will down to install the following packages. We note in a comment what we need each package for. library(tidyverse) #...">
+<meta name="twitter:description" content="5.1 Reading downloaded data into R Before we start with the tutorial, you will down to install the following packages. We note in a comment what we need each package for. library(tidyverse) #...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -105,73 +105,46 @@
 <h1>
 <span class="header-section-number">5</span> Getting started with Echo360 data in R with <code>tidyverse</code><a class="anchor" aria-label="anchor" href="#Echo_tidy"><i class="fas fa-link"></i></a>
 </h1>
-<div id="how-to-access-echo360-data" class="section level2" number="5.1">
+<div id="reading-downloaded-data-into-r" class="section level2" number="5.1">
 <h2>
-<span class="header-section-number">5.1</span> How to access Echo360 Data<a class="anchor" aria-label="anchor" href="#how-to-access-echo360-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.1</span> Reading downloaded data into R<a class="anchor" aria-label="anchor" href="#reading-downloaded-data-into-r"><i class="fas fa-link"></i></a>
 </h2>
-</div>
-<div id="reading-downloaded-data-into-r-using-tidyverse" class="section level2" number="5.2">
-<h2>
-<span class="header-section-number">5.2</span> Reading downloaded data into R using tidyverse<a class="anchor" aria-label="anchor" href="#reading-downloaded-data-into-r-using-tidyverse"><i class="fas fa-link"></i></a>
-</h2>
+<p>Before we start with the tutorial, you will down to install the following packages. We note in a comment what we need each package for.</p>
 <div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://plotly-r.com">plotly</a></span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-## Attaching package: 'plotly'</code></pre>
-<pre><code>## The following object is masked from 'package:ggplot2':
-## 
-##     last_plot</code></pre>
-<pre><code>## The following object is masked from 'package:stats':
-## 
-##     filter</code></pre>
-<pre><code>## The following object is masked from 'package:graphics':
-## 
-##     layout</code></pre>
-<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span></code></pre></div>
-<pre><code>## Loading required package: timechange</code></pre>
-<pre><code>## 
-## Attaching package: 'lubridate'</code></pre>
-<pre><code>## The following objects are masked from 'package:base':
-## 
-##     date, intersect, setdiff, union</code></pre>
-<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rpkgs.datanovia.com/ggpubr/">ggpubr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://purrr.tidyverse.org/">purrr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org">scales</a></span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-## Attaching package: 'scales'</code></pre>
-<pre><code>## The following object is masked from 'package:purrr':
-## 
-##     discard</code></pre>
-<pre><code>## The following object is masked from 'package:readr':
-## 
-##     col_factor</code></pre>
-<p>The <code>readr</code> library in <code>tidyverse</code> provides us with a host of functions for reading in data to R. Often in a course, you will have multiple video recordings which you have Echo360 data on. It is useful to keep all this data within one data frame in R for analysis, as we will often consider metrics across the full course and not for one video.</p>
-<p>The <code>list.files</code> command will list all of the files available within our current working directory. Echo360 data is stored in .csv files and we can specifically list those files using the command <code>pattern = ".csv"</code> as shown below:</p>
-<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> <span class="co"># Package of packages for plotting and wrangling </span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://plotly-r.com">plotly</a></span><span class="op">)</span> <span class="co"># Creates interactive plots </span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rpkgs.datanovia.com/ggpubr/">ggpubr</a></span><span class="op">)</span> <span class="co"># Builds on ggplot2 to build specific publication ready plots </span></code></pre></div>
+<p>The <code>readr</code> package in the <code>tidyverse</code> provides us with a host of functions for reading in data to R. Often in a course, you will have multiple video recordings which you have Echo360 data on. It is useful to keep all this data within one data frame in R for analysis, as we will often consider metrics across the full course and not for one video.</p>
+<p>The <code>list.files</code> command will list all of the files available within a given working directory. To download the data for this tutorial, please <a href="data/Echo360_Data/Echo360_data.zip">download the .zip file</a> containing 9 files of Echo360 data. In our working directory, we have a folder called "data", and we created a subfolder called "Echo360_Data" to place these files. See <a href="anonymous.html#anonymous">Chapter 4</a> for how we created anonymous synthetic data to use in these tutorials. The data are stored in .csv files and we can specifically list those files using the command <code>pattern = ".csv"</code> as shown below:</p>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Obtain list of files from directory</span>
 <span class="va">files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"data/Echo360_Data/"</span>, 
                     pattern<span class="op">=</span><span class="st">".csv"</span><span class="op">)</span> 
 
 <span class="co"># Read in all files</span>
-<span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"data/Echo360_Data/"</span>, <span class="va">files</span><span class="op">)</span>, id<span class="op">=</span><span class="st">"file_name"</span><span class="op">)</span>
+<span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"data/Echo360_Data/"</span>, <span class="va">files</span><span class="op">)</span>, <span class="co"># Add our working directory to the list of files </span>
+                 id<span class="op">=</span><span class="st">"video"</span><span class="op">)</span> <span class="co"># What should be call the column containing the name of the video file? </span>
 
 <span class="co"># Fill in spaces between column names</span>
-<span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="va">data</span>, .name_repair <span class="op">=</span> <span class="st">"universal"</span><span class="op">)</span></code></pre></div>
-<p>The names of the various Echo360 videos is stored under <code>file_name</code>, though the naming conventions can at times be quite awkward to handle in R. We can simply number these videos by using the code below.</p>
+<span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="va">data</span>, 
+               .name_repair <span class="op">=</span> <span class="st">"universal"</span><span class="op">)</span> <span class="co"># Setting to universal makes all names unique and syntactic</span></code></pre></div>
+<p>The object we created (<code>file_name</code>) contains the names of the various Echo360 videos, though the naming conventions can at times be quite awkward to handle in R. We can simply number these videos by using the code below.</p>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># To break this code down, we start with the innermost function</span>
+<span class="co"># 1. We first make each unique video name a factor (unique category)</span>
+<span class="co"># 2. We then make each factor a number, so we get an ascending number from 1 to 9</span>
+<span class="va">data</span><span class="op">$</span><span class="va">video</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">video</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="data-descriptions-for-each-field-in-downloaded-data" class="section level2" number="5.3">
+<div id="data-descriptions-for-each-field-in-downloaded-data" class="section level2" number="5.2">
 <h2>
-<span class="header-section-number">5.3</span> Data descriptions for each field in downloaded data<a class="anchor" aria-label="anchor" href="#data-descriptions-for-each-field-in-downloaded-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.2</span> Data descriptions for each field in downloaded data<a class="anchor" aria-label="anchor" href="#data-descriptions-for-each-field-in-downloaded-data"><i class="fas fa-link"></i></a>
 </h2>
 <p>Within the Echo360 data, we will have various fields of data in different formats. It is important to understand what each of these fields corresponds to for any exploratory analysis of the data.</p>
-<p>R will often read the data in the correct format and store the variables in the right way. Though it is best to check this has been carried out correctly. We can obtain a summary of each column of data using the <code>str</code> command:</p>
-<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
+<p>R will often read the data in the correct format and store the variables in the right way. However, that is not always the case, so it is best to check this has been carried out correctly. We can obtain a summary of each column of data using the <code>str</code> command:</p>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></code></pre></div>
 <pre><code>## tibble [1,466 × 16] (S3: tbl_df/tbl/data.frame)
-##  $ Video            : num [1:1466] 1 1 1 1 1 1 1 1 1 1 ...
+##  $ video            : num [1:1466] 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ media_id         : chr [1:1466] "631c9eb6-7828-4e41-9e9e-ae3b261ae741" "631c9eb6-7828-4e41-9e9e-ae3b261ae741" "631c9eb6-7828-4e41-9e9e-ae3b261ae741" "631c9eb6-7828-4e41-9e9e-ae3b261ae741" ...
 ##  $ media_name       : chr [1:1466] "Physiological Psychology Week 1 Part 1" "Physiological Psychology Week 1 Part 1" "Physiological Psychology Week 1 Part 1" "Physiological Psychology Week 1 Part 1" ...
 ##  $ create_date      : chr [1:1466] "01/07/2022" "01/07/2022" "01/07/2022" "01/07/2022" ...
@@ -209,25 +182,50 @@
 ##   ..   last_viewed = col_character()
 ##   .. )
 ##  - attr(*, "problems")=&lt;externalptr&gt;</code></pre>
-<p>The output of this command details the variable type of each column and how this has been stored in R. At this point, it is worthwhile checking the raw data (by visually inspecting the .csv file(s) read in) and the output of <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> to check that R has correctly converted each column to it's preferred variable type.</p>
+<p>The output of this command details the variable type of each column and how this has been stored in R. For example, <code>owner_name</code> is a character variable, whereas <code>total_views</code> is numerical.</p>
+<p>At this point, it is worthwhile checking the raw data (by visually inspecting the .csv file(s) read in) and the output of <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> to check that R has correctly converted each column to it's preferred variable type.</p>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># From James - str or glimpse work better? </span>
+<span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></code></pre></div>
+<pre><code>## Rows: 1,466
+## Columns: 16
+## $ video             &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+## $ media_id          &lt;chr&gt; "631c9eb6-7828-4e41-9e9e-ae3b261ae741", "631c9eb6-78…
+## $ media_name        &lt;chr&gt; "Physiological Psychology Week 1 Part 1", "Physiolog…
+## $ create_date       &lt;chr&gt; "01/07/2022", "01/07/2022", "01/07/2022", "01/07/202…
+## $ duration          &lt;time&gt; 00:13:11, 00:13:11, 00:13:11, 00:13:11, 00:13:11, 0…
+## $ owner_name        &lt;chr&gt; "James Bartlett", "James Bartlett", "James Bartlett"…
+## $ course            &lt;chr&gt; "Physiological Psychology (PSYCH4065/5029) 2022-23",…
+## $ user_name         &lt;chr&gt; "Ianto, Tasadduq", "Alessa, Tamarah", "Mary-Ann, Abd…
+## $ email_address     &lt;chr&gt; "210396@university.ac.uk", "205650@university.ac.uk"…
+## $ total_views       &lt;dbl&gt; 1, 1, 1, 2, 2, 4, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2…
+## $ total_view_time   &lt;time&gt; 00:10:55, 00:12:46, 00:13:09, 00:10:32, 00:19:58, 0…
+## $ average_view_time &lt;time&gt; 00:10:55, 00:12:46, 00:13:09, 00:05:16, 00:09:59, 0…
+## $ on_demand_views   &lt;dbl&gt; 1, 1, 1, 2, 2, 4, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2…
+## $ live_view_count   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+## $ downloads         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+## $ last_viewed       &lt;chr&gt; "01/16/2023", "01/18/2023", "01/24/2023", "01/15/202…</code></pre>
 </div>
-<div id="quick-summaries-of-data" class="section level2" number="5.4">
+<div id="quick-summaries-of-data" class="section level2" number="5.3">
 <h2>
-<span class="header-section-number">5.4</span> Quick summaries of data<a class="anchor" aria-label="anchor" href="#quick-summaries-of-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.3</span> Quick summaries of data<a class="anchor" aria-label="anchor" href="#quick-summaries-of-data"><i class="fas fa-link"></i></a>
 </h2>
-<p>We can obtain some quick summaries of our variables to get an early feel for our data and check for any potential outliers in our data.</p>
-<div id="numerical-data" class="section level3" number="5.4.1">
+<p>We can obtain some quick summaries of our variables to get an early feel for our data and check for any potential errors or outliers in our data.</p>
+<div id="numerical-data" class="section level3" number="5.3.1">
 <h3>
-<span class="header-section-number">5.4.1</span> Numerical data<a class="anchor" aria-label="anchor" href="#numerical-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.3.1</span> Numerical data<a class="anchor" aria-label="anchor" href="#numerical-data"><i class="fas fa-link"></i></a>
 </h3>
-<p>For numerical data, we can obtain a series of numerical summaries. We can compute the mean observations for all numerical columns by using the following code</p>
-<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">data</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/where.html">where</a></span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise_all.html">summarise_all</a></span><span class="op">(</span><span class="va">mean</span><span class="op">)</span></code></pre></div>
+<p>For numerical data, we can obtain a series of numerical summaries. We can compute the mean observations for all numerical columns by using the following code:</p>
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># The data frame you are using</span>
+  <span class="co"># select chooses or omits the columns you want included</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/where.html">where</a></span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># By using where() within select(), we can ask R to show us all the numeric variables</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise_all.html">summarise_all</a></span><span class="op">(</span><span class="va">mean</span><span class="op">)</span> <span class="co"># For all the numeric variables, calculate the mean value</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
 <thead><tr>
 <th style="text-align:right;">
-Video
+video
 </th>
 <th style="text-align:right;">
 total_views
@@ -261,10 +259,12 @@ downloads
 </tr></tbody>
 </table></div>
 </div>
-<p>The <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> command allows us to select all variables based on a criteria (such as variable name or a condition). Here, we select those variables which are numeric by using <code>where(is.numeric)</code>. We can then obtain the mean for all numeric variables by using the <code><a href="https://dplyr.tidyverse.org/reference/summarise_all.html">summarise_all()</a></code> command and then specifying our chosen summary metric (which here, is <code>mean</code>).</p>
-<p>For observations in counts, we can look at the total number of observations for each count</p>
-<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">data</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">total_views</span><span class="op">)</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n<span class="op">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>The <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> command allows us to select all variables based on specific criteria (such as variable name or a condition). Here, we select those variables which are numeric by using <code>where(is.numeric)</code>. We can then obtain the mean for all numeric variables by using the <code><a href="https://dplyr.tidyverse.org/reference/summarise_all.html">summarise_all()</a></code> command and then specifying our chosen summary metric (which here, is <code>mean</code>).</p>
+<p>For observations in counts, we can look at the total number of observations for each count:</p>
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># The data frame you are using</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">total_views</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># Group by the total_views variable</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="co"># Calculate the number of observations for each level of group_by</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
 <thead><tr>
@@ -327,7 +327,161 @@ n
 </tbody>
 </table></div>
 </div>
-<p><code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> allows us to carry out computations by groups defined by variables. We can then use <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> to obtain the total number of counts for each total number of views using <code><a href="https://dplyr.tidyverse.org/reference/context.html">n()</a></code>.</p>
+<p>The <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> function allows us to carry out computations by groups. We can then use <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> to obtain the total number of counts for each total number of views using <code><a href="https://dplyr.tidyverse.org/reference/context.html">n()</a></code>.</p>
+<p>Using <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> can be useful when you want to add the number of observations in addition to other variables, but if you simply want to count the number of observations, you can use the <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> function:</p>
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># The data frame you are using</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">total_views</span><span class="op">)</span> <span class="co"># For each variable, count the number of observations</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:right;">
+total_views
+</th>
+<th style="text-align:right;">
+n
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1145
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+253
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+44
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+17
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p>This function scales nicely if you want to look at the number of observations for combinations of variables, for example, if you wanted to know the number of total_views for each video.</p>
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># The data frame you are using</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">video</span>, <span class="va">total_views</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># For each variable, count the number of observations</span>
+  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># Limit the number of observations to the first 6</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:right;">
+video
+</th>
+<th style="text-align:right;">
+total_views
+</th>
+<th style="text-align:right;">
+n
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+130
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+47
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+137
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
 
 </div>
 </div>
@@ -540,11 +694,10 @@ $( document ).ready(function() {
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#Echo_tidy"><span class="header-section-number">5</span> Getting started with Echo360 data in R with tidyverse</a></li>
-<li><a class="nav-link" href="#how-to-access-echo360-data"><span class="header-section-number">5.1</span> How to access Echo360 Data</a></li>
-<li><a class="nav-link" href="#reading-downloaded-data-into-r-using-tidyverse"><span class="header-section-number">5.2</span> Reading downloaded data into R using tidyverse</a></li>
-<li><a class="nav-link" href="#data-descriptions-for-each-field-in-downloaded-data"><span class="header-section-number">5.3</span> Data descriptions for each field in downloaded data</a></li>
+<li><a class="nav-link" href="#reading-downloaded-data-into-r"><span class="header-section-number">5.1</span> Reading downloaded data into R</a></li>
+<li><a class="nav-link" href="#data-descriptions-for-each-field-in-downloaded-data"><span class="header-section-number">5.2</span> Data descriptions for each field in downloaded data</a></li>
 <li>
-<a class="nav-link" href="#quick-summaries-of-data"><span class="header-section-number">5.4</span> Quick summaries of data</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#numerical-data"><span class="header-section-number">5.4.1</span> Numerical data</a></li></ul>
+<a class="nav-link" href="#quick-summaries-of-data"><span class="header-section-number">5.3</span> Quick summaries of data</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#numerical-data"><span class="header-section-number">5.3.1</span> Numerical data</a></li></ul>
 </li>
 </ul>
 
@@ -563,7 +716,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>scholaRship</strong>" was written by Emily Nordmann, Craig Alexander, James Bartlett, Eilidh Jack, Gaby Mahrholz, Jill MacKay, Mitchum Bock. It was last built on 2023-08-11.</p>
+    <p>"<strong>scholaRship</strong>" was written by Emily Nordmann, Craig Alexander, James Bartlett, Eilidh Jack, Gaby Mahrholz, Jill MacKay, Mitchum Bock. It was last built on 2023-08-14.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
