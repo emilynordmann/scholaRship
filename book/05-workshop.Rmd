@@ -42,13 +42,6 @@ One of the main reasons to learn R is that you can create `r glossary("reproduci
 
 When you do things reproducibly, others (and future you) can understand and check your work. You can also reuse your work more easily. For example, if you need to create the same exam board report every semester for student grades, a reproducible report allows you to download the new data and create the report within seconds. It might take a little longer to set up the report in the first instance with reproducible methods, but the time it saves you in the long run is invaluable.
 
-::: {.try data-latex=""}
-Section\ \@ref(rstudio-settings) shows you how to change two important settings in the global Options to increase reproducibility. Your settings should have:
-
-* Restore .RData into workspace at startup: `r mcq(c("Checked", answer = "Not Checked"))`
-* Save workspace to .RData on exit: `r mcq(c("Always", answer = "Never", "Ask"))`
-:::
-
 ### Themes and accessiblilty
 
 You can customise how R Studio looks to make it work for you. Click `Tools` - `Global Options` - `Appearance`. You can change the default font, font size, and general appearance of R Studio, including using dark mode. 
@@ -311,10 +304,6 @@ ggarrange(gg_height, gg_mass, ncol = 2, common.legend = TRUE)
 If you get the error `there is no package called...`, make sure you have installed all the packages listed in Section\ \@ref(install-package).
 
 If you are having technical issues working on your own machine and cannot get the below code to run, please use [RStudio Cloud](https://rstudio.cloud/) for the workshop as there will not be time to troubleshoot installation problems.
-
-## Glossary {#glossary-intro}
-
-`r glossary_table()`
 
 ## Further Resources {#resources-intro}
 

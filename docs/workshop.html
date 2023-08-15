@@ -146,20 +146,6 @@ Figure 5.1: The RStudio IDE
 </h3>
 <p>One of the main reasons to learn R is that you can create <a class="glossary">reproducible<span class="def"></span></a> reports. This involves writing scripts that transform data, create summaries and visualisations, and embed them in a report in a way that always gives you the same results.</p>
 <p>When you do things reproducibly, others (and future you) can understand and check your work. You can also reuse your work more easily. For example, if you need to create the same exam board report every semester for student grades, a reproducible report allows you to download the new data and create the report within seconds. It might take a little longer to set up the report in the first instance with reproducible methods, but the time it saves you in the long run is invaluable.</p>
-<div class="try">
-<p>Section <a href="installing-r.html#rstudio-settings">A.4</a> shows you how to change two important settings in the global Options to increase reproducibility. Your settings should have:</p>
-<ul>
-<li>Restore .RData into workspace at startup: <select class="webex-select"><option value="blank"></option>
-<option value="">Checked</option>
-<option value="answer">Not Checked</option></select>
-</li>
-<li>Save workspace to .RData on exit: <select class="webex-select"><option value="blank"></option>
-<option value="">Always</option>
-<option value="answer">Never</option>
-<option value="">Ask</option></select>
-</li>
-</ul>
-</div>
 </div>
 <div id="themes-and-accessiblilty" class="section level3" number="5.3.3">
 <h3>
@@ -413,166 +399,9 @@ Figure 5.2: Tab auto-complete
 <p>If you get the error <code>there is no package called...</code>, make sure you have installed all the packages listed in Section <a href="workshop.html#install-package">5.6.1</a>.</p>
 <p>If you are having technical issues working on your own machine and cannot get the below code to run, please use <a href="https://rstudio.cloud/">RStudio Cloud</a> for the workshop as there will not be time to troubleshoot installation problems.</p>
 </div>
-<div id="glossary-intro" class="section level2" number="5.11">
+<div id="resources-intro" class="section level2" number="5.11">
 <h2>
-<span class="header-section-number">5.11</span> Glossary<a class="anchor" aria-label="anchor" href="#glossary-intro"><i class="fas fa-link"></i></a>
-</h2>
-<div class="inline-table"><table class="table" style="margin-left: auto; margin-right: auto;">
-<thead><tr>
-<th style="text-align:left;">
-term
-</th>
-<th style="text-align:left;">
-definition
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-argument
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-base R
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-character
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-chunk
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-conflict
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-CRAN
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-data wrangling
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-factor
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-function
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-IDE
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-knit
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-numeric
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-object
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-package
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-panes
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-R Markdown
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-reproducibility
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-script
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-string
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-vector
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<div id="resources-intro" class="section level2" number="5.12">
-<h2>
-<span class="header-section-number">5.12</span> Further Resources<a class="anchor" aria-label="anchor" href="#resources-intro"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.11</span> Further Resources<a class="anchor" aria-label="anchor" href="#resources-intro"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li><a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/rstudio-ide.pdf">RStudio IDE Cheatsheet</a></li>
@@ -822,8 +651,7 @@ $( document ).ready(function() {
 </ul>
 </li>
 <li><a class="nav-link" href="#setup-check"><span class="header-section-number">5.10</span> Workshop set-up check</a></li>
-<li><a class="nav-link" href="#glossary-intro"><span class="header-section-number">5.11</span> Glossary</a></li>
-<li><a class="nav-link" href="#resources-intro"><span class="header-section-number">5.12</span> Further Resources</a></li>
+<li><a class="nav-link" href="#resources-intro"><span class="header-section-number">5.11</span> Further Resources</a></li>
 </ul>
 
       <div class="book-extra">
