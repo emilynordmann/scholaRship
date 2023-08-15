@@ -8,7 +8,7 @@ If you don't have R and RStudio already installed, please follow the instruction
 
 ## Workshop prep
 
-If you've worked with R before and have some basic familiarity with how to code in R and how objects and functions work, you should install the packages <code class='package'>tidyverse</code>,<code class='package'>plotly</code>, and <code class='package'>ggpubr</code> then skip to the [set-up check](#setup-check) at the end of the chapter.
+If you've worked with R before and have some basic familiarity with how to code in R and how objects and functions work, you should install the packages <code class='package'>tidyverse</code>,<code class='package'>plotly</code>, <code class='package'>scales</code>, and <code class='package'>ggpubr</code> then skip to the [set-up check](#setup-check) at the end of the chapter.
 
 If you're an R novice, you will find it helpful to work through the below before the workshop.
 
@@ -113,7 +113,8 @@ You can also install multiple packages at once. Here is the command to install a
 packages <- c(
   "tidyverse",  # for everything
   "plotly",  # Creates interactive plots
-  "ggpubr"   # Builds on ggplot2 to build specific publication ready plots
+  "ggpubr",   # Builds on ggplot2 to build specific publication ready plots
+  "scales" # for plot scales
 )
 
 install.packages(packages)

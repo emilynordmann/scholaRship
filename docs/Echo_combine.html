@@ -105,7 +105,7 @@
 <h1>
 <span class="header-section-number">8</span> Combining Echo360 data with other sources of data in R with tidyverse<a class="anchor" aria-label="anchor" href="#Echo_combine"><i class="fas fa-link"></i></a>
 </h1>
-<div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb107"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://plotly-r.com">plotly</a></span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
@@ -119,7 +119,7 @@
 <pre><code>## The following object is masked from 'package:graphics':
 ## 
 ##     layout</code></pre>
-<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb112"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rpkgs.datanovia.com/ggpubr/">ggpubr</a></span><span class="op">)</span></span></code></pre></div>
 <p>The <code>dplyr</code> package in <code>tidyverse</code> has a number of functions that merge or "join" data. As the <a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">reference page</a> states:</p>
 <blockquote>
@@ -160,7 +160,7 @@ The three outer joins keep observations that appear in at least one of the data 
 <ul>
 <li>First select the variables of interest from each data object, where <code>Lectures_01</code> contains the Echo360 data from the first lecture.</li>
 </ul>
-<div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb113"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Lecture01_to_merge</span> <span class="op">&lt;-</span> <span class="va">Lecture01</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">user_name</span>,<span class="va">email_address</span>,<span class="va">total_views</span>,<span class="va">total_view_time</span>,<span class="va">average_view_time</span>,<span class="va">last_viewed</span><span class="op">)</span></span>
 <span><span class="va">MCQ_to_merge</span> <span class="op">&lt;-</span> <span class="va">MCQ</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -168,14 +168,14 @@ The three outer joins keep observations that appear in at least one of the data 
 <ul>
 <li>Second, specify the type of 'join', e.g.</li>
 </ul>
-<div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Lecture01_MCQ_left</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">Lecture01_to_merge</span>,<span class="va">MCQ_to_merge</span>,by <span class="op">=</span> <span class="st">"email_address"</span><span class="op">)</span></span>
 <span><span class="va">Lecture01_MCQ_right</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join</a></span><span class="op">(</span><span class="va">Lecture01_to_merge</span>,<span class="va">MCQ_to_merge</span>,by <span class="op">=</span> <span class="st">"email_address"</span><span class="op">)</span></span>
 <span><span class="va">Lecture01_MCQ_full</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">Lecture01_to_merge</span>,<span class="va">MCQ_to_merge</span>,by <span class="op">=</span> <span class="st">"email_address"</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>Third, check that the input and ouput data objects are as we expect. For example the <code><a href="https://rdrr.io/r/base/dim.html">dim()</a></code> and <code><a href="https://rdrr.io/r/base/names.html">names()</a></code> functions return the dimensions and variable names of each object.</li>
 </ul>
-<div class="sourceCode" id="cb123"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">Lecture01_to_merge</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">MCQ_to_merge</span><span class="op">)</span></span>
 <span></span>
@@ -233,7 +233,7 @@ The three outer joins keep observations that appear in at least one of the data 
 <ul>
 <li>First select the variables of interest from each data object, where <code>Lectures_010203</code> contains the Echo360 data from the first three lectures.</li>
 </ul>
-<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Lecture010203_to_merge</span> <span class="op">&lt;-</span> <span class="va">Lectures_010203</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">user_name</span>, <span class="va">email_address</span>,<span class="va">media_name</span>,<span class="va">total_views</span>,</span>
 <span>         <span class="va">total_view_time</span>,<span class="va">average_view_time</span>,<span class="va">last_viewed</span><span class="op">)</span></span>
@@ -245,12 +245,12 @@ The three outer joins keep observations that appear in at least one of the data 
 <ul>
 <li>Second, specify the type of 'join', in this case there is only one :</li>
 </ul>
-<div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Lecture010203_MCQ_left</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">Lecture010203_to_merge</span>,<span class="va">MCQ_to_merge</span>,by <span class="op">=</span> <span class="st">"email_address"</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>Third, check that the input and output data objects are as we expect.</li>
 </ul>
-<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb119"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">Lecture010203_to_merge</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">MCQ_to_merge</span><span class="op">)</span></span>
 <span></span>
@@ -285,7 +285,7 @@ The three outer joins keep observations that appear in at least one of the data 
 <span class="header-section-number">8.3</span> Illustration: Visualizing merged data<a class="anchor" aria-label="anchor" href="#illustration-visualizing-merged-data"><i class="fas fa-link"></i></a>
 </h2>
 <p>Merging data enables the exploration of how video engagement (recorded in the Echo360 data) is related to student performance. For example, the number of times each student views video content can be combined with their performance in an assessment (such as contained in the the MCQ data above). A visualization of this data can be obtained as follows:</p>
-<div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">student_data</span> <span class="op">&lt;-</span> <span class="va">Lectures_010203</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">email_address</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>total_views<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">total_views</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>

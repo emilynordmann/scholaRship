@@ -116,7 +116,7 @@
 <h2>
 <span class="header-section-number">5.2</span> Workshop prep<a class="anchor" aria-label="anchor" href="#workshop-prep"><i class="fas fa-link"></i></a>
 </h2>
-<p>If you've worked with R before and have some basic familiarity with how to code in R and how objects and functions work, you should install the packages <code class="package">tidyverse</code>,<code class="package">plotly</code>, and <code class="package">ggpubr</code> then skip to the <a href="workshop.html#setup-check">set-up check</a> at the end of the chapter.</p>
+<p>If you've worked with R before and have some basic familiarity with how to code in R and how objects and functions work, you should install the packages <code class="package">tidyverse</code>,<code class="package">plotly</code>, <code class="package">scales</code>, and <code class="package">ggpubr</code> then skip to the <a href="workshop.html#setup-check">set-up check</a> at the end of the chapter.</p>
 <p>If you're an R novice, you will find it helpful to work through the below before the workshop.</p>
 </div>
 <div id="intro-r-rstudio" class="section level2" number="5.3">
@@ -218,7 +218,8 @@ Figure 5.1: The RStudio IDE
 <code class="sourceCode R"><span><span class="va">packages</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
 <span>  <span class="st">"tidyverse"</span>,  <span class="co"># for everything</span></span>
 <span>  <span class="st">"plotly"</span>,  <span class="co"># Creates interactive plots</span></span>
-<span>  <span class="st">"ggpubr"</span>   <span class="co"># Builds on ggplot2 to build specific publication ready plots</span></span>
+<span>  <span class="st">"ggpubr"</span>,   <span class="co"># Builds on ggplot2 to build specific publication ready plots</span></span>
+<span>  <span class="st">"scales"</span> <span class="co"># for plot scales</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="va">packages</span><span class="op">)</span></span></code></pre></div>

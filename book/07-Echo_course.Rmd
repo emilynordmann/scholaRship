@@ -1,6 +1,6 @@
 # Exploring Echo360 video/course level data in R with `tidyverse` {#Echo_course}
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(tidyverse)
 library(plotly)
 library(ggpubr)
