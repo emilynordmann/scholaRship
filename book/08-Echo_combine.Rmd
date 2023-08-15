@@ -3,10 +3,7 @@
 ```{r}
 library(tidyverse)
 library(plotly)
-library(lubridate)
 library(ggpubr)
-library(purrr)
-library(scales)
 ```
 
 ```{r previous_data_check, message=F, echo=FALSE, eval=FALSE}

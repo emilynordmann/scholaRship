@@ -30,27 +30,7 @@ library(plotly)
 ```
 
 ```r
-library(lubridate)
-```
-
-```
-## Loading required package: timechange
-```
-
-```
-## 
-## Attaching package: 'lubridate'
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     date, intersect, setdiff, union
-```
-
-```r
 library(ggpubr)
-library(purrr)
 library(scales)
 ```
 

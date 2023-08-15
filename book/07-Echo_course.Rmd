@@ -3,9 +3,7 @@
 ```{r}
 library(tidyverse)
 library(plotly)
-library(lubridate)
 library(ggpubr)
-library(purrr)
 library(scales)
 ```
 
@@ -26,7 +24,7 @@ colnames(data)[1] <- "Video"
 
 
 ## Handling date/time data with `lubridate`
-Handling data that is of a date/time format in R is somewhat different from other variable types and should be treated differently and handled with care. The `lubridate` package in R allows us to easily handle tricky date/time data and extract useful variables from these. 
+Handling data that is of a date/time format in R is somewhat different from other variable types and should be treated differently and handled with care. The `lubridate` package in R (loaded as part of the tidyverse) allows us to easily handle tricky date/time data and extract useful variables from these. 
 
 ### Converting data to date/time format
 The first task will be to convert any date/time data we have into the correct format. In the sample data we are working with, we have five variables which contain such data which are: `Create.Date, Duration, Total.View.Time,Average.View.Time` and `Last.Viewed`. 

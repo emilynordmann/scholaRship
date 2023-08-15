@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 3 Moodle Assignment submission reports | scholaRship</title>
 <meta name="author" content="Emily Nordmann, Craig Alexander, James Bartlett, Eilidh Jack, Gaby Mahrholz, Jill MacKay, Mitchum Bock">
-<meta name="generator" content="bookdown 0.26 with bs4_book()">
+<meta name="generator" content="bookdown 0.34 with bs4_book()">
 <meta property="og:title" content="Chapter 3 Moodle Assignment submission reports | scholaRship">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://psyteachr.github.io/scholaRship/moodle-assignment-submission-reports.html">
@@ -16,9 +16,9 @@
 <meta name="twitter:image" content="https://psyteachr.github.io/scholaRship/images/logos/logo.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.1/transition.js"></script><script src="libs/bs3compat-0.4.1/tabs.js"></script><script src="libs/bs3compat-0.4.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.0/transition.js"></script><script src="libs/bs3compat-0.5.0/tabs.js"></script><script src="libs/bs3compat-0.5.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.10.2/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script><script src="libs/plotly-binding-4.10.2/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
 <script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
 <script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script>
       window.dataLayer = window.dataLayer || [];
@@ -84,14 +84,14 @@
 <li><a class="" href="creating-synthetic-datasets.html"><span class="header-section-number">2</span> Creating synthetic datasets</a></li>
 <li><a class="active" href="moodle-assignment-submission-reports.html"><span class="header-section-number">3</span> Moodle Assignment submission reports</a></li>
 <li><a class="" href="anonymous.html"><span class="header-section-number">4</span> Creating Anonymous Data From Synthetic Data</a></li>
-<li><a class="" href="Echo_tidy.html"><span class="header-section-number">5</span> Getting started with Echo360 data in R with tidyverse</a></li>
-<li><a class="" href="Echo_course.html"><span class="header-section-number">6</span> Exploring Echo360 video/course level data in R with tidyverse</a></li>
-<li><a class="" href="Echo_combine.html"><span class="header-section-number">7</span> Combining Echo360 data with other sources of data in R with tidyverse</a></li>
+<li><a class="" href="workshop.html"><span class="header-section-number">5</span> ALT Conference Prep</a></li>
+<li><a class="" href="Echo_tidy.html"><span class="header-section-number">6</span> Getting started with Echo360 data in R with tidyverse</a></li>
+<li><a class="" href="Echo_course.html"><span class="header-section-number">7</span> Exploring Echo360 video/course level data in R with tidyverse</a></li>
+<li><a class="" href="Echo_combine.html"><span class="header-section-number">8</span> Combining Echo360 data with other sources of data in R with tidyverse</a></li>
 <li class="book-part">Appendices</li>
 <li><a class="" href="installing-r.html"><span class="header-section-number">A</span> Installing R</a></li>
 <li><a class="" href="symbols.html"><span class="header-section-number">B</span> Symbols</a></li>
 <li><a class="" href="conventions.html"><span class="header-section-number">C</span> Conventions</a></li>
-<li><a class="" href="glossary-1.html"><span class="header-section-number">D</span> Glossary</a></li>
 <li><a class="" href="license.html">License</a></li>
 <li><a class="" href="references-1.html">References</a></li>
 </ul>
@@ -112,27 +112,27 @@
 <span class="header-section-number">3.1</span> Set-up<a class="anchor" aria-label="anchor" href="#set-up"><i class="fas fa-link"></i></a>
 </h2>
 <p>Install (if required) and load the following packages</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> <span class="co"># data wrangling and visualisation</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/leeper/rio">rio</a></span><span class="op">)</span> <span class="co"># import data</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span> <span class="co"># working with dates</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://plotly-r.com">plotly</a></span><span class="op">)</span> <span class="co"># interactive plots</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://personality-project.org/r/psych/">psych</a></span><span class="op">)</span> <span class="co"># for descriptive stats</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> <span class="co"># data wrangling and visualisation</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/leeper/rio">rio</a></span><span class="op">)</span> <span class="co"># import data</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span> <span class="co"># working with dates</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://plotly-r.com">plotly</a></span><span class="op">)</span> <span class="co"># interactive plots</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://personality-project.org/r/psych/">psych</a></span><span class="op">)</span> <span class="co"># for descriptive stats</span></span></code></pre></div>
 <p>The data file is a simulated assignment submission report for 300 students for an essay submission. Although the data has been simulated, the file is identical to the one that is downloaded from Moodle so you should be able to use this code with any assignment submission reports downloaded from Moodle (assuming that the variable names don't change between institutions!).</p>
 <ul>
 <li>The assignment submission report is an .xlsx file. There are lots of functions you can use in R to import specific types of files, however, the <code>import</code> function from the <code>rio</code> package is a great wrapper function that works for pretty much any type of file and avoids me having to remember which function I need for each specific file type.</li>
 <li>The first three lines of the assignment submission report file are blank and the main data table starts on line 4, so we add <code>skip = 3</code> to skip the first three lines of data from the import.</li>
 </ul>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"https://github.com/emilynordmann/scholaRship/raw/master/book/data/essay_data.xlsx"</span>, skip <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"https://github.com/emilynordmann/scholaRship/raw/master/book/data/essay_data.xlsx"</span>, skip <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="data-types" class="section level2" number="3.2">
 <h2>
 <span class="header-section-number">3.2</span> Data types<a class="anchor" aria-label="anchor" href="#data-types"><i class="fas fa-link"></i></a>
 </h2>
 <p>Before we do anything we need to do a little work to tidy up the file and ensure that R has our data encoded as the right type. First, check the data using <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code>:</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 'data.frame':    300 obs. of  14 variables:
 ##  $ #             : num  1 2 3 4 5 6 7 8 9 10 ...
 ##  $ Username      : chr  "Name 1" "Name 2" "Name 3" "Name 4" ...
@@ -155,13 +155,13 @@
 <li>Convert all date and time variables to a date/time class as R currently has it stored as character. <code>Modified</code> (the time the student last changed the file, i.e., when they submitted), <code>Extension</code>, and <code>Released</code> are currently in the format day-month-year-hour-minute so we'll use the <code>dmy_hm</code> function from the <code>lubridate</code> package.</li>
 <li>Convert any numeric data to numeric. If a variable has any character text in it, R will read that variable in as a character. Because Moodle used <code>-</code> to encode missing values, the numeric Turnitin score is represented as character variable so once we've gotten rid of the <code>-</code> we need to convert it back.</li>
 </ul>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dat_cleaned</span> <span class="op">&lt;-</span> <span class="va">dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/where.html">where</a></span><span class="op">(</span><span class="va">is.character</span><span class="op">)</span>, <span class="op">~</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/na_if.html">na_if</a></span><span class="op">(</span><span class="va">.</span>, <span class="st">"-"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># replace - with NAs</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Modified <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd_hms.html">dmy_hm</a></span><span class="op">(</span><span class="va">Modified</span><span class="op">)</span>,
-         Extension <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd_hms.html">dmy_hm</a></span><span class="op">(</span><span class="va">Extension</span><span class="op">)</span>,
-         Released <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd_hms.html">dmy_hm</a></span><span class="op">(</span><span class="va">Released</span><span class="op">)</span>,
-         Turnitin <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">Turnitin</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dat_cleaned</span> <span class="op">&lt;-</span> <span class="va">dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/where.html">where</a></span><span class="op">(</span><span class="va">is.character</span><span class="op">)</span>, <span class="op">~</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/na_if.html">na_if</a></span><span class="op">(</span><span class="va">.</span>, <span class="st">"-"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># replace - with NAs</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Modified <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd_hms.html">dmy_hm</a></span><span class="op">(</span><span class="va">Modified</span><span class="op">)</span>,</span>
+<span>         Extension <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd_hms.html">dmy_hm</a></span><span class="op">(</span><span class="va">Extension</span><span class="op">)</span>,</span>
+<span>         Released <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd_hms.html">dmy_hm</a></span><span class="op">(</span><span class="va">Released</span><span class="op">)</span>,</span>
+<span>         Turnitin <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">Turnitin</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>There's a lot you can do with the data contained in this file, below are some suggestions for insights you can generate.</p>
 </div>
 <div id="extensions-and-late-submissions" class="section level2" number="3.3">
@@ -173,102 +173,66 @@
 <li>First, create a date time variable that contains the deadline. We'll use the same format as above as therefore use the <code>dmy_hm</code> function again to convert this information to the right format so R recognises it as a date. The deadline you state should be the time at which the assignment would become a late submission - for us it's one minute after the stated deadline so in this example it would be 1 minute past 12 noon on 13th November 2020.</li>
 <li>It's also helpful to have variables that store how many students were on the course in total, and how many submitted.</li>
 </ul>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">deadline</span> <span class="op">&lt;-</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd_hms.html">dmy_hm</a></span><span class="op">(</span><span class="st">"13/11/2020 12:01"</span><span class="op">)</span>
-<span class="va">total_students</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">dat_cleaned</span><span class="op">)</span>
-<span class="va">total_submissions</span> <span class="op">&lt;-</span> <span class="va">dat_cleaned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Status</span> <span class="op">==</span> <span class="st">"submitted"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">deadline</span> <span class="op">&lt;-</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd_hms.html">dmy_hm</a></span><span class="op">(</span><span class="st">"13/11/2020 12:01"</span><span class="op">)</span></span>
+<span><span class="va">total_students</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">dat_cleaned</span><span class="op">)</span></span>
+<span><span class="va">total_submissions</span> <span class="op">&lt;-</span> <span class="va">dat_cleaned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Status</span> <span class="op">==</span> <span class="st">"submitted"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>There's a few ways we can look at the extension and late submission data. First, let's calculate the number of extensions that were applied with a simple count. The below code gives us the number of extensions for each day.</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dat_cleaned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">Extension</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dat_cleaned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">Extension</span><span class="op">)</span></span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
-<thead><tr>
-<th style="text-align:left;">
-Extension
-</th>
-<th style="text-align:right;">
-n
-</th>
+<thead><tr class="header">
+<th align="left">Extension</th>
+<th align="right">n</th>
 </tr></thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-2020-11-15 12:00:00
-</td>
-<td style="text-align:right;">
-2
-</td>
+<tr class="odd">
+<td align="left">2020-11-15 12:00:00</td>
+<td align="right">2</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-2020-11-16 12:00:00
-</td>
-<td style="text-align:right;">
-6
-</td>
+<tr class="even">
+<td align="left">2020-11-16 12:00:00</td>
+<td align="right">6</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-2020-11-17 12:00:00
-</td>
-<td style="text-align:right;">
-8
-</td>
+<tr class="odd">
+<td align="left">2020-11-17 12:00:00</td>
+<td align="right">8</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-2020-11-18 12:00:00
-</td>
-<td style="text-align:right;">
-14
-</td>
+<tr class="even">
+<td align="left">2020-11-18 12:00:00</td>
+<td align="right">14</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-2020-11-20 12:00:00
-</td>
-<td style="text-align:right;">
-9
-</td>
+<tr class="odd">
+<td align="left">2020-11-20 12:00:00</td>
+<td align="right">9</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:right;">
-261
-</td>
+<tr class="even">
+<td align="left">NA</td>
+<td align="right">261</td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <p>To get the total number of extensions, we adapt the same code but remove the NAs from the calculation and then sum up the total and calculate what percent of submissions had an extension applied:</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dat_cleaned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">Extension</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">Extension</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># remove rows that don't have an extension date</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>total <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>,
-            percent <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="op">(</span><span class="va">total</span><span class="op">/</span><span class="va">total_submissions</span><span class="op">)</span><span class="op">*</span><span class="fl">100</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dat_cleaned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">Extension</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">Extension</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># remove rows that don't have an extension date</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>total <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>,</span>
+<span>            percent <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="op">(</span><span class="va">total</span><span class="op">/</span><span class="va">total_submissions</span><span class="op">)</span><span class="op">*</span><span class="fl">100</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
-<thead><tr>
-<th style="text-align:right;">
-total
-</th>
-<th style="text-align:right;">
-percent
-</th>
+<thead><tr class="header">
+<th align="right">total</th>
+<th align="right">percent</th>
 </tr></thead>
-<tbody><tr>
-<td style="text-align:right;">
-39
-</td>
-<td style="text-align:right;">
-13.64
-</td>
+<tbody><tr class="odd">
+<td align="right">39</td>
+<td align="right">13.64</td>
 </tr></tbody>
 </table></div>
 </div>
@@ -282,109 +246,82 @@ percent
 <li>If the essay is not submitted it is labelled as non-submission.</li>
 </ol>
 <p>If this makes your head explode, please know that this code took me half an hour and multiple errors to write before I got the logic correct.</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dat_cleaned</span> <span class="op">&lt;-</span> <span class="va">dat_cleaned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>submission_category<span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="op">(</span><span class="va">Status</span> <span class="op">==</span> <span class="st">"submitted"</span> <span class="op">&amp;</span> <span class="va">Modified</span> <span class="op">&lt;=</span> <span class="va">deadline</span><span class="op">)</span><span class="op">~</span> <span class="st">"On-time"</span>,
-                            <span class="op">(</span><span class="va">Modified</span> <span class="op">&gt;</span> <span class="va">deadline</span> <span class="op">&amp;</span> <span class="va">deadline</span> <span class="op">&lt;=</span> <span class="va">Extension</span><span class="op">)</span> <span class="op">~</span> <span class="st">"On-time w extension"</span>,
-                            <span class="op">(</span><span class="va">Modified</span> <span class="op">&gt;</span> <span class="va">deadline</span> <span class="op">&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">Extension</span><span class="op">)</span><span class="op">)</span> <span class="op">~</span> <span class="st">"Late"</span>,
-                            <span class="op">(</span><span class="va">Modified</span> <span class="op">&gt;</span> <span class="va">Extension</span><span class="op">)</span> <span class="op">~</span> <span class="st">"Late with extension"</span>,
-                            <span class="cn">TRUE</span> <span class="op">~</span> <span class="st">"Non-submission"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dat_cleaned</span> <span class="op">&lt;-</span> <span class="va">dat_cleaned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>submission_category<span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="op">(</span><span class="va">Status</span> <span class="op">==</span> <span class="st">"submitted"</span> <span class="op">&amp;</span> <span class="va">Modified</span> <span class="op">&lt;=</span> <span class="va">deadline</span><span class="op">)</span><span class="op">~</span> <span class="st">"On-time"</span>,</span>
+<span>                            <span class="op">(</span><span class="va">Modified</span> <span class="op">&gt;</span> <span class="va">deadline</span> <span class="op">&amp;</span> <span class="va">deadline</span> <span class="op">&lt;=</span> <span class="va">Extension</span><span class="op">)</span> <span class="op">~</span> <span class="st">"On-time w extension"</span>,</span>
+<span>                            <span class="op">(</span><span class="va">Modified</span> <span class="op">&gt;</span> <span class="va">deadline</span> <span class="op">&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">Extension</span><span class="op">)</span><span class="op">)</span> <span class="op">~</span> <span class="st">"Late"</span>,</span>
+<span>                            <span class="op">(</span><span class="va">Modified</span> <span class="op">&gt;</span> <span class="va">Extension</span><span class="op">)</span> <span class="op">~</span> <span class="st">"Late with extension"</span>,</span>
+<span>                            <span class="cn">TRUE</span> <span class="op">~</span> <span class="st">"Non-submission"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>We can then use these new categories to calculate descriptives:</p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dat_cleaned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">submission_category</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>percent <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="op">(</span><span class="va">n</span><span class="op">/</span><span class="va">total_submissions</span><span class="op">)</span><span class="op">*</span><span class="fl">100</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dat_cleaned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">submission_category</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>percent <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="op">(</span><span class="va">n</span><span class="op">/</span><span class="va">total_submissions</span><span class="op">)</span><span class="op">*</span><span class="fl">100</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
-<thead><tr>
-<th style="text-align:left;">
-submission_category
-</th>
-<th style="text-align:right;">
-n
-</th>
-<th style="text-align:right;">
-percent
-</th>
+<thead><tr class="header">
+<th align="left">submission_category</th>
+<th align="right">n</th>
+<th align="right">percent</th>
 </tr></thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-Late
-</td>
-<td style="text-align:right;">
-12
-</td>
-<td style="text-align:right;">
-4.20
-</td>
+<tr class="odd">
+<td align="left">Late</td>
+<td align="right">12</td>
+<td align="right">4.20</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Non-submission
-</td>
-<td style="text-align:right;">
-14
-</td>
-<td style="text-align:right;">
-4.90
-</td>
+<tr class="even">
+<td align="left">Non-submission</td>
+<td align="right">14</td>
+<td align="right">4.90</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-On-time
-</td>
-<td style="text-align:right;">
-238
-</td>
-<td style="text-align:right;">
-83.22
-</td>
+<tr class="odd">
+<td align="left">On-time</td>
+<td align="right">238</td>
+<td align="right">83.22</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-On-time w extension
-</td>
-<td style="text-align:right;">
-36
-</td>
-<td style="text-align:right;">
-12.59
-</td>
+<tr class="even">
+<td align="left">On-time w extension</td>
+<td align="right">36</td>
+<td align="right">12.59</td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <p>We'll remove the non-submissions from the distribution plot as otherwise they are plotted as having been submitted when the assignment first opened:</p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">p1</span> <span class="op">&lt;-</span> <span class="va">dat_cleaned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">submission_category</span> <span class="op">!=</span> <span class="st">"Non-submission"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Modified</span>, fill <span class="op">=</span> <span class="va">submission_category</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="co"># add theme</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span> <span class="op">+</span> <span class="co"># move legend to bottom</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="cn">NULL</span>, x <span class="op">=</span> <span class="cn">NULL</span>, title <span class="op">=</span> <span class="st">"Assignment submission report"</span><span class="op">)</span> <span class="op">+</span> <span class="co">#labels</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d</a></span><span class="op">(</span>option <span class="op">=</span> <span class="st">"E"</span><span class="op">)</span> <span class="op">+</span> <span class="co"># colour blind friendly palette</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>angle<span class="op">=</span><span class="fl">90</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="co"># rotate axis labels</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_date.html">scale_x_datetime</a></span><span class="op">(</span>date_breaks <span class="op">=</span> <span class="st">"1 day"</span>, date_labels <span class="op">=</span> <span class="st">"%b %d"</span><span class="op">)</span> <span class="op">+</span> <span class="co"># set breaks</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">deadline</span>, colour <span class="op">=</span> <span class="st">"red"</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span>, size <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span> <span class="co"># add dashed line</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="va">dat_cleaned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">submission_category</span> <span class="op">!=</span> <span class="st">"Non-submission"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Modified</span>, fill <span class="op">=</span> <span class="va">submission_category</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="co"># add theme</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span> <span class="op">+</span> <span class="co"># move legend to bottom</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="cn">NULL</span>, x <span class="op">=</span> <span class="cn">NULL</span>, title <span class="op">=</span> <span class="st">"Assignment submission report"</span><span class="op">)</span> <span class="op">+</span> <span class="co">#labels</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d</a></span><span class="op">(</span>option <span class="op">=</span> <span class="st">"E"</span><span class="op">)</span> <span class="op">+</span> <span class="co"># colour blind friendly palette</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>angle<span class="op">=</span><span class="fl">90</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="co"># rotate axis labels</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_date.html">scale_x_datetime</a></span><span class="op">(</span>date_breaks <span class="op">=</span> <span class="st">"1 day"</span>, date_labels <span class="op">=</span> <span class="st">"%b %d"</span><span class="op">)</span> <span class="op">+</span> <span class="co"># set breaks</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">deadline</span>, colour <span class="op">=</span> <span class="st">"red"</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span>, size <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span> <span class="co"># add dashed line</span></span></code></pre></div>
 <pre><code>## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-## ℹ Please use `linewidth` instead.</code></pre>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">p1</span></code></pre></div>
+## ℹ Please use `linewidth` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p1</span></span></code></pre></div>
 <div class="inline-figure"><img src="03-submission_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;"></div>
 <p>You can also produce a interactive version of the plot using <code><a href="https://rdrr.io/pkg/plotly/man/ggplotly.html">ggplotly()</a></code> - you can hover over the bars to see the counts and remove certain groups from the data:</p>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/plotly/man/ggplotly.html">ggplotly</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span></span></code></pre></div>
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-e3f5c8d9675e6c3999e4" style="width:100%;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-e3f5c8d9675e6c3999e4">{"x":{"data":[{"orientation":"v","width":[47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966],"base":[3,2,6,8,16,26,94,83,0,0,0,3,3,6,2,5,6,2,1,2,4,1,0,0,0,0,0,0,0,1],"x":[1604939511.724138,1604986957.2413793,1605034402.7586207,1605081848.2758622,1605129293.7931035,1605176739.3103449,1605224184.8275862,1605271630.3448277,1605319075.8620691,1605366521.3793104,1605413966.8965516,1605461412.4137931,1605508857.9310346,1605556303.448276,1605603748.9655173,1605651194.4827585,1605698640,1605746085.5172415,1605793531.034483,1605840976.5517242,1605888422.0689654,1605935867.5862069,1605983313.1034484,1606030758.6206896,1606078204.1379311,1606125649.6551723,1606173095.1724138,1606220540.6896553,1606267986.2068965,1606315431.724138],"y":[0,0,0,0,0,0,0,9,0,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"text":["count:  0<br />Modified: 1604939512<br />submission_category: Late","count:  0<br />Modified: 1604986957<br />submission_category: Late","count:  0<br />Modified: 1605034403<br />submission_category: Late","count:  0<br />Modified: 1605081848<br />submission_category: Late","count:  0<br />Modified: 1605129294<br />submission_category: Late","count:  0<br />Modified: 1605176739<br />submission_category: Late","count:  0<br />Modified: 1605224185<br />submission_category: Late","count:  9<br />Modified: 1605271630<br />submission_category: Late","count:  0<br />Modified: 1605319076<br />submission_category: Late","count:  1<br />Modified: 1605366521<br />submission_category: Late","count:  1<br />Modified: 1605413967<br />submission_category: Late","count:  0<br />Modified: 1605461412<br />submission_category: Late","count:  0<br />Modified: 1605508858<br />submission_category: Late","count:  0<br />Modified: 1605556303<br />submission_category: Late","count:  1<br />Modified: 1605603749<br />submission_category: Late","count:  0<br />Modified: 1605651194<br />submission_category: Late","count:  0<br />Modified: 1605698640<br />submission_category: Late","count:  0<br />Modified: 1605746086<br />submission_category: Late","count:  0<br />Modified: 1605793531<br />submission_category: Late","count:  0<br />Modified: 1605840977<br />submission_category: Late","count:  0<br />Modified: 1605888422<br />submission_category: Late","count:  0<br />Modified: 1605935868<br />submission_category: Late","count:  0<br />Modified: 1605983313<br />submission_category: Late","count:  0<br />Modified: 1606030759<br />submission_category: Late","count:  0<br />Modified: 1606078204<br />submission_category: Late","count:  0<br />Modified: 1606125650<br />submission_category: Late","count:  0<br />Modified: 1606173095<br />submission_category: Late","count:  0<br />Modified: 1606220541<br />submission_category: Late","count:  0<br />Modified: 1606267986<br />submission_category: Late","count:  0<br />Modified: 1606315432<br />submission_category: Late"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,32,77,1)","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)"}},"name":"Late","legendgroup":"Late","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966],"base":[0,0,0,0,0,0,0,0,0,0,0,3,3,6,2,5,6,2,1,2,4,1,0,0,0,0,0,0,0,1],"x":[1604939511.724138,1604986957.2413793,1605034402.7586207,1605081848.2758622,1605129293.7931035,1605176739.3103449,1605224184.8275862,1605271630.3448277,1605319075.8620691,1605366521.3793104,1605413966.8965516,1605461412.4137931,1605508857.9310346,1605556303.448276,1605603748.9655173,1605651194.4827585,1605698640,1605746085.5172415,1605793531.034483,1605840976.5517242,1605888422.0689654,1605935867.5862069,1605983313.1034484,1606030758.6206896,1606078204.1379311,1606125649.6551723,1606173095.1724138,1606220540.6896553,1606267986.2068965,1606315431.724138],"y":[3,2,6,8,16,26,94,83,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"text":["count:  3<br />Modified: 1604939512<br />submission_category: On-time","count:  2<br />Modified: 1604986957<br />submission_category: On-time","count:  6<br />Modified: 1605034403<br />submission_category: On-time","count:  8<br />Modified: 1605081848<br />submission_category: On-time","count: 16<br />Modified: 1605129294<br />submission_category: On-time","count: 26<br />Modified: 1605176739<br />submission_category: On-time","count: 94<br />Modified: 1605224185<br />submission_category: On-time","count: 83<br />Modified: 1605271630<br />submission_category: On-time","count:  0<br />Modified: 1605319076<br />submission_category: On-time","count:  0<br />Modified: 1605366521<br />submission_category: On-time","count:  0<br />Modified: 1605413967<br />submission_category: On-time","count:  0<br />Modified: 1605461412<br />submission_category: On-time","count:  0<br />Modified: 1605508858<br />submission_category: On-time","count:  0<br />Modified: 1605556303<br />submission_category: On-time","count:  0<br />Modified: 1605603749<br />submission_category: On-time","count:  0<br />Modified: 1605651194<br />submission_category: On-time","count:  0<br />Modified: 1605698640<br />submission_category: On-time","count:  0<br />Modified: 1605746086<br />submission_category: On-time","count:  0<br />Modified: 1605793531<br />submission_category: On-time","count:  0<br />Modified: 1605840977<br />submission_category: On-time","count:  0<br />Modified: 1605888422<br />submission_category: On-time","count:  0<br />Modified: 1605935868<br />submission_category: On-time","count:  0<br />Modified: 1605983313<br />submission_category: On-time","count:  0<br />Modified: 1606030759<br />submission_category: On-time","count:  0<br />Modified: 1606078204<br />submission_category: On-time","count:  0<br />Modified: 1606125650<br />submission_category: On-time","count:  0<br />Modified: 1606173095<br />submission_category: On-time","count:  0<br />Modified: 1606220541<br />submission_category: On-time","count:  0<br />Modified: 1606267986<br />submission_category: On-time","count:  0<br />Modified: 1606315432<br />submission_category: On-time"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(124,123,120,1)","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)"}},"name":"On-time","legendgroup":"On-time","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966,47445.517241477966],"base":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"x":[1604939511.724138,1604986957.2413793,1605034402.7586207,1605081848.2758622,1605129293.7931035,1605176739.3103449,1605224184.8275862,1605271630.3448277,1605319075.8620691,1605366521.3793104,1605413966.8965516,1605461412.4137931,1605508857.9310346,1605556303.448276,1605603748.9655173,1605651194.4827585,1605698640,1605746085.5172415,1605793531.034483,1605840976.5517242,1605888422.0689654,1605935867.5862069,1605983313.1034484,1606030758.6206896,1606078204.1379311,1606125649.6551723,1606173095.1724138,1606220540.6896553,1606267986.2068965,1606315431.724138],"y":[0,0,0,0,0,0,0,0,0,0,0,3,3,6,2,5,6,2,1,2,4,1,0,0,0,0,0,0,0,1],"text":["count:  0<br />Modified: 1604939512<br />submission_category: On-time w extension","count:  0<br />Modified: 1604986957<br />submission_category: On-time w extension","count:  0<br />Modified: 1605034403<br />submission_category: On-time w extension","count:  0<br />Modified: 1605081848<br />submission_category: On-time w extension","count:  0<br />Modified: 1605129294<br />submission_category: On-time w extension","count:  0<br />Modified: 1605176739<br />submission_category: On-time w extension","count:  0<br />Modified: 1605224185<br />submission_category: On-time w extension","count:  0<br />Modified: 1605271630<br />submission_category: On-time w extension","count:  0<br />Modified: 1605319076<br />submission_category: On-time w extension","count:  0<br />Modified: 1605366521<br />submission_category: On-time w extension","count:  0<br />Modified: 1605413967<br />submission_category: On-time w extension","count:  3<br />Modified: 1605461412<br />submission_category: On-time w extension","count:  3<br />Modified: 1605508858<br />submission_category: On-time w extension","count:  6<br />Modified: 1605556303<br />submission_category: On-time w extension","count:  2<br />Modified: 1605603749<br />submission_category: On-time w extension","count:  5<br />Modified: 1605651194<br />submission_category: On-time w extension","count:  6<br />Modified: 1605698640<br />submission_category: On-time w extension","count:  2<br />Modified: 1605746086<br />submission_category: On-time w extension","count:  1<br />Modified: 1605793531<br />submission_category: On-time w extension","count:  2<br />Modified: 1605840977<br />submission_category: On-time w extension","count:  4<br />Modified: 1605888422<br />submission_category: On-time w extension","count:  1<br />Modified: 1605935868<br />submission_category: On-time w extension","count:  0<br />Modified: 1605983313<br />submission_category: On-time w extension","count:  0<br />Modified: 1606030759<br />submission_category: On-time w extension","count:  0<br />Modified: 1606078204<br />submission_category: On-time w extension","count:  0<br />Modified: 1606125650<br />submission_category: On-time w extension","count:  0<br />Modified: 1606173095<br />submission_category: On-time w extension","count:  0<br />Modified: 1606220541<br />submission_category: On-time w extension","count:  0<br />Modified: 1606267986<br />submission_category: On-time w extension","count:  1<br />Modified: 1606315432<br />submission_category: On-time w extension"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(255,234,70,1)","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)"}},"name":"On-time w extension","legendgroup":"On-time w extension","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":["2020-11-13 12:01:00.000000","2020-11-13 12:01:00.000000"],"y":[-4.7000000000000002,98.700000000000003],"text":"xintercept: 2020-11-13 12:01:00","type":"scatter","mode":"lines","line":{"width":5.6692913385826778,"color":"rgba(255,0,0,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.762557077625573,"r":7.3059360730593621,"b":48.94977168949773,"l":37.260273972602747},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"Assignment submission report","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[1604844620.6896553,1606410322.7586207],"tickmode":"array","ticktext":["Nov 09","Nov 10","Nov 11","Nov 12","Nov 13","Nov 14","Nov 15","Nov 16","Nov 17","Nov 18","Nov 19","Nov 20","Nov 21","Nov 22","Nov 23","Nov 24","Nov 25","Nov 26"],"tickvals":[1604880000,1604966400,1605052800,1605139200,1605225600,1605312000,1605398400,1605484800,1605571200,1605657600,1605744000,1605830400,1605916800,1606003200,1606089600,1606176000,1606262400,1606348800],"categoryorder":"array","categoryarray":["Nov 09","Nov 10","Nov 11","Nov 12","Nov 13","Nov 14","Nov 15","Nov 16","Nov 17","Nov 18","Nov 19","Nov 20","Nov 21","Nov 22","Nov 23","Nov 24","Nov 25","Nov 26"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-90,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-4.7000000000000002,98.700000000000003],"tickmode":"array","ticktext":["0","25","50","75"],"tickvals":[0,25,50,75],"categoryorder":"array","categoryarray":["0","25","50","75"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"count","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"11ac5786718f":{"x":{},"fill":{},"type":"bar"},"11ac18871457":{"xintercept":{}}},"cur_data":"11ac5786718f","visdat":{"11ac5786718f":["function (y) ","x"],"11ac18871457":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script><p>If you don't have the extensions applied through Moodle or if you just wanted to look at the difference between on-time submissions and collapse lates and extensions into one group then you could do the following:</p>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/plotly/man/ggplotly.html">ggplotly</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-18ed3a4914dac68721f1" style="width:100%;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-18ed3a4914dac68721f1">{"x":{"data":[{"orientation":"v","width":[47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478],"base":[3,2,6,8,16,26,94,83,0,0,0,3,3,6,2,5,6,2,1,2,4,1,0,0,0,0,0,0,0,1],"x":[1604939511.72414,1604986957.24138,1605034402.75862,1605081848.27586,1605129293.7931,1605176739.31034,1605224184.82759,1605271630.34483,1605319075.86207,1605366521.37931,1605413966.89655,1605461412.41379,1605508857.93103,1605556303.44828,1605603748.96552,1605651194.48276,1605698640,1605746085.51724,1605793531.03448,1605840976.55172,1605888422.06897,1605935867.58621,1605983313.10345,1606030758.62069,1606078204.13793,1606125649.65517,1606173095.17241,1606220540.68966,1606267986.2069,1606315431.72414],"y":[0,0,0,0,0,0,0,9,0,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"text":["count:  0<br />Modified: 1604939512<br />submission_category: Late","count:  0<br />Modified: 1604986957<br />submission_category: Late","count:  0<br />Modified: 1605034403<br />submission_category: Late","count:  0<br />Modified: 1605081848<br />submission_category: Late","count:  0<br />Modified: 1605129294<br />submission_category: Late","count:  0<br />Modified: 1605176739<br />submission_category: Late","count:  0<br />Modified: 1605224185<br />submission_category: Late","count:  9<br />Modified: 1605271630<br />submission_category: Late","count:  0<br />Modified: 1605319076<br />submission_category: Late","count:  1<br />Modified: 1605366521<br />submission_category: Late","count:  1<br />Modified: 1605413967<br />submission_category: Late","count:  0<br />Modified: 1605461412<br />submission_category: Late","count:  0<br />Modified: 1605508858<br />submission_category: Late","count:  0<br />Modified: 1605556303<br />submission_category: Late","count:  1<br />Modified: 1605603749<br />submission_category: Late","count:  0<br />Modified: 1605651194<br />submission_category: Late","count:  0<br />Modified: 1605698640<br />submission_category: Late","count:  0<br />Modified: 1605746086<br />submission_category: Late","count:  0<br />Modified: 1605793531<br />submission_category: Late","count:  0<br />Modified: 1605840977<br />submission_category: Late","count:  0<br />Modified: 1605888422<br />submission_category: Late","count:  0<br />Modified: 1605935868<br />submission_category: Late","count:  0<br />Modified: 1605983313<br />submission_category: Late","count:  0<br />Modified: 1606030759<br />submission_category: Late","count:  0<br />Modified: 1606078204<br />submission_category: Late","count:  0<br />Modified: 1606125650<br />submission_category: Late","count:  0<br />Modified: 1606173095<br />submission_category: Late","count:  0<br />Modified: 1606220541<br />submission_category: Late","count:  0<br />Modified: 1606267986<br />submission_category: Late","count:  0<br />Modified: 1606315432<br />submission_category: Late"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,32,77,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"Late","legendgroup":"Late","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478],"base":[0,0,0,0,0,0,0,0,0,0,0,3,3,6,2,5,6,2,1,2,4,1,0,0,0,0,0,0,0,1],"x":[1604939511.72414,1604986957.24138,1605034402.75862,1605081848.27586,1605129293.7931,1605176739.31034,1605224184.82759,1605271630.34483,1605319075.86207,1605366521.37931,1605413966.89655,1605461412.41379,1605508857.93103,1605556303.44828,1605603748.96552,1605651194.48276,1605698640,1605746085.51724,1605793531.03448,1605840976.55172,1605888422.06897,1605935867.58621,1605983313.10345,1606030758.62069,1606078204.13793,1606125649.65517,1606173095.17241,1606220540.68966,1606267986.2069,1606315431.72414],"y":[3,2,6,8,16,26,94,83,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"text":["count:  3<br />Modified: 1604939512<br />submission_category: On-time","count:  2<br />Modified: 1604986957<br />submission_category: On-time","count:  6<br />Modified: 1605034403<br />submission_category: On-time","count:  8<br />Modified: 1605081848<br />submission_category: On-time","count: 16<br />Modified: 1605129294<br />submission_category: On-time","count: 26<br />Modified: 1605176739<br />submission_category: On-time","count: 94<br />Modified: 1605224185<br />submission_category: On-time","count: 83<br />Modified: 1605271630<br />submission_category: On-time","count:  0<br />Modified: 1605319076<br />submission_category: On-time","count:  0<br />Modified: 1605366521<br />submission_category: On-time","count:  0<br />Modified: 1605413967<br />submission_category: On-time","count:  0<br />Modified: 1605461412<br />submission_category: On-time","count:  0<br />Modified: 1605508858<br />submission_category: On-time","count:  0<br />Modified: 1605556303<br />submission_category: On-time","count:  0<br />Modified: 1605603749<br />submission_category: On-time","count:  0<br />Modified: 1605651194<br />submission_category: On-time","count:  0<br />Modified: 1605698640<br />submission_category: On-time","count:  0<br />Modified: 1605746086<br />submission_category: On-time","count:  0<br />Modified: 1605793531<br />submission_category: On-time","count:  0<br />Modified: 1605840977<br />submission_category: On-time","count:  0<br />Modified: 1605888422<br />submission_category: On-time","count:  0<br />Modified: 1605935868<br />submission_category: On-time","count:  0<br />Modified: 1605983313<br />submission_category: On-time","count:  0<br />Modified: 1606030759<br />submission_category: On-time","count:  0<br />Modified: 1606078204<br />submission_category: On-time","count:  0<br />Modified: 1606125650<br />submission_category: On-time","count:  0<br />Modified: 1606173095<br />submission_category: On-time","count:  0<br />Modified: 1606220541<br />submission_category: On-time","count:  0<br />Modified: 1606267986<br />submission_category: On-time","count:  0<br />Modified: 1606315432<br />submission_category: On-time"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(124,123,120,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"On-time","legendgroup":"On-time","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478,47445.517241478],"base":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"x":[1604939511.72414,1604986957.24138,1605034402.75862,1605081848.27586,1605129293.7931,1605176739.31034,1605224184.82759,1605271630.34483,1605319075.86207,1605366521.37931,1605413966.89655,1605461412.41379,1605508857.93103,1605556303.44828,1605603748.96552,1605651194.48276,1605698640,1605746085.51724,1605793531.03448,1605840976.55172,1605888422.06897,1605935867.58621,1605983313.10345,1606030758.62069,1606078204.13793,1606125649.65517,1606173095.17241,1606220540.68966,1606267986.2069,1606315431.72414],"y":[0,0,0,0,0,0,0,0,0,0,0,3,3,6,2,5,6,2,1,2,4,1,0,0,0,0,0,0,0,1],"text":["count:  0<br />Modified: 1604939512<br />submission_category: On-time w extension","count:  0<br />Modified: 1604986957<br />submission_category: On-time w extension","count:  0<br />Modified: 1605034403<br />submission_category: On-time w extension","count:  0<br />Modified: 1605081848<br />submission_category: On-time w extension","count:  0<br />Modified: 1605129294<br />submission_category: On-time w extension","count:  0<br />Modified: 1605176739<br />submission_category: On-time w extension","count:  0<br />Modified: 1605224185<br />submission_category: On-time w extension","count:  0<br />Modified: 1605271630<br />submission_category: On-time w extension","count:  0<br />Modified: 1605319076<br />submission_category: On-time w extension","count:  0<br />Modified: 1605366521<br />submission_category: On-time w extension","count:  0<br />Modified: 1605413967<br />submission_category: On-time w extension","count:  3<br />Modified: 1605461412<br />submission_category: On-time w extension","count:  3<br />Modified: 1605508858<br />submission_category: On-time w extension","count:  6<br />Modified: 1605556303<br />submission_category: On-time w extension","count:  2<br />Modified: 1605603749<br />submission_category: On-time w extension","count:  5<br />Modified: 1605651194<br />submission_category: On-time w extension","count:  6<br />Modified: 1605698640<br />submission_category: On-time w extension","count:  2<br />Modified: 1605746086<br />submission_category: On-time w extension","count:  1<br />Modified: 1605793531<br />submission_category: On-time w extension","count:  2<br />Modified: 1605840977<br />submission_category: On-time w extension","count:  4<br />Modified: 1605888422<br />submission_category: On-time w extension","count:  1<br />Modified: 1605935868<br />submission_category: On-time w extension","count:  0<br />Modified: 1605983313<br />submission_category: On-time w extension","count:  0<br />Modified: 1606030759<br />submission_category: On-time w extension","count:  0<br />Modified: 1606078204<br />submission_category: On-time w extension","count:  0<br />Modified: 1606125650<br />submission_category: On-time w extension","count:  0<br />Modified: 1606173095<br />submission_category: On-time w extension","count:  0<br />Modified: 1606220541<br />submission_category: On-time w extension","count:  0<br />Modified: 1606267986<br />submission_category: On-time w extension","count:  1<br />Modified: 1606315432<br />submission_category: On-time w extension"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(255,234,70,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"On-time w extension","legendgroup":"On-time w extension","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":["2020-11-13 12:01:00.000000","2020-11-13 12:01:00.000000"],"y":[-4.7,98.7],"text":"xintercept: 2020-11-13 12:01:00","type":"scatter","mode":"lines","line":{"width":5.66929133858268,"color":"rgba(255,0,0,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.7625570776256,"r":7.30593607305936,"b":48.9497716894977,"l":37.2602739726027},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":{"text":"Assignment submission report","font":{"color":"rgba(0,0,0,1)","family":"","size":17.5342465753425},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[1604844620.68966,1606410322.75862],"tickmode":"array","ticktext":["Nov 09","Nov 10","Nov 11","Nov 12","Nov 13","Nov 14","Nov 15","Nov 16","Nov 17","Nov 18","Nov 19","Nov 20","Nov 21","Nov 22","Nov 23","Nov 24","Nov 25","Nov 26"],"tickvals":[1604880000,1604966400,1605052800,1605139200,1605225600,1605312000,1605398400,1605484800,1605571200,1605657600,1605744000,1605830400,1605916800,1606003200,1606089600,1606176000,1606262400,1606348800],"categoryorder":"array","categoryarray":["Nov 09","Nov 10","Nov 11","Nov 12","Nov 13","Nov 14","Nov 15","Nov 16","Nov 17","Nov 18","Nov 19","Nov 20","Nov 21","Nov 22","Nov 23","Nov 24","Nov 25","Nov 26"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-90,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-4.7,98.7],"tickmode":"array","ticktext":["0","25","50","75"],"tickvals":[0,25,50,75],"categoryorder":"array","categoryarray":["0","25","50","75"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"count","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"256e2215f11d":{"x":{},"fill":{},"type":"bar"},"256e4e88b866":{"xintercept":{}}},"cur_data":"256e2215f11d","visdat":{"256e2215f11d":["function (y) ","x"],"256e4e88b866":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script><p>If you don't have the extensions applied through Moodle or if you just wanted to look at the difference between on-time submissions and collapse lates and extensions into one group then you could do the following:</p>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dat_cleaned</span> <span class="op">&lt;-</span> <span class="va">dat_cleaned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>submission_category_blunt<span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="op">(</span><span class="va">Status</span> <span class="op">==</span> <span class="st">"submitted"</span> <span class="op">&amp;</span> 
-                                                 <span class="va">Modified</span> <span class="op">&lt;=</span> <span class="va">deadline</span><span class="op">)</span><span class="op">~</span> <span class="st">"On-time"</span>,
-                            <span class="op">(</span><span class="va">Modified</span> <span class="op">&gt;</span> <span class="va">deadline</span><span class="op">)</span> <span class="op">~</span> <span class="st">"Late or extension"</span>,
-                            
-                            <span class="cn">TRUE</span> <span class="op">~</span> <span class="st">"Non-submission"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">dat_cleaned</span> <span class="op">&lt;-</span> <span class="va">dat_cleaned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>submission_category_blunt<span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="op">(</span><span class="va">Status</span> <span class="op">==</span> <span class="st">"submitted"</span> <span class="op">&amp;</span> </span>
+<span>                                                 <span class="va">Modified</span> <span class="op">&lt;=</span> <span class="va">deadline</span><span class="op">)</span><span class="op">~</span> <span class="st">"On-time"</span>,</span>
+<span>                            <span class="op">(</span><span class="va">Modified</span> <span class="op">&gt;</span> <span class="va">deadline</span><span class="op">)</span> <span class="op">~</span> <span class="st">"Late or extension"</span>,</span>
+<span>                            </span>
+<span>                            <span class="cn">TRUE</span> <span class="op">~</span> <span class="st">"Non-submission"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="grades" class="section level2" number="3.4">
 <h2>
@@ -392,370 +329,253 @@ On-time w extension
 </h2>
 <p>We use a 22-point scale where each alphanumeric grade has a corresponding grade point total on a 22-point scale (e.g., a B2 = 16).The grades in Moodle are stored as in their alphanumeric form so we need to convert this to numbers.</p>
 <p>I do this so often that the easiest way is to have a spreadsheet that contains the grades with the associated gradepoints, import this, and then use <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join()</a></code> to combine the two files. This will join the two files by their common columns, so we now have a variable <code>Points</code> in our dataset that has the corresponding number for the alphanumeric grade.</p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">grade_points</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/emilynordmann/scholaRship/master/book/data/grade_points.csv"</span><span class="op">)</span>
-<span class="va">dat_cleaned</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">dat_cleaned</span>, <span class="va">grade_points</span>, by <span class="op">=</span> <span class="st">"Grade"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">grade_points</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/emilynordmann/scholaRship/master/book/data/grade_points.csv"</span><span class="op">)</span></span>
+<span><span class="va">dat_cleaned</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">dat_cleaned</span>, <span class="va">grade_points</span>, by <span class="op">=</span> <span class="st">"Grade"</span><span class="op">)</span></span></code></pre></div>
 <p>We can now create some basic descriptive stats and visualisations on the grade point values. The <code><a href="https://rdrr.io/pkg/psych/man/describe.html">describe()</a></code> function from the <code><a href="https://rdrr.io/pkg/psych/man/00.psych-package.html">psych()</a></code> library is great for quickly producing a range of descriptive statistics.</p>
 <p><strong>At this stage I want to highlight again that these are simulated data so don't read anything into the actual patterns, it's not real data, any patterns you see are meaningless</strong></p>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dat_cleaned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Points</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># just select points column for stats</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/psych/man/describe.html">describe</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dat_cleaned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Points</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># just select points column for stats</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/psych/man/describe.html">describe</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="kable-table">
-<div class="inline-table"><table class="table table-sm">
-<thead><tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-vars
-</th>
-<th style="text-align:right;">
-n
-</th>
-<th style="text-align:right;">
-mean
-</th>
-<th style="text-align:right;">
-sd
-</th>
-<th style="text-align:right;">
-median
-</th>
-<th style="text-align:right;">
-trimmed
-</th>
-<th style="text-align:right;">
-mad
-</th>
-<th style="text-align:right;">
-min
-</th>
-<th style="text-align:right;">
-max
-</th>
-<th style="text-align:right;">
-range
-</th>
-<th style="text-align:right;">
-skew
-</th>
-<th style="text-align:right;">
-kurtosis
-</th>
-<th style="text-align:right;">
-se
-</th>
+<div class="inline-table"><table style="width:100%;" class="table table-sm">
+<colgroup>
+<col width="6%">
+<col width="4%">
+<col width="3%">
+<col width="8%">
+<col width="8%">
+<col width="6%">
+<col width="8%">
+<col width="6%">
+<col width="3%">
+<col width="3%">
+<col width="5%">
+<col width="10%">
+<col width="8%">
+<col width="9%">
+</colgroup>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="right">vars</th>
+<th align="right">n</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">median</th>
+<th align="right">trimmed</th>
+<th align="right">mad</th>
+<th align="right">min</th>
+<th align="right">max</th>
+<th align="right">range</th>
+<th align="right">skew</th>
+<th align="right">kurtosis</th>
+<th align="right">se</th>
 </tr></thead>
-<tbody><tr>
-<td style="text-align:left;">
-Points
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-285
-</td>
-<td style="text-align:right;">
-14.40702
-</td>
-<td style="text-align:right;">
-2.800142
-</td>
-<td style="text-align:right;">
-15
-</td>
-<td style="text-align:right;">
-14.50655
-</td>
-<td style="text-align:right;">
-2.9652
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-21
-</td>
-<td style="text-align:right;">
-20
-</td>
-<td style="text-align:right;">
--0.6750928
-</td>
-<td style="text-align:right;">
-2.13971
-</td>
-<td style="text-align:right;">
-0.1658661
-</td>
+<tbody><tr class="odd">
+<td align="left">Points</td>
+<td align="right">1</td>
+<td align="right">285</td>
+<td align="right">14.40702</td>
+<td align="right">2.800142</td>
+<td align="right">15</td>
+<td align="right">14.50655</td>
+<td align="right">2.9652</td>
+<td align="right">1</td>
+<td align="right">21</td>
+<td align="right">20</td>
+<td align="right">-0.6750928</td>
+<td align="right">2.13971</td>
+<td align="right">0.1658661</td>
 </tr></tbody>
 </table></div>
 </div>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat_cleaned</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Points</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">1</span>, colour <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Distribution of essay grades"</span>, 
-       x <span class="op">=</span> <span class="cn">NULL</span>, 
-       colour <span class="op">=</span> <span class="cn">NULL</span>, 
-       subtitle <span class="op">=</span> <span class="st">"Dashed line = mean grade"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">22</span>, by <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>xintercept<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Points</span><span class="op">)</span>,color<span class="op">=</span><span class="st">"red"</span><span class="op">)</span>, 
-             linetype<span class="op">=</span><span class="st">"dashed"</span>,
-             size <span class="op">=</span> <span class="fl">1</span>, 
-             show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat_cleaned</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Points</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">1</span>, colour <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Distribution of essay grades"</span>, </span>
+<span>       x <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span>       colour <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span>       subtitle <span class="op">=</span> <span class="st">"Dashed line = mean grade"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">22</span>, by <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>xintercept<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Points</span><span class="op">)</span>,color<span class="op">=</span><span class="st">"red"</span><span class="op">)</span>, </span>
+<span>             linetype<span class="op">=</span><span class="st">"dashed"</span>,</span>
+<span>             size <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>             show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </span></code></pre></div>
 <div class="inline-figure"><img src="03-submission_files/figure-html/unnamed-chunk-15-1.png" width="100%" style="display: block; margin: auto;"></div>
 <p>We could also look at the distribution of grades by submission category:</p>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat_cleaned</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Points</span>, fill <span class="op">=</span> <span class="va">submission_category</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">1</span>, colour <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Distribution of essay grades"</span>, 
-       x <span class="op">=</span> <span class="cn">NULL</span>, 
-       subtitle <span class="op">=</span> <span class="st">"Dashed line = mean grade"</span>,
-       fill <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>xintercept<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Points</span><span class="op">)</span>,color<span class="op">=</span><span class="st">"red"</span><span class="op">)</span>, 
-             linetype<span class="op">=</span><span class="st">"dashed"</span>,
-             size<span class="op">=</span><span class="fl">1</span>,
-             show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">22</span>, by <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d</a></span><span class="op">(</span>option <span class="op">=</span> <span class="st">"E"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat_cleaned</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Points</span>, fill <span class="op">=</span> <span class="va">submission_category</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">1</span>, colour <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Distribution of essay grades"</span>, </span>
+<span>       x <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span>       subtitle <span class="op">=</span> <span class="st">"Dashed line = mean grade"</span>,</span>
+<span>       fill <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>xintercept<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Points</span><span class="op">)</span>,color<span class="op">=</span><span class="st">"red"</span><span class="op">)</span>, </span>
+<span>             linetype<span class="op">=</span><span class="st">"dashed"</span>,</span>
+<span>             size<span class="op">=</span><span class="fl">1</span>,</span>
+<span>             show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">22</span>, by <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d</a></span><span class="op">(</span>option <span class="op">=</span> <span class="st">"E"</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="03-submission_files/figure-html/unnamed-chunk-16-1.png" width="100%" style="display: block; margin: auto;"></div>
 <p>Or the descriptives by category:</p>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dat_cleaned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">submission_category</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_grade <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Points</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
-            median_grade <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">Points</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dat_cleaned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">submission_category</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_grade <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Points</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>            median_grade <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">Points</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
-<thead><tr>
-<th style="text-align:left;">
-submission_category
-</th>
-<th style="text-align:right;">
-mean_grade
-</th>
-<th style="text-align:right;">
-median_grade
-</th>
+<thead><tr class="header">
+<th align="left">submission_category</th>
+<th align="right">mean_grade</th>
+<th align="right">median_grade</th>
 </tr></thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-Late
-</td>
-<td style="text-align:right;">
-13.58333
-</td>
-<td style="text-align:right;">
-13.5
-</td>
+<tr class="odd">
+<td align="left">Late</td>
+<td align="right">13.58333</td>
+<td align="right">13.5</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-On-time
-</td>
-<td style="text-align:right;">
-14.68776
-</td>
-<td style="text-align:right;">
-15.0
-</td>
+<tr class="even">
+<td align="left">On-time</td>
+<td align="right">14.68776</td>
+<td align="right">15.0</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-On-time w extension
-</td>
-<td style="text-align:right;">
-12.83333
-</td>
-<td style="text-align:right;">
-13.5
-</td>
+<tr class="odd">
+<td align="left">On-time w extension</td>
+<td align="right">12.83333</td>
+<td align="right">13.5</td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <p>With an associated visualization:</p>
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat_cleaned</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">submission_category</span>, y <span class="op">=</span> <span class="va">Points</span>, fill <span class="op">=</span> <span class="va">submission_category</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html">geom_violin</a></span><span class="op">(</span>show.legend <span class="op">=</span> <span class="cn">FALSE</span>,
-              alpha <span class="op">=</span> <span class="fl">.4</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">.2</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d</a></span><span class="op">(</span>option <span class="op">=</span> <span class="st">"E"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, title <span class="op">=</span> <span class="st">"Grade point by submission category"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat_cleaned</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">submission_category</span>, y <span class="op">=</span> <span class="va">Points</span>, fill <span class="op">=</span> <span class="va">submission_category</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html">geom_violin</a></span><span class="op">(</span>show.legend <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>              alpha <span class="op">=</span> <span class="fl">.4</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">.2</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d</a></span><span class="op">(</span>option <span class="op">=</span> <span class="st">"E"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, title <span class="op">=</span> <span class="st">"Grade point by submission category"</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="03-submission_files/figure-html/unnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;"></div>
 <p>The correlation between Turnitin score and grade (even with real data I think this would be a bit pointless but you never know):</p>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat_cleaned</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Points</span>, <span class="va">Turnitin</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="co"># use jitter rather than geom_point as some overlapping data points</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"loess"</span><span class="op">)</span> <span class="op">+</span> <span class="co"># no clear linear relationship, otherwise use method = "lm"</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Grade point"</span>, y <span class="op">=</span> <span class="st">"Turnitin score"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat_cleaned</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Points</span>, <span class="va">Turnitin</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="co"># use jitter rather than geom_point as some overlapping data points</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"loess"</span><span class="op">)</span> <span class="op">+</span> <span class="co"># no clear linear relationship, otherwise use method = "lm"</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Grade point"</span>, y <span class="op">=</span> <span class="st">"Turnitin score"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = 'y ~ x'</code></pre>
 <div class="inline-figure"><img src="03-submission_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;"></div>
 <p>The relationship between Turnitin score and submission category - this code removes the two outliers - remove the filter line to put them back in.</p>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dat_cleaned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Turnitin</span> <span class="op">&lt;</span> <span class="fl">75</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">submission_category</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_grade <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Turnitin</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
-            median_grade <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">Turnitin</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dat_cleaned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Turnitin</span> <span class="op">&lt;</span> <span class="fl">75</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">submission_category</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_grade <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Turnitin</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>            median_grade <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">Turnitin</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
-<thead><tr>
-<th style="text-align:left;">
-submission_category
-</th>
-<th style="text-align:right;">
-mean_grade
-</th>
-<th style="text-align:right;">
-median_grade
-</th>
+<thead><tr class="header">
+<th align="left">submission_category</th>
+<th align="right">mean_grade</th>
+<th align="right">median_grade</th>
 </tr></thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-Late
-</td>
-<td style="text-align:right;">
-19.50000
-</td>
-<td style="text-align:right;">
-18
-</td>
+<tr class="odd">
+<td align="left">Late</td>
+<td align="right">19.50000</td>
+<td align="right">18</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-On-time
-</td>
-<td style="text-align:right;">
-19.00847
-</td>
-<td style="text-align:right;">
-18
-</td>
+<tr class="even">
+<td align="left">On-time</td>
+<td align="right">19.00847</td>
+<td align="right">18</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-On-time w extension
-</td>
-<td style="text-align:right;">
-19.85714
-</td>
-<td style="text-align:right;">
-18
-</td>
+<tr class="odd">
+<td align="left">On-time w extension</td>
+<td align="right">19.85714</td>
+<td align="right">18</td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <p>With an associated visualisation:</p>
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dat_cleaned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Turnitin</span> <span class="op">&lt;</span> <span class="fl">75</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">submission_category</span>, y <span class="op">=</span> <span class="va">Turnitin</span>, fill <span class="op">=</span> <span class="va">submission_category</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html">geom_violin</a></span><span class="op">(</span>show.legend <span class="op">=</span> <span class="cn">FALSE</span>,
-              alpha <span class="op">=</span> <span class="fl">.4</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">.2</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d</a></span><span class="op">(</span>option <span class="op">=</span> <span class="st">"E"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, title <span class="op">=</span> <span class="st">"Turnitin score by submission category"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dat_cleaned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Turnitin</span> <span class="op">&lt;</span> <span class="fl">75</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">submission_category</span>, y <span class="op">=</span> <span class="va">Turnitin</span>, fill <span class="op">=</span> <span class="va">submission_category</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html">geom_violin</a></span><span class="op">(</span>show.legend <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>              alpha <span class="op">=</span> <span class="fl">.4</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">.2</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d</a></span><span class="op">(</span>option <span class="op">=</span> <span class="st">"E"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, title <span class="op">=</span> <span class="st">"Turnitin score by submission category"</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="03-submission_files/figure-html/unnamed-chunk-21-1.png" width="100%" style="display: block; margin: auto;"></div>
 <p>Finally, we could also look at grades by marker:</p>
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dat_cleaned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Grader</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_grade <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Points</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
-            median_grade <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">Points</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dat_cleaned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Grader</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_grade <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Points</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>            median_grade <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">Points</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
-<thead><tr>
-<th style="text-align:left;">
-Grader
-</th>
-<th style="text-align:right;">
-mean_grade
-</th>
-<th style="text-align:right;">
-median_grade
-</th>
+<thead><tr class="header">
+<th align="left">Grader</th>
+<th align="right">mean_grade</th>
+<th align="right">median_grade</th>
 </tr></thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-Marker 1
-</td>
-<td style="text-align:right;">
-13.78082
-</td>
-<td style="text-align:right;">
-14
-</td>
+<tr class="odd">
+<td align="left">Marker 1</td>
+<td align="right">13.78082</td>
+<td align="right">14</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Marker 2
-</td>
-<td style="text-align:right;">
-14.98592
-</td>
-<td style="text-align:right;">
-15
-</td>
+<tr class="even">
+<td align="left">Marker 2</td>
+<td align="right">14.98592</td>
+<td align="right">15</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Marker 3
-</td>
-<td style="text-align:right;">
-14.67143
-</td>
-<td style="text-align:right;">
-15
-</td>
+<tr class="odd">
+<td align="left">Marker 3</td>
+<td align="right">14.67143</td>
+<td align="right">15</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Marker 4
-</td>
-<td style="text-align:right;">
-14.21127
-</td>
-<td style="text-align:right;">
-14
-</td>
+<tr class="even">
+<td align="left">Marker 4</td>
+<td align="right">14.21127</td>
+<td align="right">14</td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <p>Violin-boxplots:</p>
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dat_cleaned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Grader</span>, y <span class="op">=</span> <span class="va">Points</span>, fill <span class="op">=</span> <span class="va">Grader</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html">geom_violin</a></span><span class="op">(</span>show.legend <span class="op">=</span> <span class="cn">FALSE</span>,
-              alpha <span class="op">=</span> <span class="fl">.4</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">.2</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d</a></span><span class="op">(</span>option <span class="op">=</span> <span class="st">"E"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, title <span class="op">=</span> <span class="st">"Grade point by marker"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dat_cleaned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Grader</span>, y <span class="op">=</span> <span class="va">Points</span>, fill <span class="op">=</span> <span class="va">Grader</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html">geom_violin</a></span><span class="op">(</span>show.legend <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>              alpha <span class="op">=</span> <span class="fl">.4</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">.2</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d</a></span><span class="op">(</span>option <span class="op">=</span> <span class="st">"E"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, title <span class="op">=</span> <span class="st">"Grade point by marker"</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="03-submission_files/figure-html/unnamed-chunk-23-1.png" width="100%" style="display: block; margin: auto;"></div>
 <p>Finally, rather than using grouped histograms as we've done previously, it's better to visualise the distributions of different markers using <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap()</a></code> as it makes it easier to compare the distributions:</p>
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat_cleaned</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Points</span>, fill <span class="op">=</span> <span class="va">Grader</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">1</span>, colour <span class="op">=</span> <span class="st">"black"</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Distribution of essay grades"</span>, 
-       x <span class="op">=</span> <span class="st">"Grade point"</span>, 
-       subtitle <span class="op">=</span> <span class="st">"Dashed line = mean grade"</span>,
-       fill <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d</a></span><span class="op">(</span>option <span class="op">=</span> <span class="st">"E"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">Grader</span>, nrow <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat_cleaned</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Points</span>, fill <span class="op">=</span> <span class="va">Grader</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">1</span>, colour <span class="op">=</span> <span class="st">"black"</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Distribution of essay grades"</span>, </span>
+<span>       x <span class="op">=</span> <span class="st">"Grade point"</span>, </span>
+<span>       subtitle <span class="op">=</span> <span class="st">"Dashed line = mean grade"</span>,</span>
+<span>       fill <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d</a></span><span class="op">(</span>option <span class="op">=</span> <span class="st">"E"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">Grader</span>, nrow <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="03-submission_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;"></div>
 
 </div>
@@ -989,7 +809,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>scholaRship</strong>" was written by Emily Nordmann, Craig Alexander, James Bartlett, Eilidh Jack, Gaby Mahrholz, Jill MacKay, Mitchum Bock. It was last built on 2023-08-14.</p>
+    <p>"<strong>scholaRship</strong>" was written by Emily Nordmann, Craig Alexander, James Bartlett, Eilidh Jack, Gaby Mahrholz, Jill MacKay, Mitchum Bock. It was last built on 2023-08-15.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -1002,7 +822,7 @@ $( document ).ready(function() {
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');
