@@ -11,6 +11,7 @@ library(tidyverse) # Package of packages for plotting and wrangling
 library(plotly) # Creates interactive plots 
 library(ggpubr) # Builds on ggplot2 to build specific publication ready plots 
 library(scales) # Includes functions for specifying plot scales
+library(lubridate)
 ```
 
 ```{r load objects from chapter 6, message=FALSE, warning=FALSE}
@@ -43,69 +44,92 @@ The first task will be to convert any date/time data we have into the correct fo
 On closer inspection, these variables fall into two types:
 
 - `Create.Data` and `Last.Viewed` are listed as a date (a particular day)
+
 - `Duration`, `Total.View.Time` and `Average.View.Time` are listed as a time, recorded in hours, minutes, and seconds.
 
 Several functions can be used to take a data string and convert it into the desired date/time format. There is a useful [cheat sheet you can download](https://rstudio.github.io/cheatsheets/html/lubridate.html) for the `lubridate` library which contains examples of such functions. For our data, we will use the `mdy()` function to convert dates as month-day-year, and the `hms()` function to convert times as hours-minutes-seconds.
 
 ```{r recode data as hms and mdy}
-data2 <- data %>%
-  mutate_at(c('duration', 'total_view_time', 'average_view_time'), hms) %>%
-  mutate_at(c('create_date', 'last_viewed'), mdy)
+# For times, mutate across three columns and convert to hours, minutes, seconds
+# For dates, mutate across two columns and convert to month, day, year
+data <- data %>%
+  mutate(across(.cols = c('duration', 'total_view_time', 'average_view_time'), 
+                .fns = hms)) %>%
+  mutate(across(.cols = c('create_date', 'last_viewed'), 
+                .fns = mdy))
 ```
 
-Here, the `mutate_at()` function allows us to update selected variables and modify these by the specified function that follows. 
+Here, we use a combination of mutate and across to apply a given function to multiple columns. Within across, we specify two arguments. In .cols, we specify the columns we want to apply our function to and in .fns, we specify the function we want to apply to those columns.
 
-Note: `hms()` converts a string into a date/time object which is set by hours-minutes-seconds. `mdy()` converts a string into a date/time object which is set by month-day-year. Echo360 data saves date/times in US format, so pay attention to how date/time data is stored to data you work with to make sure it recognises the information in the right order. There are alternative functions like `ymd()` and `dmy()` if data you work with is stored differently. 
+::: {.info data-latex=""}
+`hms()` converts a string into a date/time object which is set by hours-minutes-seconds. `mdy()` converts a string into a date/time object which is set by month-day-year. Echo360 data saves date/times in US format, so pay attention to how date/time data is stored to data you work with to make sure it recognises the information in the right order. There are alternative functions like `ymd()` and `dmy()` if data you work with is stored differently. 
+:::
 
-We can take a look at these transformations more closely:
+We can take a look at the result of these transformations more closely using `head()` to preview the first five cases of each variable:
 
-```{r}
+```{r preview time and date data}
+# First five cases of duration 
 head(data$duration)
+# First five cases of last viewed
 head(data$last_viewed)
 ```
 
-We can see that those variables converted using `hms`are printed in the format `10M 20S`. If you would prefer to visualise these in a more standard format, you can use `hms::as_hms()` to do so.
-
-
 ### Extracting elements from date/time data
-Sometimes we may wish to obtain specific parts of a date/time such as month, minutes etc. There are several functions in `lubridate` which allow us to extract these easily from a date/time object.
 
-Say we wish to only obtain the minutes from `Average.View.Time`, we can obtain this easily using the `minute` function. The commands below show the spread of duration in minutes with a boxplot
+Sometimes, you may wish to obtain specific parts of a date/time such as the month, the minutes etc. There are several functions in `lubridate` which allow us to extract these easily from a date/time object.
 
-```{r}
-data <- data %>% mutate(average_view_minute=minute(data$average_view_time))
+Say we wish to only obtain the minutes from `Average.View.Time`, we can obtain this easily using the `r hl(minute())` function and preview the first five cases. 
 
-ggplot(data,aes(y=average_view_minute)) + geom_boxplot() + labs(title="Boxplot of average video viewing times") + ylab("View time (mins)") + theme_bw()
-```
-
-We can also produce an interactive version of the boxplot by using `plotly`
-
-```{r}
-fig_avg_views <- plot_ly(data,y=~ average_view_minute,type="box",name="")
-fig_avg_views <- fig_avg_views %>% layout(title="Boxplot of average video viewing times")
-fig_avg_views
-```
-
-Suppose we want to look at the last month students viewed videos across the course. We can obtain this by applying the `month` function to the `Last.Viewed` variable
-
-
-```{r}
+```{r isolate minutes}
+# Add a new average view minutes column to our data
 data <- data %>% 
-  mutate(month_last_viewed=month(data$last_viewed))
+  mutate(average_view_minute = minute(data$average_view_time)) # Isolate the minutes from the average view time column
 
-last_viewed <- ggplot(data,aes(x=month_last_viewed)) + 
-  geom_bar() + 
-  labs(title="Las month videos viewed") + 
-  ylab("Count") + 
+# Print the first five cases
+head(data$average_view_minute)
+```
+
+As we start to get into the habit of visualising data to aid exploration, we can quickly observe some summary statistics by producing a boxplot of the average view time in minutes. 
+
+```{r average minute boxplot}
+fig_avg_minutes <- data %>% 
+  ggplot(aes(y = average_view_minute)) + # We only need the y axis of view time minutes
+  geom_boxplot() + # Add a boxplot layer
+  labs(title = "Boxplot of average video viewing times",
+       y = "View time (mins)") + # Specify the main title and y axis label
+  theme_bw() # Tidy up the theme
+
+fig_avg_minutes
+```
+
+Sometimes it can be difficult to precisely identify the y axis value for each element in a plot, so you can also produce an interactive version of the boxplot by using the `r pkg("plotly")` package. Once we define a graph in `ggplot2`, we can convert it into an interactive plot using the `ggplotly()` function. 
+
+```{r plotly avg minutes}
+ggplotly(fig_avg_minutes)
+```
+
+As a further example using a date variable, suppose we want to look at the last month students viewed videos across the course. We can obtain this by applying the `r hl(month())` function to the `Last.Viewed` variable.
+
+```{r last month viewed bar chart}
+# Add a new month column 
+data <- data %>% 
+  mutate(month_last_viewed = month(data$last_viewed))
+
+last_viewed <- data %>% 
+  ggplot(aes(x = month_last_viewed)) + # Only specify x axis for a bar chart
+  geom_bar() + # Create a bar chart 
+  labs(title = "Frequency of last month video viewed",
+       y = "Frequency",
+       x = "Last month video viewed") + 
   theme_bw() + 
-  scale_x_continuous(breaks= breaks_pretty())
+  scale_x_continuous(breaks = breaks_pretty()) # Function to tidy up the x axis breaks specifically for dates
 
 last_viewed
 ```
 
-We can easily display the above plot in `plotly` using the command `ggplotly` with our stored `ggplot` output:
+As above, we can convert the bar chart to make it interactive using the `r hl(ggplotly())` function. This allows you to hover over the plot and see what the frequency was for each month. 
 
-```{r}
+```{r plotly last viewed}
 ggplotly(last_viewed)
 ```
 
