@@ -1,6 +1,6 @@
 # Getting started with Echo360 data in R with `tidyverse` {#Echo_tidy}
 
-## Reading downloaded data into R
+## Reading data into R
 
 Before we start with the tutorial, you will down to install the following packages. We note in a comment what we need each package for. 
 

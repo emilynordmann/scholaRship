@@ -1,13 +1,19 @@
 # Exploring Echo360 video/course level data in R with `tidyverse` {#Echo_course}
 
+## Introduction
+
+Now we have introduced you to the basic principles of reading and summarising Echo360 data, in this chapter we will explore how you can wrangle and visualise video and course level data to recreate and build on the kind of dashboards you can access on Echo360. 
+
+You will need the following packages which are the same as chapter 6, but with the addition of `scales` to add some useful functions for plotting graph axes. You will also need the `data` object you created in chapter 6, but you can rerun the code below if you do not have it available already. If you do not have the data downloaded already, please [download the .zip file](data/Echo360_Data/Echo360_data.zip) containing 9 files of Echo360 data. Our tutorial assumes you have a folder called "data" in your working directory, and we created a subfolder called "Echo360_Data" to place these files. If you saved the data in another way, remember to edit the file paths first. 
+
 ```{r, warning=FALSE, message=FALSE}
 library(tidyverse) # Package of packages for plotting and wrangling 
 library(plotly) # Creates interactive plots 
 library(ggpubr) # Builds on ggplot2 to build specific publication ready plots 
-library(scales)
+library(scales) # Includes functions for specifying plot scales
 ```
 
-```{r load objects from chapter 6, echo=FALSE}
+```{r load objects from chapter 6, message=FALSE, warning=FALSE}
 # Obtain list of files from directory
 files <- list.files(path = "data/Echo360_Data/", 
                     pattern=".csv") 
@@ -26,29 +32,30 @@ data <- tibble(data,
 data$video <- as.numeric(as.factor(data$video))
 ```
 
-
 ## Handling date/time data with `lubridate`
 
-Handling data that is of a date/time format in R is somewhat different from other variable types and should be treated differently and handled with care. The `lubridate` package in R (loaded as part of the tidyverse) allows us to easily handle tricky date/time data and extract useful variables from these. 
+Handling date/time data in R is somewhat different from other variable types and should be treated differently and handled with care. The `lubridate` package in R (loaded as part of the `tidyverse`) allows us to easily handle tricky date/time data and extract useful information from these. 
 
-### Converting data to date/time format
+### Converting variables to date/time format
 
-The first task will be to convert any date/time data we have into the correct format. In the sample data we are working with, we have five variables which contain such data which are: `Create.Date, Duration, Total.View.Time,Average.View.Time` and `Last.Viewed`. 
+The first task will be to convert any date/time data we have into the correct format. In the sample data we are working with, we have five variables which contain such data which are: `Create.Date`, `Duration`, `Total.View.Time`, `Average.View.Time` and `Last.Viewed`. 
 
-These variables fall into two types on closer inspection:
+On closer inspection, these variables fall into two types:
 
-- `Create.Data` & `Last.Viewed` - These are listed as a date (a particular day)
-- `Duration, Total.View.Time` and `Average.View.Time` - These are listed as a time, recorded in hours, minutes and seconds.
+- `Create.Data` and `Last.Viewed` are listed as a date (a particular day)
+- `Duration`, `Total.View.Time` and `Average.View.Time` are listed as a time, recorded in hours, minutes, and seconds.
 
-Several functions can be used to take a string of data and convert it into the desired date/time format. There is a useful cheat sheet for the `lubridate` library which contains examples of such functions which can be found [here](https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_lubridate.pdf). For our data, we will use the `mdy` and `hms` functions as follows:
+Several functions can be used to take a data string and convert it into the desired date/time format. There is a useful [cheat sheet you can download](https://rstudio.github.io/cheatsheets/html/lubridate.html) for the `lubridate` library which contains examples of such functions. For our data, we will use the `mdy()` function to convert dates as month-day-year, and the `hms()` function to convert times as hours-minutes-seconds.
 
-```{r}
-data<-data %>%
+```{r recode data as hms and mdy}
+data2 <- data %>%
   mutate_at(c('duration', 'total_view_time', 'average_view_time'), hms) %>%
   mutate_at(c('create_date', 'last_viewed'), mdy)
 ```
 
-Here, the `mutate_at()` function allows us to update selected variables and modify these by the specified function that follows. `hms` converts a string into a date/time object which is set by hours-minutes-seconds. `mdy` converts a string into a date/time object which is set by month-day-year (note Echo360 data saves date/times in US format).
+Here, the `mutate_at()` function allows us to update selected variables and modify these by the specified function that follows. 
+
+Note: `hms()` converts a string into a date/time object which is set by hours-minutes-seconds. `mdy()` converts a string into a date/time object which is set by month-day-year. Echo360 data saves date/times in US format, so pay attention to how date/time data is stored to data you work with to make sure it recognises the information in the right order. There are alternative functions like `ymd()` and `dmy()` if data you work with is stored differently. 
 
 We can take a look at these transformations more closely:
 
@@ -227,9 +234,11 @@ fig.all.views
 We might also want to create a stacked barchart with the total number of views split into unique student views and repeated views. We can do this in `plotly` as follows.
 
 ```{r}
-fig.all.views <- fig.all.views %>% add_trace(y = ~repeated_views, name = 'Repeated views')
+fig.all.views <- fig.all.views %>% 
+  add_trace(y = ~repeated_views, name = 'Repeated views')
 
-fig.all.views <- fig.all.views %>% layout(yaxis = list(title = 'Count'), barmode = 'stack')
+fig.all.views <- fig.all.views %>% 
+  layout(yaxis = list(title = 'Count'), barmode = 'stack')
 
 fig.all.views
 ```
@@ -239,7 +248,7 @@ fig.all.views
 We will now create a scatterplot of video duration vs. the average percentage of video viewed using `ggplot` as follows.
 
 ```{r}
-fig.duration.viewed<-ggplot(video_data, aes(x=as.numeric(duration, 'minutes'), y=percentage_viewed)) +
+fig.duration.viewed <- ggplot(video_data, aes(x=as.numeric(duration, 'minutes'), y=percentage_viewed)) +
   geom_point()+ 
   labs(title="Video duration vs. average percentage viewed") + 
   ylab("Average percentage of video viewed") +
@@ -254,14 +263,16 @@ ggplotly(fig.duration.viewed)
 ```
 
 **Advanced**
+
 We can add additional information such as video number average view time into the hover text as follows.
+
 ```{r}
 fig.duration.viewed.2 <- plot_ly(video_data,
                x = ~as.numeric(duration, 'minutes'),
                y = ~percentage_viewed,
                type = "scatter",
                mode = "markers",
-               hovertemplate = paste0("Video ", video_data$Video,
+               hovertemplate = paste0("Video ", video_data$video,
                                       "<br>Average percentage viewed: ", round(video_data$percentage_viewed,1), "%",
                                       "<br> Duration: ", video_data$duration,
                                       "<br> Average view time: ", video_data$average_view_time,
@@ -271,5 +282,4 @@ fig.duration.viewed.2 <- plot_ly(video_data,
 
 fig.duration.viewed.2
 ```
-
 
