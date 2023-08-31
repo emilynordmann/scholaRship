@@ -113,7 +113,7 @@ These values are in the original units of measurement, but we can also report st
 The below code:
 
 * Calculates the standardized coefficients and saves them in an object named `table`
-* Creates a <a class='glossary'>vector<span class='def'></span></a> of the coefficients from the original Dunn study
+* Creates a <a class='glossary' target='_blank' title='A type of data structure that collects values with the same data type, like T/F values, numbers, or strings.' href='https://psyteachr.github.io/glossary/v#vector'>vector</a> of the coefficients from the original Dunn study
 * Adds this vector as a column to `table`
 * Makes a nice looking table using `kable` - note that your table output might look slightly different because the <code class='package'>bookdown</code> package we use to write this book applies some additional formatting.
 
@@ -189,6 +189,10 @@ As a final check, it's important to make sure the model results are consistent w
 
 ```r
 check_model(model)
+```
+
+```
+## Variable `Component` is not in your data frame :/
 ```
 
 <img src="02-synthpop_files/figure-html/model assumptions-1.png" width="100%" style="display: block; margin: auto;" />
@@ -308,7 +312,6 @@ synth_data <- syn(short_data,
 ## Please check your synthetic data carefully with functions
 ## compare(), utility.tab(), and utility.gen().
 ## 
-## 
 ## Synthesis
 ## -----------
 ##  PASS GSL
@@ -326,7 +329,7 @@ write.syn(synth_data,
 ```
 ## Synthetic data exported as csv file(s).
 ## Information on synthetic data written to
-##   C:/Users/staff/OneDrive - University of Glasgow/Teaching/psyteachR/scholaRship/book/synthesis_info_synthetic_Dunn_data.txt
+##   /Users/jamesbartlett/Documents/git_repos/scholaRship/book/synthesis_info_synthetic_Dunn_data.txt
 ```
 
 If you ran the code to save the synthetic data set, you will see three new files in your working directory. There is an. RData object which you can reload into R. By choosing a .csv file, we also have a spreadsheet containing the data which we could analyse in other software or read into R. Finally, there is a .txt file with information on the synthetic data process like the name of the original data file, the seed you used, and the variables. 
@@ -392,8 +395,8 @@ compare(s_lm, # saved object from above for lm applied to synthetic data
 ## Mean absolute std. coef diff:  0.25145
 ## 
 ## Mahalanobis distance ratio for lack-of-fit (target 1.0): 0.04
-## Lack-of-fit test: 0.07152817; p-value 0.9649 for test that synthesis model is
-## compatible with a chi-squared test with 2 degrees of freedom.
+## Lack-of-fit test: 0.07152817; p-value 0.9649 for test that synthesis model is compatible 
+## with a chi-squared test with 2 degrees of freedom.
 ## 
 ## Confidence interval plot:
 ```
@@ -422,7 +425,6 @@ synth_data2 <- syn(real_data, # return to using the original larger data set
 ## (100 + 10 * no. of variables used in modelling the data).
 ## Please check your synthetic data carefully with functions
 ## compare(), utility.tab(), and utility.gen().
-## 
 ## 
 ## Synthesis
 ## -----------
@@ -494,8 +496,8 @@ s_lm2 <- lm.synds(PASS ~ GSL + Intrinsic + STARS,
 ## Mean absolute std. coef diff:  1.239298
 ## 
 ## Mahalanobis distance ratio for lack-of-fit (target 1.0): 1.92
-## Lack-of-fit test: 7.683872; p-value 0.1039 for test that synthesis model is
-## compatible with a chi-squared test with 4 degrees of freedom.
+## Lack-of-fit test: 7.683872; p-value 0.1039 for test that synthesis model is compatible 
+## with a chi-squared test with 4 degrees of freedom.
 ## 
 ## Confidence interval plot:
 ```

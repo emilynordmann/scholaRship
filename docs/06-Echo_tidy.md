@@ -1,6 +1,6 @@
 # Getting started with Echo360 data in R with `tidyverse` {#Echo_tidy}
 
-## Reading downloaded data into R
+## Reading data into R
 
 Before we start with the tutorial, you will down to install the following packages. We note in a comment what we need each package for. 
 
@@ -142,9 +142,26 @@ data %>% # The data frame you are using
 
 <div class="kable-table">
 
-|    video| total_views| on_demand_views| live_view_count| downloads|
-|--------:|-----------:|---------------:|---------------:|---------:|
-| 4.689632|    1.287858|        1.287858|               0|         0|
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> video </th>
+   <th style="text-align:right;"> total_views </th>
+   <th style="text-align:right;"> on_demand_views </th>
+   <th style="text-align:right;"> live_view_count </th>
+   <th style="text-align:right;"> downloads </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 4.689632 </td>
+   <td style="text-align:right;"> 1.287858 </td>
+   <td style="text-align:right;"> 1.287858 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+</tbody>
+</table>
 
 </div>
 
@@ -161,14 +178,40 @@ data %>% # The data frame you are using
 
 <div class="kable-table">
 
-| total_views|    n|
-|-----------:|----:|
-|           1| 1145|
-|           2|  253|
-|           3|   44|
-|           4|   17|
-|           5|    5|
-|           6|    2|
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> total_views </th>
+   <th style="text-align:right;"> n </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1145 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 253 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 44 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 17 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 5 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 2 </td>
+  </tr>
+</tbody>
+</table>
 
 </div>
 
@@ -184,14 +227,40 @@ data %>% # The data frame you are using
 
 <div class="kable-table">
 
-| total_views|    n|
-|-----------:|----:|
-|           1| 1145|
-|           2|  253|
-|           3|   44|
-|           4|   17|
-|           5|    5|
-|           6|    2|
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> total_views </th>
+   <th style="text-align:right;"> n </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1145 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 253 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 44 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 17 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 5 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 2 </td>
+  </tr>
+</tbody>
+</table>
 
 </div>
 
@@ -206,14 +275,47 @@ data %>% # The data frame you are using
 
 <div class="kable-table">
 
-| video| total_views|   n|
-|-----:|-----------:|---:|
-|     1|           1| 130|
-|     1|           2|  47|
-|     1|           3|   7|
-|     1|           4|   9|
-|     1|           5|   2|
-|     2|           1| 137|
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> video </th>
+   <th style="text-align:right;"> total_views </th>
+   <th style="text-align:right;"> n </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 130 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 47 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 7 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 9 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 137 </td>
+  </tr>
+</tbody>
+</table>
 
 </div>
 
