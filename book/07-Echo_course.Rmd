@@ -135,164 +135,201 @@ ggplotly(last_viewed)
 
 ### Maths with date-times
 
-Sometimes, we may wish to compare the difference in time between certain events. Again, `lubridate` provides some useful functions to help us with this. For example, we can look at the difference in average view time to total view time by for a certain video by using simple arithmetic operators
+Sometimes, we may wish to compare the difference in time between events. `r pkg("lubridate")` provides some useful functions to help us with this. For example, we can look at the difference in average view time to the total duration of the video by using simple arithmetic operators.
 
-```{r}
-data_video1 <- data[data$video==1, ]
-
-data_video1 <- data_video1 %>% 
-  mutate(time_difference=average_view_time-duration)
+```{r time difference}
+data_video1 <- data %>% 
+  filter(video == 1) %>% # Filter the videos to select only video 1
+  mutate(time_difference = average_view_time - duration) # Add a time difference column between average view time and total duration
 
 head(data_video1$time_difference)
 ```
 
-As this data returns values in minutes and seconds, we will have to transform this to one unit type to visualise
+As this data returns values in minutes and seconds, we can transform this to one unit type for consistency, then use that data to create a boxplot. 
 
-```{r}
-data_video1$time_difference <- second(data_video1$time_difference)
+```{r time difference boxplot}
+data_video1 <- data_video1 %>% 
+  mutate(time_difference = second(time_difference))
 
-time_difference <- ggplot(data_video1, aes(y=time_difference)) + 
+time_difference <- data_video1 %>% 
+  ggplot(aes(y = time_difference)) + 
   geom_boxplot() + 
-  labs(title="Boxplot of average video viewing times compared to total times") + 
-  ylab("View time (seconds)") + 
+  labs(title="Boxplot of average video viewing times compared to total video duration", 
+       y = "View time (Seconds)") + 
   theme_bw() + 
-  geom_hline(yintercept=0,color="red")
+  geom_hline(yintercept = 0, color = "red") # Add a horizontal line at 0 to show no difference
 
 time_difference
 ```
 
-```{r}
+There's a little skew here so we cannot see the full box, but the red horizontal line shows no difference in average view time to the duration of video 1, so where students viewed the whole video. More positive values represent students who watched less of the video than the total duration. 
+
+As before, we can make these values interactive by converting our ggplot visualisation to a `r pkg("plotly")` object. 
+
+```{r time difference plotly}
 ggplotly(time_difference)
 ```
 
 ## Total views for each video
-In the following sections we will mostly be creating plots of our data summarised at video level. Given that our data is currently stored at student level (one row per student per video) we will transform our data into a new data set called `video_data` which will group the data by video and create some variables of interest. Firstly, let's create this new data set with two columns:
 
-* `Video`: The video number stored as a factor (this will make it easier to plot later on);
+In the following section, we will mostly be creating plots of our data summarised at the video level. Given that our data is currently stored at student level (one row per student per video), we will first transform our data into a new data set called `video_data` which will group the data by video and create some variables of interest. First, let's create this new data set with two columns:
 
-* `Total_Views`: The total number of views per video.
+* `video`: The video number stored as a factor (this will make it easier to plot later on);
 
-```{r}
-video_data <- data %>% group_by(ideo) %>%
-  summarise(total_views=sum(total_views)) %>%
-  mutate_at('video', factor)
+* `total_views`: The total number of views per video.
+
+```{r video views}
+video_data <- data %>% 
+  group_by(video) %>%
+  summarise(total_views = sum(total_views)) %>% # for each video, add up all the views across students
+  mutate(video = factor(video)) %>%  # Turn video into a factor
+  ungroup() # Retaining the group by can sometimes cause problems
 ```
 
-We can now easily create a bar chart of the total number of views per video as follows:
+We can now easily create a bar chart of the total number of views per video.
 
-```{r}
-fig.total.views <- ggplot(video_data, aes(x=video, y=total_views)) +
-  geom_bar(stat = "identity") + 
-  labs(title="Total number of views per video") + 
-  ylab("Total views") +
-  xlab("Video") +
+```{r views bar chart}
+fig.total.views <- video_data %>% 
+  ggplot(aes(x = video, y = total_views)) +
+  geom_bar(stat = "identity") + # Since we specify a y value, just show as the value
+  labs(title="Total number of views per video",
+       y = "Total Views",
+       x = "Video") + 
   theme_bw()
 
 fig.total.views
 ```
 
-Here we plot the video number along the x-axis and the total number of views for each video on the y-axis. These numbers include duplications from students who have watched the videos multiple times. We may also be interested in the total number of unique views, i.e. the total number of students who watched the video at least once. To do this, we need to create a new variable called `unique_views` which will contain the sum of the rows for each video. We can add this to the video-level data set `video_data`.
+Here, we plot the video number along the x-axis and the total number of views for each video on the y-axis. These numbers include duplications from students who have watched the videos multiple times. 
 
-```{r}
-video_data <- data %>% group_by(video) %>%
-  summarise(Total_Views=sum(total_views), unique_views=n()) %>%
-  mutate_at('video', factor)
+We may also be interested in the total number of unique views, i.e. the total number of students who watched the video at least once. To do this, we need to create a new variable called `unique_views` which will contain the sum of the rows for each video. We can add this to the video-level data set `video_data`.
+
+```{r unique views per video}
+video_data <- data %>% 
+  group_by(video) %>%
+  summarise(total_Views = sum(total_views), 
+            unique_views = n()) %>% # For each video, count the number of rows
+  mutate(video = factor(video)) %>% 
+  ungroup()
 ```
 
-We can edit the code for the previous bar chart to create a bar chart of the total number of unique student views per video as follows:
+We can edit the code for the previous bar chart to create a bar chart of the total number of unique student views per video as follows.
 
-```{r}
-fig.unique.views<-ggplot(video_data, aes(x=video, y=unique_views)) +
-  geom_bar(stat = "identity") + 
-  labs(title="Total number of unique student views per video") + 
-  ylab("Unique student views") +
-  xlab("Video") +
+```{r unique views bar}
+fig.unique.views <- video_data %>% 
+  ggplot(aes(x = video, y = unique_views)) +
+  geom_bar(stat = "identity") + # Since we specify a y value, just show as the value
+  labs(title="Total number of unique student views per video",
+       y = "Unique Student Views",
+       x = "Video") + 
   theme_bw()
 
 fig.unique.views
 ```
 
-### Creating an interactive version using `plotly`.
+If you want to view the values per video more precisely like a data dashboard, then you can convert your unique views bar plot into a `r pkg("plotly")` object. 
 
-We can create more interactive plots, allowing us to share information on our data in a more interactive environment using `plotly`. 
-
-Let's start by creating a `plotly` version of the barchart of unique student views using the following the `ggplotly()` function.
-
-```{r}
+```{r unique views plotly}
 ggplotly(fig.unique.views)
 
 ```
 
-**Advanced**
+### Advanced `plotly` customisation
 
-We can add additional information such as total views, duration of video and average view time into the hover text as follows.
+So far, we have simply transformed our ggplots into a `r pkg("plotly")` object. However, we can add additional information in the hover text such as total views, duration of video, and average view time that might be useful to you or your viewer. 
 
-```{r}
+This is going to be a longer process, so we will break it down into a few steps. First, we need to wrangle the data so we have our key summary statistics per video. The first few lines follow the same process as above, but then we add additional summary variables like the average view time and modify existing variables in `r hl(mutate())`. 
+
+```{r prepare custom plot wrangling}
+# Isolate video number and duration of the video to append later
+video_duration <- data %>% 
+  distinct(video, duration) %>% 
+  mutate(duration = period_to_seconds(duration)) # Convert duration from a period to seconds
+
 video_data <- data %>%
   group_by(video) %>%
-  summarise(total_views=sum(total_views), video_data=n(), average_view_time=mean(period_to_seconds(average_view_time), na.rm=T)) %>%
-  mutate(average_view_time=round(seconds_to_period(average_view_time),0),
-         repeated_views=total_views-video_data,
-         duration = hms(c('00:10:48', '00:13:11', '00:13:55', '00:14:11', '00:14:42', '00:15:08', '00:16:20', '00:16:34', '00:18:28')),
-         percentage_viewed=average_view_time/duration*100)
+  summarise(total_views = sum(total_views), 
+            unique_views = n(), 
+            average_view_time = round(
+              mean(period_to_seconds(average_view_time), # lubridate function to transform a period to seconds
+                   na.rm = T), # Ignore NA values when taking mean
+              0)) %>% # 0 decimals to round
+  left_join(video_duration, # Add video duration data to our summary data
+            by = "video") %>% # Join by video number
+  mutate(video = factor(video),
+         repeated_views = total_views - unique_views, # Calculate repeated views subtracting unique views from total views
+         percentage_viewed = round(average_view_time / duration * 100, 2)) %>% # Calculate average percentage from average view time as percentage of duration
+  ungroup()
+
+head(video_data)
+```
+
+For each video, we now have a bunch of summary statistics like their view time, duration, and percentage of the video viewed. We can now use this information to present as a dashboard for an overview of each video. 
+
+This time, we are going to use `r pkg("plotly")` directly as its easier to edit the hover text options than if we simply convert a `ggplot` object to `plotly`. In the code below, we first create a bar plot for the number of unique views for each video. We then edit the hover template to add additional information into the interactive dashboard like the duration and average view time. 
+
+```{r plotly}
 
 fig.all.views <- plot_ly(video_data,
-  x = ~as.factor(video),
-  y = ~video_data,
+  x = ~video,
+  y = ~unique_views,
   name = "Unique Views",
   type = "bar",
-  hovertemplate = paste0("Video %{x}",
+  hovertemplate = paste0("Video %{x}", # Paste adds all the elements together, <br> is html code for a line break
                          "<br>Total views:", video_data$total_views,
                          "<br>Unique views: %{y}",
-                         "<br> Duration: ", video_data$duration,
-                         "<br> Average view time: ", video_data$average_view_time,
-                         "<extra></extra>")
-
-)%>%
-  layout(title = 'Video views', xaxis = list(title = 'Video number'),
-         yaxis = list(title = 'Unique views'))
+                         "<br> Duration: ", seconds_to_period(video_data$duration), # Convert from seconds to minutes and seconds for easier viewing
+                         "<br> Average view time: ", seconds_to_period(video_data$average_view_time))) %>%
+  layout(title = 'Unique Views per Video', 
+         xaxis = list(title = 'Video Number'),
+         yaxis = list(title = 'Unique Views'))
 
 fig.all.views
 ```
 
-We might also want to create a stacked barchart with the total number of views split into unique student views and repeated views. We can do this in `plotly` as follows.
+Like `r pkg("ggplot2")`, once we have defined a `r pkg("plotly")` object, we can add additional layers. In this example, we might also want to create a stacked bar plot with the total number of views split into unique student views and repeated views.
 
-```{r}
+```{r add trace and stack}
+# Take the plotly object and add a trace (variable to split by) for the repeated views
 fig.all.views <- fig.all.views %>% 
-  add_trace(y = ~repeated_views, name = 'Repeated views')
-
-fig.all.views <- fig.all.views %>% 
-  layout(yaxis = list(title = 'Count'), barmode = 'stack')
+  add_trace(y = ~repeated_views, 
+            name = 'Repeated views') %>% 
+  layout(yaxis = list(title = 'Count'), # Amend the type of bar plot to make it stacked
+         barmode = 'stack')
 
 fig.all.views
 ```
 
 ## Video duration vs. average percentage viewed
 
-We will now create a scatterplot of video duration vs. the average percentage of video viewed using `ggplot` as follows.
+As one final type of data visualisation, we will create a scatterplot of video duration against the average percentage of video viewed using `r hl("ggplot()")`.
 
-```{r}
-fig.duration.viewed <- ggplot(video_data, aes(x=as.numeric(duration, 'minutes'), y=percentage_viewed)) +
-  geom_point()+ 
-  labs(title="Video duration vs. average percentage viewed") + 
-  ylab("Average percentage of video viewed") +
-  xlab("Video duration") +
-  theme_bw()
+```{r duration percentage scatterplot}
+fig.duration.viewed <- video_data %>% 
+  ggplot(aes(x = duration, y = percentage_viewed)) +
+  geom_point() + 
+  labs(title = "Video duration vs. average percentage viewed",
+       y = "Average percentage of video viewed",
+       x = "Video duration (Seconds)") + 
+  theme_bw() + 
+  scale_y_continuous(breaks = pretty_breaks()) # Convert the y axis to tidier labels for percentages
 
 fig.duration.viewed
 ```
 
-```{r}
+As before, we can convert our scatterplot into a `r pkg("plotly")` object to make it interactive as we scroll across the values. 
+
+```{r plotly scatter}
 ggplotly(fig.duration.viewed)
 ```
 
-**Advanced**
+### Advanced `plotly` customisation
 
-We can add additional information such as video number average view time into the hover text as follows.
+Like we demonstrated for the bar plot, we can create a scatterplot entirely within `r pkg("plotly")` to allow us to modify the hover template to include additional summary statistics. 
 
-```{r}
+```{r modify plotly scatter}
 fig.duration.viewed.2 <- plot_ly(video_data,
-               x = ~as.numeric(duration, 'minutes'),
+               x = ~duration,
                y = ~percentage_viewed,
                type = "scatter",
                mode = "markers",
