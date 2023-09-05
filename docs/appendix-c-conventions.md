@@ -3,14 +3,14 @@
 This book will use the following conventions:
 
 * Generic code: `list(number = 1, letter = "A")`
-* Highlighted code: <code><span><span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://dplyr.tidyverse.org/reference/slice.html'>slice_max</a></span><span class='op'>(</span><span class='op'>)</span></span></code>
+* Highlighted code: <code><span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://dplyr.tidyverse.org/reference/slice.html'>slice_max</a></span><span class='op'>(</span><span class='op'>)</span></code>
 * File paths: <code class='path'>data/sales.csv</code>
 * R Packages: <code class='package'>tidyverse</code>
-* Functions: <code><span><span class='fu'><a target='_blank' href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='op'>)</span></span></code>
-* Strings: <code><span><span class='st'>"psyTeachR"</span></span></code>
-* Numbers: <code><span><span class='fl'>100</span></span></code>, <code><span><span class='fl'>3.14</span></span></code>
-* Logical values: <code><span><span class='cn'>TRUE</span></span></code>, <code><span><span class='cn'>FALSE</span></span></code>
-* Glossary items: <a class='glossary'>ordinal<span class='def'></span></a>
+* Functions: <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='op'>)</span></code>
+* Strings: <code><span class='st'>"psyTeachR"</span></code>
+* Numbers: <code><span class='fl'>100</span></code>, <code><span class='fl'>3.14</span></code>
+* Logical values: <code><span class='cn'>TRUE</span></code>, <code><span class='cn'>FALSE</span></code>
+* Glossary items: <a class='glossary' target='_blank' title='Discrete variables that have an inherent order, such as level of education or dislike/like.' href='https://psyteachr.github.io/glossary/o#ordinal'>ordinal</a>
 * Citations: @R-tidyverse
 * Internal links: Chapter\ \@ref(intro)
 * External links: [R for Data Science](https://r4ds.had.co.nz/){target="_blank"}
@@ -22,7 +22,7 @@ See [webexercises](https://psyteachr.github.io/webexercises/) for more details a
 
 * Type an integer: <input class='webex-solveme nospaces regex' size='1' data-answer='["^[0-9]{1}$"]'/>
 * I am going to learn a lot: <select class='webex-select'><option value='blank'></option><option value='answer'>TRUE</option><option value='x'>FALSE</option></select>
-* What is a p-value? <div class='webex-radiogroup' id='radio_YFCBZHPWNJ'><label><input type="radio" autocomplete="off" name="radio_YFCBZHPWNJ" value="x"></input> <span>the probability that the null hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_YFCBZHPWNJ" value="answer"></input> <span>the probability of the observed (or more extreme) data, under the assumption that the null-hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_YFCBZHPWNJ" value="x"></input> <span>the probability of making an error in your conclusion</span></label></div>
+* What is a p-value? <div class='webex-radiogroup' id='radio_OLZYBXDQNE'><label><input type="radio" autocomplete="off" name="radio_OLZYBXDQNE" value="x"></input> <span>the probability that the null hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_OLZYBXDQNE" value="answer"></input> <span>the probability of the observed (or more extreme) data, under the assumption that the null-hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_OLZYBXDQNE" value="x"></input> <span>the probability of making an error in your conclusion</span></label></div>
 
 
 <div class='webex-solution'><button>Hidden Text</button>
@@ -94,8 +94,8 @@ library(tidyverse)
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> ordinal </td>
-   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> [ordinal](https://psyteachr.github.io/glossary/o.html#ordinal){class="glossary" target="_blank"} </td>
+   <td style="text-align:left;"> Discrete variables that have an inherent order, such as level of education or dislike/like. </td>
   </tr>
 </tbody>
 </table>

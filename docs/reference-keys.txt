@@ -69,9 +69,15 @@ advanced-plotly-customisation
 video-duration-vs.-average-percentage-viewed
 advanced-plotly-customisation-1
 Echo_combine
+introduction-2
+reading-in-the-data
+joining-data-using-dplyr
 merging-data-where-each-student-only-appears-once-in-each-data-object
-merging-data-where-each-student-may-appear-more-than-once-in-the-echo360-data
-illustration-visualizing-merged-data
+left_join
+right_join
+full_join
+merging-data-where-each-student-may-appear-more-than-once
+visualizing-merged-data
 installing-r
 installing-base-r
 installing-rstudio

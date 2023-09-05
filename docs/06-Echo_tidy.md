@@ -1,4 +1,4 @@
-# Getting started with Echo360 data in R with `tidyverse` {#Echo_tidy}
+# Getting started with Echo360 data with `tidyverse` {#Echo_tidy}
 
 ## Reading data into R
 
@@ -148,9 +148,26 @@ data %>% # The data frame you are using
 
 <div class="kable-table">
 
-|    video| total_views| on_demand_views| live_view_count| downloads|
-|--------:|-----------:|---------------:|---------------:|---------:|
-| 4.689632|    1.287858|        1.287858|               0|         0|
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> video </th>
+   <th style="text-align:right;"> total_views </th>
+   <th style="text-align:right;"> on_demand_views </th>
+   <th style="text-align:right;"> live_view_count </th>
+   <th style="text-align:right;"> downloads </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 4.689632 </td>
+   <td style="text-align:right;"> 1.287858 </td>
+   <td style="text-align:right;"> 1.287858 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+</tbody>
+</table>
 
 </div>
 
@@ -190,15 +207,37 @@ data %>%
 
 <div class="kable-table">
 
-| live_view_count|    n|
-|---------------:|----:|
-|               0| 1466|
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> live_view_count </th>
+   <th style="text-align:right;"> n </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1466 </td>
+  </tr>
+</tbody>
+</table>
 
 </div><div class="kable-table">
 
-| downloads|    n|
-|---------:|----:|
-|         0| 1466|
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> downloads </th>
+   <th style="text-align:right;"> n </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1466 </td>
+  </tr>
+</tbody>
+</table>
 
 </div>
 
@@ -228,9 +267,44 @@ data %>%
 
 <div class="kable-table">
 
-|            | vars|    n|     mean|        sd| median|  trimmed| mad| min| max| range|     skew| kurtosis|        se|
-|:-----------|----:|----:|--------:|---------:|------:|--------:|---:|---:|---:|-----:|--------:|--------:|---------:|
-|total_views |    1| 1466| 1.287858| 0.6348921|      1| 1.149063|   0|   1|   6|     5| 2.902835| 10.88082| 0.0165818|
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:right;"> vars </th>
+   <th style="text-align:right;"> n </th>
+   <th style="text-align:right;"> mean </th>
+   <th style="text-align:right;"> sd </th>
+   <th style="text-align:right;"> median </th>
+   <th style="text-align:right;"> trimmed </th>
+   <th style="text-align:right;"> mad </th>
+   <th style="text-align:right;"> min </th>
+   <th style="text-align:right;"> max </th>
+   <th style="text-align:right;"> range </th>
+   <th style="text-align:right;"> skew </th>
+   <th style="text-align:right;"> kurtosis </th>
+   <th style="text-align:right;"> se </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> total_views </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1466 </td>
+   <td style="text-align:right;"> 1.287858 </td>
+   <td style="text-align:right;"> 0.6348921 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1.149063 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 2.902835 </td>
+   <td style="text-align:right;"> 10.88082 </td>
+   <td style="text-align:right;"> 0.0165818 </td>
+  </tr>
+</tbody>
+</table>
 
 </div>
 
@@ -245,14 +319,40 @@ data %>% # The data frame you are using
 
 <div class="kable-table">
 
-| total_views|    n|
-|-----------:|----:|
-|           1| 1145|
-|           2|  253|
-|           3|   44|
-|           4|   17|
-|           5|    5|
-|           6|    2|
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> total_views </th>
+   <th style="text-align:right;"> n </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1145 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 253 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 44 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 17 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 5 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 2 </td>
+  </tr>
+</tbody>
+</table>
 
 </div>
 
