@@ -4,15 +4,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 6 Getting started with Echo360 data in R with tidyverse | scholaRship</title>
+<title>Chapter 5 Getting started with Echo360 data in R with tidyverse | scholaRship</title>
 <meta name="author" content="Emily Nordmann, Craig Alexander, James Bartlett, Eilidh Jack, Gaby Mahrholz, Jill MacKay, Mitchum Bock">
 <meta name="generator" content="bookdown 0.34 with bs4_book()">
-<meta property="og:title" content="Chapter 6 Getting started with Echo360 data in R with tidyverse | scholaRship">
+<meta property="og:title" content="Chapter 5 Getting started with Echo360 data in R with tidyverse | scholaRship">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://psyteachr.github.io/scholaRship/Echo_tidy.html">
 <meta property="og:image" content="https://psyteachr.github.io/scholaRship/images/logos/logo.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 6 Getting started with Echo360 data in R with tidyverse | scholaRship">
+<meta name="twitter:title" content="Chapter 5 Getting started with Echo360 data in R with tidyverse | scholaRship">
 <meta name="twitter:image" content="https://psyteachr.github.io/scholaRship/images/logos/logo.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -55,9 +55,9 @@
 <link rel="stylesheet" href="include/psyteachr.css">
 <link rel="stylesheet" href="include/webex.css">
 <link rel="stylesheet" href="include/style.css">
-<meta name="description" content="6.1 Reading data into R Before we start with the tutorial, you will down to install the following packages. We note in a comment what we need each package for. library(tidyverse) # Package of...">
-<meta property="og:description" content="6.1 Reading data into R Before we start with the tutorial, you will down to install the following packages. We note in a comment what we need each package for. library(tidyverse) # Package of...">
-<meta name="twitter:description" content="6.1 Reading data into R Before we start with the tutorial, you will down to install the following packages. We note in a comment what we need each package for. library(tidyverse) # Package of...">
+<meta name="description" content="5.1 Reading data into R Before we start with the tutorial, you will down to install the following packages. We note in a comment what we need each package for. library(tidyverse) # Package of...">
+<meta property="og:description" content="5.1 Reading data into R Before we start with the tutorial, you will down to install the following packages. We note in a comment what we need each package for. library(tidyverse) # Package of...">
+<meta name="twitter:description" content="5.1 Reading data into R Before we start with the tutorial, you will down to install the following packages. We note in a comment what we need each package for. library(tidyverse) # Package of...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -84,10 +84,9 @@
 <li><a class="" href="creating-synthetic-datasets.html"><span class="header-section-number">2</span> Creating synthetic datasets</a></li>
 <li><a class="" href="moodle-assignment-submission-reports.html"><span class="header-section-number">3</span> Moodle Assignment submission reports</a></li>
 <li><a class="" href="workshop.html"><span class="header-section-number">4</span> ALT Conference Prep</a></li>
-<li><a class="" href="anonymous.html"><span class="header-section-number">5</span> Creating Anonymous Data From Synthetic Data</a></li>
-<li><a class="active" href="Echo_tidy.html"><span class="header-section-number">6</span> Getting started with Echo360 data in R with tidyverse</a></li>
-<li><a class="" href="Echo_course.html"><span class="header-section-number">7</span> Exploring Echo360 video/course level data in R with tidyverse</a></li>
-<li><a class="" href="Echo_combine.html"><span class="header-section-number">8</span> Combining Echo360 data with other sources of data in R with tidyverse</a></li>
+<li><a class="active" href="Echo_tidy.html"><span class="header-section-number">5</span> Getting started with Echo360 data in R with tidyverse</a></li>
+<li><a class="" href="Echo_course.html"><span class="header-section-number">6</span> Exploring Echo360 video/course level data in R with tidyverse</a></li>
+<li><a class="" href="Echo_combine.html"><span class="header-section-number">7</span> Combining Echo360 data with other sources of data in R with tidyverse</a></li>
 <li class="book-part">Appendices</li>
 <li><a class="" href="installing-r.html"><span class="header-section-number">A</span> Installing R</a></li>
 <li><a class="" href="symbols.html"><span class="header-section-number">B</span> Symbols</a></li>
@@ -101,13 +100,13 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="Echo_tidy" class="section level1" number="6">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="Echo_tidy" class="section level1" number="5">
 <h1>
-<span class="header-section-number">6</span> Getting started with Echo360 data in R with <code>tidyverse</code><a class="anchor" aria-label="anchor" href="#Echo_tidy"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5</span> Getting started with Echo360 data in R with <code>tidyverse</code><a class="anchor" aria-label="anchor" href="#Echo_tidy"><i class="fas fa-link"></i></a>
 </h1>
-<div id="reading-data-into-r" class="section level2" number="6.1">
+<div id="reading-data-into-r" class="section level2" number="5.1">
 <h2>
-<span class="header-section-number">6.1</span> Reading data into R<a class="anchor" aria-label="anchor" href="#reading-data-into-r"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.1</span> Reading data into R<a class="anchor" aria-label="anchor" href="#reading-data-into-r"><i class="fas fa-link"></i></a>
 </h2>
 <p>Before we start with the tutorial, you will down to install the following packages. We note in a comment what we need each package for.</p>
 <div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
@@ -118,7 +117,7 @@
 <p>The <code>readr</code> package in the <code>tidyverse</code> provides us with a host of functions for reading in data to R. Often in a course, you will have multiple video recordings which you have Echo360 data on. It is useful to keep all this data within one data frame in R for analysis, as we will often consider metrics across the full course and not for one video.</p>
 <p>The <code>list.files</code> command will list all of the files available within a given working directory. To download the data for this tutorial, please <a href="data/Echo360_Data/Echo360_data.zip">download the .zip file</a> containing 9 files of Echo360 data.</p>
 <p>To set up your working directory the same as ours, create a folder named <code>data</code> on your computer and then extract the zip folder into this data (so there should be a folder named data that has a folder named Echo360_data in it).</p>
-<p>See <a href="anonymous.html#anonymous">Chapter 4</a> for how we created anonymous synthetic data to use in these tutorials. The data are stored in .csv files and we can specifically list those files using the command <code>pattern = ".csv"</code> as shown below:</p>
+<p>See <a href="#anonymous">Chapter 4</a> for how we created anonymous synthetic data to use in these tutorials. The data are stored in .csv files and we can specifically list those files using the command <code>pattern = ".csv"</code> as shown below:</p>
 <div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Obtain list of files from directory</span></span>
 <span><span class="va">files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"data/Echo360_Data/"</span>, </span>
@@ -136,19 +135,18 @@
 <code class="sourceCode R"><span><span class="co"># To break this code down, we start with the innermost function</span></span>
 <span><span class="co"># 1. We first make each unique video name a factor (unique category)</span></span>
 <span><span class="co"># 2. We then make each factor a number, so we get an ascending number from 1 to 9</span></span>
-<span><span class="co"># 3. We then make this number a factor as it's really a label rather than a true number</span></span>
-<span><span class="va">data</span><span class="op">$</span><span class="va">video</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">video</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">data</span><span class="op">$</span><span class="va">video</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">video</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="data-descriptions-for-each-field-in-downloaded-data" class="section level2" number="6.2">
+<div id="data-descriptions-for-each-field-in-downloaded-data" class="section level2" number="5.2">
 <h2>
-<span class="header-section-number">6.2</span> Data descriptions for each field in downloaded data<a class="anchor" aria-label="anchor" href="#data-descriptions-for-each-field-in-downloaded-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.2</span> Data descriptions for each field in downloaded data<a class="anchor" aria-label="anchor" href="#data-descriptions-for-each-field-in-downloaded-data"><i class="fas fa-link"></i></a>
 </h2>
 <p>Within the Echo360 data, we will have various fields of data in different formats. It is important to understand what each of these fields corresponds to for any exploratory analysis of the data.</p>
 <p>R will often read the data in the correct format and store the variables in the right way. However, that is not always the case, so it is best to check this has been carried out correctly. We can obtain a summary of each column of data using the <code>str</code> command:</p>
 <div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## tibble [1,466 × 16] (S3: tbl_df/tbl/data.frame)
-##  $ video            : Factor w/ 9 levels "1","2","3","4",..: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ video            : num [1:1466] 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ media_id         : chr [1:1466] "631c9eb6-7828-4e41-9e9e-ae3b261ae741" "631c9eb6-7828-4e41-9e9e-ae3b261ae741" "631c9eb6-7828-4e41-9e9e-ae3b261ae741" "631c9eb6-7828-4e41-9e9e-ae3b261ae741" ...
 ##  $ media_name       : chr [1:1466] "Physiological Psychology Week 1 Part 1" "Physiological Psychology Week 1 Part 1" "Physiological Psychology Week 1 Part 1" "Physiological Psychology Week 1 Part 1" ...
 ##  $ create_date      : chr [1:1466] "01/07/2022" "01/07/2022" "01/07/2022" "01/07/2022" ...
@@ -192,7 +190,7 @@
 <code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Rows: 1,466
 ## Columns: 16
-## $ video             &lt;fct&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+## $ video             &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
 ## $ media_id          &lt;chr&gt; "631c9eb6-7828-4e41-9e9e-ae3b261ae741", "631c9eb6-78…
 ## $ media_name        &lt;chr&gt; "Physiological Psychology Week 1 Part 1", "Physiolog…
 ## $ create_date       &lt;chr&gt; "01/07/2022", "01/07/2022", "01/07/2022", "01/07/202…
@@ -210,14 +208,14 @@
 ## $ last_viewed       &lt;chr&gt; "01/16/2023", "01/18/2023", "01/24/2023", "01/15/202…</code></pre>
 <p>Whichever method you use, at this point, it is worthwhile checking the raw data (by visually inspecting the .csv file(s) read in) and the output of <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> to check that R has correctly converted each column to it's preferred variable type.</p>
 </div>
-<div id="quick-summaries-of-data" class="section level2" number="6.3">
+<div id="quick-summaries-of-data" class="section level2" number="5.3">
 <h2>
-<span class="header-section-number">6.3</span> Quick summaries of data<a class="anchor" aria-label="anchor" href="#quick-summaries-of-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.3</span> Quick summaries of data<a class="anchor" aria-label="anchor" href="#quick-summaries-of-data"><i class="fas fa-link"></i></a>
 </h2>
 <p>We can obtain some quick summaries of our variables to get an early feel for our data and check for any potential errors or outliers in our data.</p>
-<div id="numerical-data" class="section level3" number="6.3.1">
+<div id="numerical-data" class="section level3" number="5.3.1">
 <h3>
-<span class="header-section-number">6.3.1</span> Numerical data<a class="anchor" aria-label="anchor" href="#numerical-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.3.1</span> Numerical data<a class="anchor" aria-label="anchor" href="#numerical-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>For numerical data, we can obtain a series of numerical summaries. We can compute the mean observations for all numerical columns by using the following code:</p>
 <div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
@@ -228,12 +226,14 @@
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
 <thead><tr class="header">
+<th align="right">video</th>
 <th align="right">total_views</th>
 <th align="right">on_demand_views</th>
 <th align="right">live_view_count</th>
 <th align="right">downloads</th>
 </tr></thead>
 <tbody><tr class="odd">
+<td align="right">4.689632</td>
 <td align="right">1.287858</td>
 <td align="right">1.287858</td>
 <td align="right">0</td>
@@ -245,16 +245,15 @@
 <p>The summary stats suggest that the distribution of the data might not be normal - the mean live view count and downloads are both zero. To see what's going on, we can visualise the spread of the data in histograms.</p>
 <div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">live_view_count</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">downloads</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<div class="inline-figure"><img src="06-Echo_tidy_files/figure-html/unnamed-chunk-1-1.png" width="100%" style="display: block; margin: auto;"></div>
-<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">downloads</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<div class="inline-figure"><img src="06-Echo_tidy_files/figure-html/unnamed-chunk-1-2.png" width="100%" style="display: block; margin: auto;"></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<div class="inline-figure"><img src="06-Echo_tidy_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;"></div>
 <p>These plots look a bit weird - that's because it turns out all of the values in both of these variables are zero.</p>
-<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">live_view_count</span><span class="op">)</span></span>
 <span></span>
@@ -285,19 +284,15 @@
 </table></div>
 </div>
 <p>For total views and on demand views, the mean value is identical and we can see by plotting this data that it is indeed the same data - which makes sense because if there are 0 live views then all of them must come from on demand views so the on demand viewing figures will equal the total viewing figures. Knowing this helps us better understand the utility of each variable.</p>
-<div class="inline-figure"><img src="06-Echo_tidy_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;"></div>
-<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">total_views</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">on_demand_views</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<div class="inline-figure"><img src="06-Echo_tidy_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;"></div>
-<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">on_demand_views</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<div class="inline-figure"><img src="06-Echo_tidy_files/figure-html/unnamed-chunk-4-2.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="06-Echo_tidy_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;"></div>
 <p>Given the distribution, in this case the mean isn't that useful on it's own and we also don't need all of the variables so we can just select the ones that are useful and compute a range of stats using the <code><a href="https://rdrr.io/pkg/psych/man/describe.html">describe()</a></code> function from the <code>psych</code> package. In order for <code><a href="https://rdrr.io/pkg/psych/man/describe.html">describe()</a></code> to work, we need to transform our object into a data frame as it's currently stored as a tibble (a type of data object used by the tidyverse).</p>
-<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">total_views</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -355,7 +350,7 @@
 </table></div>
 </div>
 <p>Another way to represent count data is to use <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> and the function <code><a href="https://dplyr.tidyverse.org/reference/context.html">n()</a></code>. <code><a href="https://dplyr.tidyverse.org/reference/context.html">n()</a></code> can be unintuitive in that you don't need to pass any arguments to it, it will simply count whatever you have given it. In this case, we pass our data and use <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> to tell it to group the data by each value in <code>total_views</code>. This means that <code><a href="https://dplyr.tidyverse.org/reference/context.html">n()</a></code> will then count how many observations there are for for total viewing number.</p>
-<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># The data frame you are using</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">total_views</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># Group by the total_views variable</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="co"># Calculate the number of observations for each level of group_by</span></span></code></pre></div>
@@ -600,16 +595,16 @@ $( document ).ready(function() {
   window.onresize = move_sidebar;
 });
 </script><div class="chapter-nav">
-<div class="prev"><a href="anonymous.html"><span class="header-section-number">5</span> Creating Anonymous Data From Synthetic Data</a></div>
-<div class="next"><a href="Echo_course.html"><span class="header-section-number">7</span> Exploring Echo360 video/course level data in R with tidyverse</a></div>
+<div class="prev"><a href="workshop.html"><span class="header-section-number">4</span> ALT Conference Prep</a></div>
+<div class="next"><a href="Echo_course.html"><span class="header-section-number">6</span> Exploring Echo360 video/course level data in R with tidyverse</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#Echo_tidy"><span class="header-section-number">6</span> Getting started with Echo360 data in R with tidyverse</a></li>
-<li><a class="nav-link" href="#reading-data-into-r"><span class="header-section-number">6.1</span> Reading data into R</a></li>
-<li><a class="nav-link" href="#data-descriptions-for-each-field-in-downloaded-data"><span class="header-section-number">6.2</span> Data descriptions for each field in downloaded data</a></li>
+<li><a class="nav-link" href="#Echo_tidy"><span class="header-section-number">5</span> Getting started with Echo360 data in R with tidyverse</a></li>
+<li><a class="nav-link" href="#reading-data-into-r"><span class="header-section-number">5.1</span> Reading data into R</a></li>
+<li><a class="nav-link" href="#data-descriptions-for-each-field-in-downloaded-data"><span class="header-section-number">5.2</span> Data descriptions for each field in downloaded data</a></li>
 <li>
-<a class="nav-link" href="#quick-summaries-of-data"><span class="header-section-number">6.3</span> Quick summaries of data</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#numerical-data"><span class="header-section-number">6.3.1</span> Numerical data</a></li></ul>
+<a class="nav-link" href="#quick-summaries-of-data"><span class="header-section-number">5.3</span> Quick summaries of data</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#numerical-data"><span class="header-section-number">5.3.1</span> Numerical data</a></li></ul>
 </li>
 </ul>
 

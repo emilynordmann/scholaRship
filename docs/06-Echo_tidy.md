@@ -42,8 +42,7 @@ The object we created (`file_name`) contains the names of the various Echo360 vi
 # To break this code down, we start with the innermost function
 # 1. We first make each unique video name a factor (unique category)
 # 2. We then make each factor a number, so we get an ascending number from 1 to 9
-# 3. We then make this number a factor as it's really a label rather than a true number
-data$video <- as.factor(as.numeric(as.factor(data$video)))
+data$video <-as.numeric(as.factor(data$video))
 ```
 
 ## Data descriptions for each field in downloaded data
@@ -59,7 +58,7 @@ str(data)
 
 ```
 ## tibble [1,466 × 16] (S3: tbl_df/tbl/data.frame)
-##  $ video            : Factor w/ 9 levels "1","2","3","4",..: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ video            : num [1:1466] 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ media_id         : chr [1:1466] "631c9eb6-7828-4e41-9e9e-ae3b261ae741" "631c9eb6-7828-4e41-9e9e-ae3b261ae741" "631c9eb6-7828-4e41-9e9e-ae3b261ae741" "631c9eb6-7828-4e41-9e9e-ae3b261ae741" ...
 ##  $ media_name       : chr [1:1466] "Physiological Psychology Week 1 Part 1" "Physiological Psychology Week 1 Part 1" "Physiological Psychology Week 1 Part 1" "Physiological Psychology Week 1 Part 1" ...
 ##  $ create_date      : chr [1:1466] "01/07/2022" "01/07/2022" "01/07/2022" "01/07/2022" ...
@@ -111,7 +110,7 @@ glimpse(data)
 ```
 ## Rows: 1,466
 ## Columns: 16
-## $ video             <fct> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+## $ video             <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
 ## $ media_id          <chr> "631c9eb6-7828-4e41-9e9e-ae3b261ae741", "631c9eb6-78…
 ## $ media_name        <chr> "Physiological Psychology Week 1 Part 1", "Physiolog…
 ## $ create_date       <chr> "01/07/2022", "01/07/2022", "01/07/2022", "01/07/202…
@@ -149,9 +148,9 @@ data %>% # The data frame you are using
 
 <div class="kable-table">
 
-| total_views| on_demand_views| live_view_count| downloads|
-|-----------:|---------------:|---------------:|---------:|
-|    1.287858|        1.287858|               0|         0|
+|    video| total_views| on_demand_views| live_view_count| downloads|
+|--------:|-----------:|---------------:|---------------:|---------:|
+| 4.689632|    1.287858|        1.287858|               0|         0|
 
 </div>
 
@@ -163,24 +162,20 @@ The summary stats suggest that the distribution of the data might not be normal 
 ```r
 ggplot(data, aes(x = live_view_count)) +
   geom_histogram()
-```
 
-```
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-```
-
-<img src="06-Echo_tidy_files/figure-html/unnamed-chunk-1-1.png" width="100%" style="display: block; margin: auto;" />
-
-```r
 ggplot(data, aes(x = downloads)) +
   geom_histogram()
 ```
 
+
+
 ```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-<img src="06-Echo_tidy_files/figure-html/unnamed-chunk-1-2.png" width="100%" style="display: block; margin: auto;" />
+<img src="06-Echo_tidy_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" />
+
 
 These plots look a bit weird - that's because it turns out all of the values in both of these variables are zero.
 
@@ -209,30 +204,17 @@ data %>%
 
 For total views and on demand views, the mean value is identical and we can see by plotting this data that it is indeed the same data - which makes sense because if there are 0 live views then all of them must come from on demand views so the on demand viewing figures will equal the total viewing figures. Knowing this helps us better understand the utility of each variable. 
 
-<img src="06-Echo_tidy_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" />
-
 
 ```r
 ggplot(data, aes(x = total_views)) +
   geom_histogram()
-```
 
-```
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-```
-
-<img src="06-Echo_tidy_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" />
-
-```r
 ggplot(data, aes(x = on_demand_views)) +
   geom_histogram()
 ```
 
-```
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-```
 
-<img src="06-Echo_tidy_files/figure-html/unnamed-chunk-4-2.png" width="100%" style="display: block; margin: auto;" />
+<img src="06-Echo_tidy_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" />
 
 Given the distribution, in this case the mean isn't that useful on it's own and we also don't need all of the variables so we can just select the ones that are useful and compute a range of stats using the `describe()` function from the `psych` package. In order for `describe()` to work, we need to transform our object into a data frame as it's currently stored as a tibble (a type of data object used by the tidyverse).
 
