@@ -35,8 +35,8 @@ Sys.which("make")
 ```
 
 ```
-##            make 
-## "/usr/bin/make"
+##                               make 
+## "C:\\rtools40\\usr\\bin\\make.exe"
 ```
 
 
@@ -51,7 +51,7 @@ You may also want to change the appearance of your code. Different fonts and the
 <p class="caption">(\#fig:settings-general)RStudio General and Appearance settings</p>
 </div>
 
-You may also want to change the settings in the Code tab. For example, Lisa DeBruine prefers two spaces instead of tabs for their code and likes to be able to see the <a class='glossary' target='_blank' title='Spaces, tabs and line breaks' href='https://psyteachr.github.io/glossary/w#whitespace'>whitespace</a> characters. But these are all a matter of personal preference.
+You may also want to change the settings in the Code tab. For example, Lisa DeBruine prefers two spaces instead of tabs for their code and likes to be able to see the <a class='glossary'>whitespace<span class='def'></span></a> characters. But these are all a matter of personal preference.
 
 <div class="figure" style="text-align: center">
 <img src="images/appx/rstudio_settings_code.png" alt="RStudio Code settings" width="100%" />
