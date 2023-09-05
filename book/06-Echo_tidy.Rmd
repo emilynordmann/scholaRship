@@ -6,13 +6,18 @@ Before we start with the tutorial, you will down to install the following packag
 
 ```{r C5 packages, warning=FALSE, message=FALSE}
 library(tidyverse) # Package of packages for plotting and wrangling 
+library(psych)
 library(plotly) # Creates interactive plots 
 library(ggpubr) # Builds on ggplot2 to build specific publication ready plots 
 ```
 
 The `readr` package in the `tidyverse` provides us with a host of functions for reading in data to R. Often in a course, you will have multiple video recordings which you have Echo360 data on. It is useful to keep all this data within one data frame in R for analysis, as we will often consider metrics across the full course and not for one video. 
 
-The `list.files` command will list all of the files available within a given working directory. To download the data for this tutorial, please [download the .zip file](data/Echo360_Data/Echo360_data.zip) containing 9 files of Echo360 data. In our working directory, we have a folder called "data", and we created a subfolder called "Echo360_Data" to place these files. See [Chapter 4](#anonymous) for how we created anonymous synthetic data to use in these tutorials. The data are stored in .csv files and we can specifically list those files using the command `pattern = ".csv"` as shown below:
+The `list.files` command will list all of the files available within a given working directory. To download the data for this tutorial, please [download the .zip file](data/Echo360_Data/Echo360_data.zip) containing 9 files of Echo360 data. 
+
+To set up your working directory the same as ours, create a folder named `data` on your computer and then extract the zip folder into this data (so there should be a folder named data that has a folder named Echo360_data in it).
+
+See [Chapter 4](#anonymous) for how we created anonymous synthetic data to use in these tutorials. The data are stored in .csv files and we can specifically list those files using the command `pattern = ".csv"` as shown below:
 
 ```{r C5 read data, message=F}
 # Obtain list of files from directory
@@ -34,7 +39,8 @@ The object we created (`file_name`) contains the names of the various Echo360 vi
 # To break this code down, we start with the innermost function
 # 1. We first make each unique video name a factor (unique category)
 # 2. We then make each factor a number, so we get an ascending number from 1 to 9
-data$video <- as.numeric(as.factor(data$video))
+# 3. We then make this number a factor as it's really a label rather than a true number
+data$video <- as.factor(as.numeric(as.factor(data$video)))
 ```
 
 ## Data descriptions for each field in downloaded data
@@ -49,12 +55,13 @@ str(data)
 
 The output of this command details the variable type of each column and how this has been stored in R. For example, `owner_name` is a character variable, whereas `total_views` is numerical. 
 
-At this point, it is worthwhile checking the raw data (by visually inspecting the .csv file(s) read in) and the output of `str()` to check that R has correctly converted each column to it's preferred variable type. 
+An alternative way to check the data is to use the function `glimpse()` which gives a similar summary in a different output format:
 
 ```{r alternative summary}
-# From James - str or glimpse work better? 
 glimpse(data)
 ```
+
+Whichever method you use, at this point, it is worthwhile checking the raw data (by visually inspecting the .csv file(s) read in) and the output of `str()` to check that R has correctly converted each column to it's preferred variable type. 
 
 ## Quick summaries of data
 
@@ -73,7 +80,58 @@ data %>% # The data frame you are using
 
 The `select()` command allows us to select all variables based on specific criteria (such as variable name or a condition). Here, we select those variables which are numeric by using `where(is.numeric)`. We can then obtain the mean for all numeric variables by using the `summarise_all()` command and then specifying our chosen summary metric (which here, is `mean`).
 
-For observations in counts, we can look at the total number of observations for each count: 
+The summary stats suggest that the distribution of the data might not be normal - the mean live view count and downloads are both zero. To see what's going on, we can visualise the spread of the data in histograms.
+
+```{r}
+ggplot(data, aes(x = live_view_count)) +
+  geom_histogram()
+
+ggplot(data, aes(x = downloads)) +
+  geom_histogram()
+```
+
+These plots look a bit weird - that's because it turns out all of the values in both of these variables are zero.
+
+```{r}
+data %>%
+  count(live_view_count)
+
+data %>%
+  count(downloads)
+```
+
+For total views and on demand views, the mean value is identical and we can see by plotting this data that it is indeed the same data - which makes sense because if there are 0 live views then all of them must come from on demand views so the on demand viewing figures will equal the total viewing figures. Knowing this helps us better understand the utility of each variable. 
+
+```{r echo = FALSE, warning = FALSE, message = FALSE}
+library(patchwork)
+
+p1 <- ggplot(data, aes(x = total_views)) +
+  geom_histogram()
+
+p2 <- ggplot(data, aes(x = on_demand_views)) +
+  geom_histogram()
+
+p1 / p2
+```
+
+```{r}
+ggplot(data, aes(x = total_views)) +
+  geom_histogram()
+
+ggplot(data, aes(x = on_demand_views)) +
+  geom_histogram()
+```
+
+Given the distribution, in this case the mean isn't that useful on it's own and we also don't need all of the variables so we can just select the ones that are useful and compute a range of stats using the `describe()` function from the `psych` package. In order for `describe()` to work, we need to transform our object into a data frame as it's currently stored as a tibble (a type of data object used by the tidyverse).
+
+```{r}
+data %>%
+  select(total_views) %>%
+  as.data.frame() %>%
+  describe()
+```
+
+Another way to represent count data is to use `summarise()` and the function `n()`. `n()` can be unintuitive in that you don't need to pass any arguments to it, it will simply count whatever you have given it. In this case, we pass our data and use `group_by()` to tell it to group the data by each value in `total_views`. This means that `n()` will then count how many observations there are for for total viewing number.
 
 ```{r summarise counts}
 data %>% # The data frame you are using
@@ -82,19 +140,4 @@ data %>% # The data frame you are using
 ```
 
 The `group_by()` function allows us to carry out computations by groups. We can then use `summarise()` to obtain the total number of counts for each total number of views using `n()`.
-
-Using `group_by()` and `summarise()` can be useful when you want to add the number of observations in addition to other variables, but if you simply want to count the number of observations, you can use the `count()` function: 
-
-```{r count one variable}
-data %>% # The data frame you are using
-  count(total_views) # For each variable, count the number of observations
-```
-
-This function scales nicely if you want to look at the number of observations for combinations of variables, for example, if you wanted to know the number of total_views for each video. 
-
-```{r count two variables}
-data %>% # The data frame you are using
-  count(video, total_views) %>% # For each variable, count the number of observations
-  head() # Limit the number of observations to the first 6
-```
 

@@ -7,13 +7,18 @@ Before we start with the tutorial, you will down to install the following packag
 
 ```r
 library(tidyverse) # Package of packages for plotting and wrangling 
+library(psych)
 library(plotly) # Creates interactive plots 
 library(ggpubr) # Builds on ggplot2 to build specific publication ready plots 
 ```
 
 The `readr` package in the `tidyverse` provides us with a host of functions for reading in data to R. Often in a course, you will have multiple video recordings which you have Echo360 data on. It is useful to keep all this data within one data frame in R for analysis, as we will often consider metrics across the full course and not for one video. 
 
-The `list.files` command will list all of the files available within a given working directory. To download the data for this tutorial, please [download the .zip file](data/Echo360_Data/Echo360_data.zip) containing 9 files of Echo360 data. In our working directory, we have a folder called "data", and we created a subfolder called "Echo360_Data" to place these files. See [Chapter 4](#anonymous) for how we created anonymous synthetic data to use in these tutorials. The data are stored in .csv files and we can specifically list those files using the command `pattern = ".csv"` as shown below:
+The `list.files` command will list all of the files available within a given working directory. To download the data for this tutorial, please [download the .zip file](data/Echo360_Data/Echo360_data.zip) containing 9 files of Echo360 data. 
+
+To set up your working directory the same as ours, create a folder named `data` on your computer and then extract the zip folder into this data (so there should be a folder named data that has a folder named Echo360_data in it).
+
+See [Chapter 4](#anonymous) for how we created anonymous synthetic data to use in these tutorials. The data are stored in .csv files and we can specifically list those files using the command `pattern = ".csv"` as shown below:
 
 
 ```r
@@ -37,7 +42,8 @@ The object we created (`file_name`) contains the names of the various Echo360 vi
 # To break this code down, we start with the innermost function
 # 1. We first make each unique video name a factor (unique category)
 # 2. We then make each factor a number, so we get an ascending number from 1 to 9
-data$video <- as.numeric(as.factor(data$video))
+# 3. We then make this number a factor as it's really a label rather than a true number
+data$video <- as.factor(as.numeric(as.factor(data$video)))
 ```
 
 ## Data descriptions for each field in downloaded data
@@ -53,7 +59,7 @@ str(data)
 
 ```
 ## tibble [1,466 × 16] (S3: tbl_df/tbl/data.frame)
-##  $ video            : num [1:1466] 1 1 1 1 1 1 1 1 1 1 ...
+##  $ video            : Factor w/ 9 levels "1","2","3","4",..: 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ media_id         : chr [1:1466] "631c9eb6-7828-4e41-9e9e-ae3b261ae741" "631c9eb6-7828-4e41-9e9e-ae3b261ae741" "631c9eb6-7828-4e41-9e9e-ae3b261ae741" "631c9eb6-7828-4e41-9e9e-ae3b261ae741" ...
 ##  $ media_name       : chr [1:1466] "Physiological Psychology Week 1 Part 1" "Physiological Psychology Week 1 Part 1" "Physiological Psychology Week 1 Part 1" "Physiological Psychology Week 1 Part 1" ...
 ##  $ create_date      : chr [1:1466] "01/07/2022" "01/07/2022" "01/07/2022" "01/07/2022" ...
@@ -95,18 +101,17 @@ str(data)
 
 The output of this command details the variable type of each column and how this has been stored in R. For example, `owner_name` is a character variable, whereas `total_views` is numerical. 
 
-At this point, it is worthwhile checking the raw data (by visually inspecting the .csv file(s) read in) and the output of `str()` to check that R has correctly converted each column to it's preferred variable type. 
+An alternative way to check the data is to use the function `glimpse()` which gives a similar summary in a different output format:
 
 
 ```r
-# From James - str or glimpse work better? 
 glimpse(data)
 ```
 
 ```
 ## Rows: 1,466
 ## Columns: 16
-## $ video             <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+## $ video             <fct> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
 ## $ media_id          <chr> "631c9eb6-7828-4e41-9e9e-ae3b261ae741", "631c9eb6-78…
 ## $ media_name        <chr> "Physiological Psychology Week 1 Part 1", "Physiolog…
 ## $ create_date       <chr> "01/07/2022", "01/07/2022", "01/07/2022", "01/07/202…
@@ -123,6 +128,8 @@ glimpse(data)
 ## $ downloads         <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
 ## $ last_viewed       <chr> "01/16/2023", "01/18/2023", "01/24/2023", "01/15/202…
 ```
+
+Whichever method you use, at this point, it is worthwhile checking the raw data (by visually inspecting the .csv file(s) read in) and the output of `str()` to check that R has correctly converted each column to it's preferred variable type. 
 
 ## Quick summaries of data
 
@@ -142,32 +149,110 @@ data %>% # The data frame you are using
 
 <div class="kable-table">
 
-<table>
- <thead>
-  <tr>
-   <th style="text-align:right;"> video </th>
-   <th style="text-align:right;"> total_views </th>
-   <th style="text-align:right;"> on_demand_views </th>
-   <th style="text-align:right;"> live_view_count </th>
-   <th style="text-align:right;"> downloads </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 4.689632 </td>
-   <td style="text-align:right;"> 1.287858 </td>
-   <td style="text-align:right;"> 1.287858 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table>
+| total_views| on_demand_views| live_view_count| downloads|
+|-----------:|---------------:|---------------:|---------:|
+|    1.287858|        1.287858|               0|         0|
 
 </div>
 
 The `select()` command allows us to select all variables based on specific criteria (such as variable name or a condition). Here, we select those variables which are numeric by using `where(is.numeric)`. We can then obtain the mean for all numeric variables by using the `summarise_all()` command and then specifying our chosen summary metric (which here, is `mean`).
 
-For observations in counts, we can look at the total number of observations for each count: 
+The summary stats suggest that the distribution of the data might not be normal - the mean live view count and downloads are both zero. To see what's going on, we can visualise the spread of the data in histograms.
+
+
+```r
+ggplot(data, aes(x = live_view_count)) +
+  geom_histogram()
+```
+
+```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+<img src="06-Echo_tidy_files/figure-html/unnamed-chunk-1-1.png" width="100%" style="display: block; margin: auto;" />
+
+```r
+ggplot(data, aes(x = downloads)) +
+  geom_histogram()
+```
+
+```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+<img src="06-Echo_tidy_files/figure-html/unnamed-chunk-1-2.png" width="100%" style="display: block; margin: auto;" />
+
+These plots look a bit weird - that's because it turns out all of the values in both of these variables are zero.
+
+
+```r
+data %>%
+  count(live_view_count)
+
+data %>%
+  count(downloads)
+```
+
+<div class="kable-table">
+
+| live_view_count|    n|
+|---------------:|----:|
+|               0| 1466|
+
+</div><div class="kable-table">
+
+| downloads|    n|
+|---------:|----:|
+|         0| 1466|
+
+</div>
+
+For total views and on demand views, the mean value is identical and we can see by plotting this data that it is indeed the same data - which makes sense because if there are 0 live views then all of them must come from on demand views so the on demand viewing figures will equal the total viewing figures. Knowing this helps us better understand the utility of each variable. 
+
+<img src="06-Echo_tidy_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" />
+
+
+```r
+ggplot(data, aes(x = total_views)) +
+  geom_histogram()
+```
+
+```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+<img src="06-Echo_tidy_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" />
+
+```r
+ggplot(data, aes(x = on_demand_views)) +
+  geom_histogram()
+```
+
+```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+<img src="06-Echo_tidy_files/figure-html/unnamed-chunk-4-2.png" width="100%" style="display: block; margin: auto;" />
+
+Given the distribution, in this case the mean isn't that useful on it's own and we also don't need all of the variables so we can just select the ones that are useful and compute a range of stats using the `describe()` function from the `psych` package. In order for `describe()` to work, we need to transform our object into a data frame as it's currently stored as a tibble (a type of data object used by the tidyverse).
+
+
+```r
+data %>%
+  select(total_views) %>%
+  as.data.frame() %>%
+  describe()
+```
+
+<div class="kable-table">
+
+|            | vars|    n|     mean|        sd| median|  trimmed| mad| min| max| range|     skew| kurtosis|        se|
+|:-----------|----:|----:|--------:|---------:|------:|--------:|---:|---:|---:|-----:|--------:|--------:|---------:|
+|total_views |    1| 1466| 1.287858| 0.6348921|      1| 1.149063|   0|   1|   6|     5| 2.902835| 10.88082| 0.0165818|
+
+</div>
+
+Another way to represent count data is to use `summarise()` and the function `n()`. `n()` can be unintuitive in that you don't need to pass any arguments to it, it will simply count whatever you have given it. In this case, we pass our data and use `group_by()` to tell it to group the data by each value in `total_views`. This means that `n()` will then count how many observations there are for for total viewing number.
 
 
 ```r
@@ -178,144 +263,16 @@ data %>% # The data frame you are using
 
 <div class="kable-table">
 
-<table>
- <thead>
-  <tr>
-   <th style="text-align:right;"> total_views </th>
-   <th style="text-align:right;"> n </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1145 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 253 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 44 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 17 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 5 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-</tbody>
-</table>
+| total_views|    n|
+|-----------:|----:|
+|           1| 1145|
+|           2|  253|
+|           3|   44|
+|           4|   17|
+|           5|    5|
+|           6|    2|
 
 </div>
 
 The `group_by()` function allows us to carry out computations by groups. We can then use `summarise()` to obtain the total number of counts for each total number of views using `n()`.
-
-Using `group_by()` and `summarise()` can be useful when you want to add the number of observations in addition to other variables, but if you simply want to count the number of observations, you can use the `count()` function: 
-
-
-```r
-data %>% # The data frame you are using
-  count(total_views) # For each variable, count the number of observations
-```
-
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:right;"> total_views </th>
-   <th style="text-align:right;"> n </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1145 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 253 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 44 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 17 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 5 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-</tbody>
-</table>
-
-</div>
-
-This function scales nicely if you want to look at the number of observations for combinations of variables, for example, if you wanted to know the number of total_views for each video. 
-
-
-```r
-data %>% # The data frame you are using
-  count(video, total_views) %>% # For each variable, count the number of observations
-  head() # Limit the number of observations to the first 6
-```
-
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:right;"> video </th>
-   <th style="text-align:right;"> total_views </th>
-   <th style="text-align:right;"> n </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 130 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 47 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 7 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 9 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 137 </td>
-  </tr>
-</tbody>
-</table>
-
-</div>
 
