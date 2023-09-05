@@ -1,4 +1,4 @@
-# Exploring Echo360 video/course level data in R with `tidyverse` {#Echo_course}
+# Exploring Echo360 video/course level data with `tidyverse` {#Echo_course}
 
 ## Introduction
 
