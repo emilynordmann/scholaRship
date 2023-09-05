@@ -12,7 +12,7 @@ library(ggpubr) # Builds on ggplot2 to build specific publication ready plots
 
 The `readr` package in the `tidyverse` provides us with a host of functions for reading in data to R. Often in a course, you will have multiple video recordings which you have Echo360 data on. It is useful to keep all this data within one data frame in R for analysis, as we will often consider metrics across the full course and not for one video. 
 
-The `list.files` command will list all of the files available within a given working directory. To download the data for this tutorial, please [download the .zip file](data/Echo360_Data/Echo360_data.zip) containing 9 files of Echo360 data. In our working directory, we have a folder called "data", and we created a subfolder called "Echo360_Data" to place these files. See [Chapter 4](#anonymous) for how we created anonymous synthetic data to use in these tutorials. The data are stored in .csv files and we can specifically list those files using the command `pattern = ".csv"` as shown below:
+The `list.files` command will list all of the files available within a given working directory. To download the data for this tutorial, please [download the .zip file](data/Echo360_Data/Echo360_data.zip) containing 9 files of Echo360 data. In our working directory, we have a folder called "data", and we created a subfolder called "Echo360_Data" to place these files. The data are stored in .csv files and we can specifically list those files using the command `pattern = ".csv"` as shown below:
 
 ```{r C5 read data, message=F}
 # Obtain list of files from directory
