@@ -1,4 +1,4 @@
-# Getting started with Echo360 data in R with `tidyverse` {#Echo_tidy}
+# Getting started with Echo360 data with `tidyverse` {#Echo_tidy}
 
 ## Reading data into R
 
