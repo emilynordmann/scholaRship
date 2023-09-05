@@ -6,9 +6,7 @@ Before we start with the tutorial, you will down to install the following packag
 
 ```{r C5 packages, warning=FALSE, message=FALSE}
 library(tidyverse) # Package of packages for plotting and wrangling 
-library(psych)
-library(plotly) # Creates interactive plots 
-library(ggpubr) # Builds on ggplot2 to build specific publication ready plots 
+library(psych) # for descriptive statistics
 ```
 
 The `readr` package in the `tidyverse` provides us with a host of functions for reading in data to R. Often in a course, you will have multiple video recordings which you have Echo360 data on. It is useful to keep all this data within one data frame in R for analysis, as we will often consider metrics across the full course and not for one video. 
@@ -33,13 +31,14 @@ data <- tibble(data,
                .name_repair = "universal") # Setting to universal makes all names unique and syntactic
 ```
 
-The object we created (`file_name`) contains the names of the various Echo360 videos, though the naming conventions can at times be quite awkward to handle in R. We can simply number these videos by using the code below.
+The object we created (`data`) contains the names of the various Echo360 videos in the variable `video`, though the naming conventions are awkward to handle in R. We can simply number these videos by using the code below.
 
 ```{r Recode videos}
 # To break this code down, we start with the innermost function
 # 1. We first make each unique video name a factor (unique category)
 # 2. We then make each factor a number, so we get an ascending number from 1 to 9
-data$video <-as.numeric(as.factor(data$video))
+# 3. We then make the numbers a factor, because they're actually labels rather than real numbers
+data$video <-as.factor(as.numeric(as.factor(data$video)))
 ```
 
 ## Data descriptions for each field in downloaded data
@@ -68,7 +67,11 @@ We can obtain some quick summaries of our variables to get an early feel for our
 
 ### Numerical data
 
-For numerical data, we can obtain a series of numerical summaries. We can compute the mean observations for all numerical columns by using the following code: 
+For numerical data, we can obtain a series of numerical summaries. 
+
+The `select()` command allows us to select all variables based on specific criteria (such as variable name or a condition). Here, we select those variables which are numeric by using `where(is.numeric)`. We can then obtain the mean for all numeric variables by using the `summarise_all()` command and then specifying our chosen summary metric (which here, is `mean`).
+
+We can compute the mean observations for all numerical columns by using the following code: 
 
 ```{r summarise numerical}
 data %>% # The data frame you are using
@@ -76,8 +79,6 @@ data %>% # The data frame you are using
   select(where(is.numeric)) %>% # By using where() within select(), we can ask R to show us all the numeric variables
   summarise_all(mean) # For all the numeric variables, calculate the mean value
 ```
-
-The `select()` command allows us to select all variables based on specific criteria (such as variable name or a condition). Here, we select those variables which are numeric by using `where(is.numeric)`. We can then obtain the mean for all numeric variables by using the `summarise_all()` command and then specifying our chosen summary metric (which here, is `mean`).
 
 The summary stats suggest that the distribution of the data might not be normal - the mean live view count and downloads are both zero. To see what's going on, we can visualise the spread of the data in histograms.
 
@@ -136,7 +137,9 @@ p2 <- ggplot(data, aes(x = on_demand_views)) +
 p1 / p2
 ```
 
-Given the distribution, in this case the mean isn't that useful on it's own and we also don't need all of the variables so we can just select the ones that are useful and compute a range of stats using the `describe()` function from the `psych` package. In order for `describe()` to work, we need to transform our object into a data frame as it's currently stored as a tibble (a type of data object used by the tidyverse).
+Given the distribution, in this case the mean isn't that useful on it's own and we also don't need all of the variables so we can just select the ones that are useful and compute a range of stats using the `describe()` function from the `psych` package. In this case, we could eithr select `total_views` or `on_demand_views` as they're the same thing. We'll go with `total_views` as it's a shorter variable name.
+
+In order for `describe()` to work, we need to transform our object into a data frame as it's currently stored as a tibble (a type of data object used by the tidyverse).
 
 ```{r}
 data %>%
@@ -150,8 +153,10 @@ Another way to represent count data is to use `summarise()` and the function `n(
 ```{r summarise counts}
 data %>% # The data frame you are using
   group_by(total_views) %>% # Group by the total_views variable
-  summarise(n = n()) # Calculate the number of observations for each level of group_by
+  summarise(n = n()) # Calculate the number of observations for each group
 ```
 
 The `group_by()` function allows us to carry out computations by groups. We can then use `summarise()` to obtain the total number of counts for each total number of views using `n()`.
+
+Although the code in this chapter doesn't really extend what you can get through the Echo360 dashboards, loading and checking your data through simple descriptive stats and visualisation can help identify any issues and help you better understand your data fr more complex analyses. 
 

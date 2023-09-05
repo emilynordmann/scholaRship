@@ -6,7 +6,7 @@ Now we have introduced you to the basic principles of reading and summarising Ec
 
 You will need the following packages which are the same as chapter 6, but with the addition of `scales` to add some useful functions for plotting graph axes. You will also need the `data` object you created in chapter 6, but you can rerun the code below if you do not have it available already. If you do not have the data downloaded already, please [download the .zip file](data/Echo360_Data/Echo360_data.zip) containing 9 files of Echo360 data. Our tutorial assumes you have a folder called "data" in your working directory, and we created a subfolder called "Echo360_Data" to place these files. If you saved the data in another way, remember to edit the file paths first. 
 
-```{r, warning=FALSE, message=FALSE}
+```{r warning=FALSE, message=FALSE}
 library(tidyverse) # Package of packages for plotting and wrangling 
 library(plotly) # Creates interactive plots 
 library(ggpubr) # Builds on ggplot2 to build specific publication ready plots 
@@ -30,12 +30,12 @@ data <- tibble(data,
 # To break this code down, we start with the innermost function
 # 1. We first make each unique video name a factor (unique category)
 # 2. We then make each factor a number, so we get an ascending number from 1 to 9
-data$video <- as.numeric(as.factor(data$video))
+data$video <-as.factor(as.numeric(as.factor(data$video)))
 ```
 
 ## Handling date/time data with `lubridate`
 
-Handling date/time data in R is somewhat different from other variable types and should be treated differently and handled with care. The `lubridate` package in R (loaded as part of the `tidyverse`) allows us to easily handle tricky date/time data and extract useful information from these. 
+It's important to be able to track engagment with lecture recordings throughout the semester so being able to analyse the data according to time and data is importnat. Handling date/time data in R is somewhat different from other variable types and should be treated differently and handled with care. The `lubridate` package in R (loaded as part of the `tidyverse`) allows us to easily handle tricky date/time data and extract useful information from these. 
 
 ### Converting variables to date/time format
 
@@ -74,41 +74,48 @@ head(data$duration)
 head(data$last_viewed)
 ```
 
+### Transforming time data
+
+To help us summarise and visualise the time data, we can convert time variables to numeric. In this case, we can use `mutate()` with `as.numeric()` to convert the variable duration from a time variable (e.g., 13M 11S) to a number (13.2). This then easily allows us to compute summary statistics and visualise the data
+
+```{r}
+# compute mean duration
+data %>%
+  mutate(duration = as.numeric(duration, "minutes")) %>%
+  group_by(video) %>%
+  summarise(duration = mean(duration))
+
+# produce bar chart
+data %>%
+  mutate(duration = as.numeric(duration, "minutes")) %>%
+  group_by(video) %>%
+  summarise(duration = mean(duration)) %>%
+  ggplot(aes(x = video, y = duration, fill = video)) + # fill gives colours for each video
+  geom_col() +
+  guides(fill = "none") + # removes redundant legend
+  theme_minimal() + # apply a theme
+  labs(title = "Video length in minutes")
+
+# produce line graph of same data
+data %>%
+  mutate(duration = as.numeric(duration, "minutes")) %>%
+  group_by(video) %>%
+  summarise(duration = mean(duration)) %>%
+  ggplot(aes(x = video, y = duration, colour = video, group = 1)) + # fill gives colours for each video
+  geom_point() +
+  geom_line() +
+  guides(colour = "none") + # removes redundant legend
+  theme_minimal() + # apply a theme
+  labs(title = "Video length in minutes") +
+  scale_y_continuous(limits = c(0, 20)) #  set limits of y-axis
+```
+
+
 ### Extracting elements from date/time data
 
 Sometimes, you may wish to obtain specific parts of a date/time such as the month, the minutes etc. There are several functions in `lubridate` which allow us to extract these easily from a date/time object.
 
-Say we wish to only obtain the minutes from `Average.View.Time`, we can obtain this easily using the `r hl(minute())` function and preview the first five cases. 
-
-```{r isolate minutes}
-# Add a new average view minutes column to our data
-data <- data %>% 
-  mutate(average_view_minute = minute(data$average_view_time)) # Isolate the minutes from the average view time column
-
-# Print the first five cases
-head(data$average_view_minute)
-```
-
-As we start to get into the habit of visualising data to aid exploration, we can quickly observe some summary statistics by producing a boxplot of the average view time in minutes. 
-
-```{r average minute boxplot}
-fig_avg_minutes <- data %>% 
-  ggplot(aes(y = average_view_minute)) + # We only need the y axis of view time minutes
-  geom_boxplot() + # Add a boxplot layer
-  labs(title = "Boxplot of average video viewing times",
-       y = "View time (mins)") + # Specify the main title and y axis label
-  theme_bw() # Tidy up the theme
-
-fig_avg_minutes
-```
-
-Sometimes it can be difficult to precisely identify the y axis value for each element in a plot, so you can also produce an interactive version of the boxplot by using the `r pkg("plotly")` package. Once we define a graph in `ggplot2`, we can convert it into an interactive plot using the `ggplotly()` function. 
-
-```{r plotly avg minutes}
-ggplotly(fig_avg_minutes)
-```
-
-As a further example using a date variable, suppose we want to look at the last month students viewed videos across the course. We can obtain this by applying the `r hl(month())` function to the `Last.Viewed` variable.
+Suppose we want to look at the last month students viewed videos across the course. We can obtain this by applying the `month()` function to the `Last.Viewed` variable.
 
 ```{r last month viewed bar chart}
 # Add a new month column 
@@ -122,12 +129,13 @@ last_viewed <- data %>%
        y = "Frequency",
        x = "Last month video viewed") + 
   theme_bw() + 
-  scale_x_continuous(breaks = breaks_pretty()) # Function to tidy up the x axis breaks specifically for dates
+  scale_x_continuous(breaks = seq(1:12))
 
 last_viewed
+
 ```
 
-As above, we can convert the bar chart to make it interactive using the `r hl(ggplotly())` function. This allows you to hover over the plot and see what the frequency was for each month. 
+We can also convert the bar chart to make it interactive using the `r hl(ggplotly())` function. This allows you to hover over the plot and see what the frequency was for each month. 
 
 ```{r plotly last viewed}
 ggplotly(last_viewed)
@@ -135,34 +143,31 @@ ggplotly(last_viewed)
 
 ### Maths with date-times
 
-Sometimes, we may wish to compare the difference in time between events. `r pkg("lubridate")` provides some useful functions to help us with this. For example, we can look at the difference in average view time to the total duration of the video by using simple arithmetic operators.
+Sometimes, we may wish to compare the difference in time between events. `r pkg("lubridate")` provides some useful functions to help us with this. For example, we can look at the difference in view time to the total duration of the video by using simple arithmetic operators combined with `group_by()`. As noted, the function of `group_by()` is that it will perform whatever operation comes after it seperately for each level of the grouping variable so in this case, it will compute the time difference for each video.
 
 ```{r time difference}
-data_video1 <- data %>% 
-  filter(video == 1) %>% # Filter the videos to select only video 1
-  mutate(time_difference = average_view_time - duration) # Add a time difference column between average view time and total duration
+data <- data %>% 
+  group_by(video) %>%
+  mutate(time_difference = average_view_time - duration) %>% # Add a time difference column between average view time and total duration
+  ungroup()
 
-head(data_video1$time_difference)
+head(data$time_difference)
 ```
 
-As this data returns values in minutes and seconds, we can transform this to one unit type for consistency, then use that data to create a boxplot. 
+As this data returns values in minutes and seconds, we can transform this to numeric and create a histogram. More negative values represent students who watched less of the video than the total duration.
 
 ```{r time difference boxplot}
-data_video1 <- data_video1 %>% 
-  mutate(time_difference = second(time_difference))
+data <- data %>% 
+  mutate(time_difference = as.numeric(time_difference, "minute"))
 
-time_difference <- data_video1 %>% 
-  ggplot(aes(y = time_difference)) + 
-  geom_boxplot() + 
-  labs(title="Boxplot of average video viewing times compared to total video duration", 
-       y = "View time (Seconds)") + 
-  theme_bw() + 
-  geom_hline(yintercept = 0, color = "red") # Add a horizontal line at 0 to show no difference
+time_difference <- data %>% 
+  ggplot(aes(x = time_difference)) + 
+  geom_histogram() +
+  labs(title="Difference between average viewing times & total video duration") +
+  theme_bw() 
 
 time_difference
 ```
-
-There's a little skew here so we cannot see the full box, but the red horizontal line shows no difference in average view time to the duration of video 1, so where students viewed the whole video. More positive values represent students who watched less of the video than the total duration. 
 
 As before, we can make these values interactive by converting our ggplot visualisation to a `r pkg("plotly")` object. 
 
@@ -170,11 +175,37 @@ As before, we can make these values interactive by converting our ggplot visuali
 ggplotly(time_difference)
 ```
 
+The difference between viewing time and duration is of course relative to the duration so it may be better to express this difference as a percent, i.e., on average, what percent of each video did students watch?
+
+To do this, we can use mutate to calculate the percent of each video viewed. Once we've created this column, we can then use `group_by()` and `ggplot()` to summarise and visualise the drop-off for each video.
+
+```{r}
+data <- data %>%
+  mutate(percent_watched = 100 - ((duration-average_view_time) / duration) *100) 
+
+data %>%
+  group_by(video) %>%
+  summarise(mean_percent = mean(percent_watched))
+
+
+data %>%
+  group_by(video) %>%
+  summarise(mean_percent = mean(percent_watched)) %>%
+  ggplot(aes(x = video, y = mean_percent, colour = video, group = 1)) + # fill gives colours for each video
+  geom_point() +
+  geom_line() +
+  guides(colour = "none") + 
+  theme_minimal() + 
+  labs(title = "Video length in minutes") +
+  scale_y_continuous(limits = c(0, 100)) #  set limits of y-axis
+```
+
+
 ## Total views for each video
 
-In the following section, we will mostly be creating plots of our data summarised at the video level. Given that our data is currently stored at student level (one row per student per video), we will first transform our data into a new data set called `video_data` which will group the data by video and create some variables of interest. First, let's create this new data set with two columns:
+In the following section, we will continuing creating plots of our data summarised at the video level. Given that our data is currently stored at student level (one row per student per video), we will first transform our data into a new data set called `video_data` which will group the data by video and create some variables of interest. First, let's create this new data set with two columns:
 
-* `video`: The video number stored as a factor (this will make it easier to plot later on);
+* `video`: The video number ;
 
 * `total_views`: The total number of views per video.
 
@@ -182,7 +213,6 @@ In the following section, we will mostly be creating plots of our data summarise
 video_data <- data %>% 
   group_by(video) %>%
   summarise(total_views = sum(total_views)) %>% # for each video, add up all the views across students
-  mutate(video = factor(video)) %>%  # Turn video into a factor
   ungroup() # Retaining the group by can sometimes cause problems
 ```
 
@@ -191,7 +221,7 @@ We can now easily create a bar chart of the total number of views per video.
 ```{r views bar chart}
 fig.total.views <- video_data %>% 
   ggplot(aes(x = video, y = total_views)) +
-  geom_bar(stat = "identity") + # Since we specify a y value, just show as the value
+  geom_col() + 
   labs(title="Total number of views per video",
        y = "Total Views",
        x = "Video") + 

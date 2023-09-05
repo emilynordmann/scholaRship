@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>C Conventions | scholaRship</title>
 <meta name="author" content="Emily Nordmann, Craig Alexander, James Bartlett, Eilidh Jack, Gaby Mahrholz, Jill MacKay, Mitchum Bock">
-<meta name="generator" content="bookdown 0.26 with bs4_book()">
+<meta name="generator" content="bookdown 0.34 with bs4_book()">
 <meta property="og:title" content="C Conventions | scholaRship">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://psyteachr.github.io/scholaRship/conventions.html">
@@ -16,7 +16,7 @@
 <meta name="twitter:image" content="https://psyteachr.github.io/scholaRship/images/logos/logo.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.1/transition.js"></script><script src="libs/bs3compat-0.5.1/tabs.js"></script><script src="libs/bs3compat-0.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.0/transition.js"></script><script src="libs/bs3compat-0.5.0/tabs.js"></script><script src="libs/bs3compat-0.5.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script><script src="libs/plotly-binding-4.10.2/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
 <script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
@@ -108,23 +108,23 @@
 <ul>
 <li>Generic code: <code>list(number = 1, letter = "A")</code>
 </li>
-<li>Highlighted code: <code><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://dplyr.tidyverse.org/reference/slice.html">slice_max</a></span><span class="op">(</span><span class="op">)</span></code>
+<li>Highlighted code: <code><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://dplyr.tidyverse.org/reference/slice.html">slice_max</a></span><span class="op">(</span><span class="op">)</span></span></code>
 </li>
 <li>File paths: <code class="path">data/sales.csv</code>
 </li>
 <li>R Packages: <code class="package">tidyverse</code>
 </li>
-<li>Functions: <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="op">)</span></code>
+<li>Functions: <code><span><span class="fu"><a target="_blank" href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="op">)</span></span></code>
 </li>
-<li>Strings: <code><span class="st">"psyTeachR"</span></code>
+<li>Strings: <code><span><span class="st">"psyTeachR"</span></span></code>
 </li>
-<li>Numbers: <code><span class="fl">100</span></code>, <code><span class="fl">3.14</span></code>
+<li>Numbers: <code><span><span class="fl">100</span></span></code>, <code><span><span class="fl">3.14</span></span></code>
 </li>
-<li>Logical values: <code><span class="cn">TRUE</span></code>, <code><span class="cn">FALSE</span></code>
+<li>Logical values: <code><span><span class="cn">TRUE</span></span></code>, <code><span><span class="cn">FALSE</span></span></code>
 </li>
-<li>Glossary items: <a class="glossary" target="_blank" title="Discrete variables that have an inherent order, such as level of education or dislike/like." href="https://psyteachr.github.io/glossary/o#ordinal">ordinal</a>
+<li>Glossary items: <a class="glossary">ordinal<span class="def"></span></a>
 </li>
-<li>Citations: <span class="citation">Wickham (<a href="references-1.html#ref-R-tidyverse" role="doc-biblioref">2022</a>)</span>
+<li>Citations: <span class="citation">Wickham (<a href="references-1.html#ref-R-tidyverse">2023</a>)</span>
 </li>
 <li>Internal links: Chapter <a href="intro.html#intro">1</a>
 </li>
@@ -146,8 +146,8 @@
 <option value="x">FALSE</option></select>
 </li>
 <li>What is a p-value?
-<div id="radio_OLZYBXDQNE" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_OLZYBXDQNE" value="x"><span>the probability that the null hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_OLZYBXDQNE" value="answer"><span>the probability of the observed (or more extreme) data, under the assumption that the null-hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_OLZYBXDQNE" value="x"><span>the probability of making an error in your conclusion</span></label>
+<div id="radio_LIYMSZVSNW" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_LIYMSZVSNW" value="x"><span>the probability that the null hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_LIYMSZVSNW" value="answer"><span>the probability of the observed (or more extreme) data, under the assumption that the null-hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_LIYMSZVSNW" value="x"><span>the probability of making an error in your conclusion</span></label>
 </div>
 </li>
 </ul>
@@ -162,7 +162,7 @@ Hidden Text
 Hidden Code
 </button>
 <div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"You found some hidden code!"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"You found some hidden code!"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] "You found some hidden code!"</code></pre>
 </div>
 </div>
@@ -188,14 +188,14 @@ Hidden Code
 <span class="header-section-number">C.3</span> Code Chunks<a class="anchor" aria-label="anchor" href="#code-chunks"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb154"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># code chunks</span>
-<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Applied"</span>, <span class="st">"Data"</span>, <span class="st">"Skills"</span>, <span class="fl">1</span>, sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># code chunks</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Applied"</span>, <span class="st">"Data"</span>, <span class="st">"Skills"</span>, <span class="fl">1</span>, sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] "Applied Data Skills 1"</code></pre>
 <div class="verbatim">
 <pre class="sourceCode r"><code class="sourceCode R">```{r setup, message = FALSE}</code></pre>
 <div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># code chunks with visible r headers</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># code chunks with visible r headers</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code></pre></div>
 <pre class="sourceCode r"><code class="sourceCode R">```</code></pre>
 </div>
 </div>
@@ -214,10 +214,9 @@ definition
 </tr></thead>
 <tbody><tr>
 <td style="text-align:left;">
-<a href="https://psyteachr.github.io/glossary/o.html#ordinal" class="glossary" target="_blank">ordinal</a>
+ordinal
 </td>
 <td style="text-align:left;">
-Discrete variables that have an inherent order, such as level of education or dislike/like.
 </td>
 </tr></tbody>
 </table></div>
@@ -465,7 +464,7 @@ $( document ).ready(function() {
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

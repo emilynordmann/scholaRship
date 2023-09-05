@@ -62,6 +62,7 @@ Echo_course
 introduction-1
 handling-datetime-data-with-lubridate
 converting-variables-to-datetime-format
+transforming-time-data
 extracting-elements-from-datetime-data
 maths-with-date-times
 total-views-for-each-video

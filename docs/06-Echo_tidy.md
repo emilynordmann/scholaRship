@@ -7,9 +7,7 @@ Before we start with the tutorial, you will down to install the following packag
 
 ```r
 library(tidyverse) # Package of packages for plotting and wrangling 
-library(psych)
-library(plotly) # Creates interactive plots 
-library(ggpubr) # Builds on ggplot2 to build specific publication ready plots 
+library(psych) # for descriptive statistics
 ```
 
 The `readr` package in the `tidyverse` provides us with a host of functions for reading in data to R. Often in a course, you will have multiple video recordings which you have Echo360 data on. It is useful to keep all this data within one data frame in R for analysis, as we will often consider metrics across the full course and not for one video. 
@@ -35,14 +33,15 @@ data <- tibble(data,
                .name_repair = "universal") # Setting to universal makes all names unique and syntactic
 ```
 
-The object we created (`file_name`) contains the names of the various Echo360 videos, though the naming conventions can at times be quite awkward to handle in R. We can simply number these videos by using the code below.
+The object we created (`data`) contains the names of the various Echo360 videos in the variable `video`, though the naming conventions are awkward to handle in R. We can simply number these videos by using the code below.
 
 
 ```r
 # To break this code down, we start with the innermost function
 # 1. We first make each unique video name a factor (unique category)
 # 2. We then make each factor a number, so we get an ascending number from 1 to 9
-data$video <-as.numeric(as.factor(data$video))
+# 3. We then make the numbers a factor, because they're actually labels rather than real numbers
+data$video <-as.factor(as.numeric(as.factor(data$video)))
 ```
 
 ## Data descriptions for each field in downloaded data
@@ -58,7 +57,7 @@ str(data)
 
 ```
 ## tibble [1,466 × 16] (S3: tbl_df/tbl/data.frame)
-##  $ video            : num [1:1466] 1 1 1 1 1 1 1 1 1 1 ...
+##  $ video            : Factor w/ 9 levels "1","2","3","4",..: 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ media_id         : chr [1:1466] "631c9eb6-7828-4e41-9e9e-ae3b261ae741" "631c9eb6-7828-4e41-9e9e-ae3b261ae741" "631c9eb6-7828-4e41-9e9e-ae3b261ae741" "631c9eb6-7828-4e41-9e9e-ae3b261ae741" ...
 ##  $ media_name       : chr [1:1466] "Physiological Psychology Week 1 Part 1" "Physiological Psychology Week 1 Part 1" "Physiological Psychology Week 1 Part 1" "Physiological Psychology Week 1 Part 1" ...
 ##  $ create_date      : chr [1:1466] "01/07/2022" "01/07/2022" "01/07/2022" "01/07/2022" ...
@@ -110,7 +109,7 @@ glimpse(data)
 ```
 ## Rows: 1,466
 ## Columns: 16
-## $ video             <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+## $ video             <fct> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
 ## $ media_id          <chr> "631c9eb6-7828-4e41-9e9e-ae3b261ae741", "631c9eb6-78…
 ## $ media_name        <chr> "Physiological Psychology Week 1 Part 1", "Physiolog…
 ## $ create_date       <chr> "01/07/2022", "01/07/2022", "01/07/2022", "01/07/202…
@@ -136,7 +135,11 @@ We can obtain some quick summaries of our variables to get an early feel for our
 
 ### Numerical data
 
-For numerical data, we can obtain a series of numerical summaries. We can compute the mean observations for all numerical columns by using the following code: 
+For numerical data, we can obtain a series of numerical summaries. 
+
+The `select()` command allows us to select all variables based on specific criteria (such as variable name or a condition). Here, we select those variables which are numeric by using `where(is.numeric)`. We can then obtain the mean for all numeric variables by using the `summarise_all()` command and then specifying our chosen summary metric (which here, is `mean`).
+
+We can compute the mean observations for all numerical columns by using the following code: 
 
 
 ```r
@@ -148,30 +151,11 @@ data %>% # The data frame you are using
 
 <div class="kable-table">
 
-<table>
- <thead>
-  <tr>
-   <th style="text-align:right;"> video </th>
-   <th style="text-align:right;"> total_views </th>
-   <th style="text-align:right;"> on_demand_views </th>
-   <th style="text-align:right;"> live_view_count </th>
-   <th style="text-align:right;"> downloads </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 4.689632 </td>
-   <td style="text-align:right;"> 1.287858 </td>
-   <td style="text-align:right;"> 1.287858 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table>
+| total_views| on_demand_views| live_view_count| downloads|
+|-----------:|---------------:|---------------:|---------:|
+|    1.287858|        1.287858|               0|         0|
 
 </div>
-
-The `select()` command allows us to select all variables based on specific criteria (such as variable name or a condition). Here, we select those variables which are numeric by using `where(is.numeric)`. We can then obtain the mean for all numeric variables by using the `summarise_all()` command and then specifying our chosen summary metric (which here, is `mean`).
 
 The summary stats suggest that the distribution of the data might not be normal - the mean live view count and downloads are both zero. To see what's going on, we can visualise the spread of the data in histograms.
 
@@ -207,37 +191,15 @@ data %>%
 
 <div class="kable-table">
 
-<table>
- <thead>
-  <tr>
-   <th style="text-align:right;"> live_view_count </th>
-   <th style="text-align:right;"> n </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 1466 </td>
-  </tr>
-</tbody>
-</table>
+| live_view_count|    n|
+|---------------:|----:|
+|               0| 1466|
 
 </div><div class="kable-table">
 
-<table>
- <thead>
-  <tr>
-   <th style="text-align:right;"> downloads </th>
-   <th style="text-align:right;"> n </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 1466 </td>
-  </tr>
-</tbody>
-</table>
+| downloads|    n|
+|---------:|----:|
+|         0| 1466|
 
 </div>
 
@@ -255,7 +217,9 @@ ggplot(data, aes(x = on_demand_views)) +
 
 <img src="06-Echo_tidy_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" />
 
-Given the distribution, in this case the mean isn't that useful on it's own and we also don't need all of the variables so we can just select the ones that are useful and compute a range of stats using the `describe()` function from the `psych` package. In order for `describe()` to work, we need to transform our object into a data frame as it's currently stored as a tibble (a type of data object used by the tidyverse).
+Given the distribution, in this case the mean isn't that useful on it's own and we also don't need all of the variables so we can just select the ones that are useful and compute a range of stats using the `describe()` function from the `psych` package. In this case, we could eithr select `total_views` or `on_demand_views` as they're the same thing. We'll go with `total_views` as it's a shorter variable name.
+
+In order for `describe()` to work, we need to transform our object into a data frame as it's currently stored as a tibble (a type of data object used by the tidyverse).
 
 
 ```r
@@ -267,44 +231,9 @@ data %>%
 
 <div class="kable-table">
 
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;">   </th>
-   <th style="text-align:right;"> vars </th>
-   <th style="text-align:right;"> n </th>
-   <th style="text-align:right;"> mean </th>
-   <th style="text-align:right;"> sd </th>
-   <th style="text-align:right;"> median </th>
-   <th style="text-align:right;"> trimmed </th>
-   <th style="text-align:right;"> mad </th>
-   <th style="text-align:right;"> min </th>
-   <th style="text-align:right;"> max </th>
-   <th style="text-align:right;"> range </th>
-   <th style="text-align:right;"> skew </th>
-   <th style="text-align:right;"> kurtosis </th>
-   <th style="text-align:right;"> se </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> total_views </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1466 </td>
-   <td style="text-align:right;"> 1.287858 </td>
-   <td style="text-align:right;"> 0.6348921 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1.149063 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 2.902835 </td>
-   <td style="text-align:right;"> 10.88082 </td>
-   <td style="text-align:right;"> 0.0165818 </td>
-  </tr>
-</tbody>
-</table>
+|            | vars|    n|     mean|        sd| median|  trimmed| mad| min| max| range|     skew| kurtosis|        se|
+|:-----------|----:|----:|--------:|---------:|------:|--------:|---:|---:|---:|-----:|--------:|--------:|---------:|
+|total_views |    1| 1466| 1.287858| 0.6348921|      1| 1.149063|   0|   1|   6|     5| 2.902835| 10.88082| 0.0165818|
 
 </div>
 
@@ -314,47 +243,23 @@ Another way to represent count data is to use `summarise()` and the function `n(
 ```r
 data %>% # The data frame you are using
   group_by(total_views) %>% # Group by the total_views variable
-  summarise(n = n()) # Calculate the number of observations for each level of group_by
+  summarise(n = n()) # Calculate the number of observations for each group
 ```
 
 <div class="kable-table">
 
-<table>
- <thead>
-  <tr>
-   <th style="text-align:right;"> total_views </th>
-   <th style="text-align:right;"> n </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1145 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 253 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 44 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 17 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 5 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-</tbody>
-</table>
+| total_views|    n|
+|-----------:|----:|
+|           1| 1145|
+|           2|  253|
+|           3|   44|
+|           4|   17|
+|           5|    5|
+|           6|    2|
 
 </div>
 
 The `group_by()` function allows us to carry out computations by groups. We can then use `summarise()` to obtain the total number of counts for each total number of views using `n()`.
+
+Although the code in this chapter doesn't really extend what you can get through the Echo360 dashboards, loading and checking your data through simple descriptive stats and visualisation can help identify any issues and help you better understand your data fr more complex analyses. 
 
